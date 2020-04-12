@@ -24,7 +24,7 @@ private Conexion() {
     private static class ConexionHolder {
 
         private static final Conexion INSTANCE = new Conexion();
-        private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("e-menuPU");
+        private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("eMenuPU");
         private static EntityManager em = emf.createEntityManager();
     }
     

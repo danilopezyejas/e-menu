@@ -23,6 +23,7 @@ public class Mesa implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int numeroMesa;
+    private byte[] foto;
 
     public Long getId() {
         return id;
@@ -65,13 +66,22 @@ public class Mesa implements Serializable {
         return numeroMesa;
     }
 
+    public byte[] getFoto() {
+        return foto;
+    }
+    
+
     public void setNumeroMesa(int numeroMesa) {
         this.numeroMesa = numeroMesa;
     }
 
-    public Mesa(Long id, int numeroMesa) {
-        this.id = id;
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+    public Mesa(int numeroMesa, byte[] foto) {
         this.numeroMesa = numeroMesa;
+        this.foto = foto;
     }
 
     public Mesa() {
