@@ -14,6 +14,7 @@ import java.awt.Component;
 public class e_menu extends javax.swing.JFrame {
 
     AltaMesa am = null;
+    AltaPersonal ap = null;
     
     public e_menu() {
         initComponents();
@@ -151,7 +152,12 @@ public class e_menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void alta_personalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alta_personalActionPerformed
-        // TODO add your handling code here:
+        AltaPersonal ap = new AltaPersonal();
+        this.ap = ap;
+        panel.add(ap);
+        ap.setVisible(true);
+        bloquearFondo();
+        centrarInternal(ap);
     }//GEN-LAST:event_alta_personalActionPerformed
 
     private void alta_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alta_mesaActionPerformed
