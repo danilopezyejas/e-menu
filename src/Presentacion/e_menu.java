@@ -15,6 +15,7 @@ public class e_menu extends javax.swing.JFrame {
 
     AltaMesa am = null;
     AltaPersonal ap = null;
+    BajaMesa bm = null;
     ConsultaPersonal cp = null;
     AltaPlato apl = null;
     
@@ -135,6 +136,11 @@ public class e_menu extends javax.swing.JFrame {
         mesa.add(consulta_mesa);
 
         baja_mesa.setText("Baja");
+        baja_mesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                baja_mesaActionPerformed(evt);
+            }
+        });
         mesa.add(baja_mesa);
 
         jMenuBar1.add(mesa);
@@ -190,6 +196,15 @@ public class e_menu extends javax.swing.JFrame {
         bloquearFondo();
         centrarInternal(apl);
     }//GEN-LAST:event_alta_alimentoActionPerformed
+
+    private void baja_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baja_mesaActionPerformed
+        BajaMesa bm = new BajaMesa();
+        this.bm = bm;
+        panel.add(bm);
+        bm.setVisible(true);
+        bloquearFondo();
+        centrarInternal(bm);
+    }//GEN-LAST:event_baja_mesaActionPerformed
 
     
     void ejecutarPanel(javax.swing.JInternalFrame o){

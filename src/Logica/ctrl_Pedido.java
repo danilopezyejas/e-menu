@@ -5,15 +5,26 @@
  */
 package Logica;
 
+import Persistencia.Conexion;
 import java.util.HashMap;
+import java.util.List;
+import javax.persistence.EntityManager;
 
 /**
  *
  * @author Danilo
  */
 public class ctrl_Pedido implements ictrl_Pedido{
+    private static ctrl_Pedido instancia;
     private int cant;
     private int idMesa;
+    
+    public static ctrl_Pedido getInstancia(){
+        if (instancia == null) {
+            instancia = new ctrl_Pedido();
+        }
+        return instancia;
+    }
 
     @Override
     public void confirmarPedido() {
@@ -86,4 +97,17 @@ public class ctrl_Pedido implements ictrl_Pedido{
         this.idMesa = idMesa;
     }
     
+    
+    public List<Mesa> buscarMesaPorId(int id ) {
+        EntityManager em = Conexion.getInstance().getEntity();
+        List<Mesa> lista = null;
+        em.getTransaction().begin();
+        try {
+            lista = em.createNativeQuery("SELECT * FROM mesa WHERE numeroMesa="+id, Mesa.class).getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        return lista;
+    }
 }

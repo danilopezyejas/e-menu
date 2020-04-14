@@ -21,5 +21,8 @@ public class Fabrica {
         private static final Fabrica INSTANCIA = new Fabrica();
     }
     
-    
+    public ictrl_Pedido getIUserController() {
+        ictrl_Pedido interfacePedido = ctrl_Pedido.getInstancia();
+        return interfacePedido;
+    }
 }
