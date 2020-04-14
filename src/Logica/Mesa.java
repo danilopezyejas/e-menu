@@ -5,11 +5,15 @@
  */
 package Logica;
 
+//import com.mysql.jdbc.Blob;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Blob;
+import javax.persistence.Column;
+import javax.persistence.Lob;
 
 /**
  *
@@ -23,8 +27,10 @@ public class Mesa implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int numeroMesa;
-    private byte[] foto;
-
+    @Column
+    @Lob
+    private Blob foto;
+    
     public Long getId() {
         return id;
     }
@@ -58,6 +64,14 @@ public class Mesa implements Serializable {
         return "Logica.Mesa[ id=" + id + " ]";
     }
 
+    public Mesa() {
+    }
+
+    public Mesa(int numeroMesa, Blob foto) {
+        this.numeroMesa = numeroMesa;
+        this.foto = foto;
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
@@ -66,25 +80,17 @@ public class Mesa implements Serializable {
         return numeroMesa;
     }
 
-    public byte[] getFoto() {
+    public Blob getFoto() {
         return foto;
     }
-    
 
     public void setNumeroMesa(int numeroMesa) {
         this.numeroMesa = numeroMesa;
     }
 
-    public void setFoto(byte[] foto) {
+    public void setFoto(Blob foto) {
         this.foto = foto;
     }
-
-    public Mesa(int numeroMesa, byte[] foto) {
-        this.numeroMesa = numeroMesa;
-        this.foto = foto;
-    }
-
-    public Mesa() {
-    }
+    
     
 }

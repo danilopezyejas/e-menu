@@ -10,5 +10,5 @@ package Logica;
  * @author Danilo
  */
 public enum enum_Bebida {
-    Alcoholica, Analcoholica, elavoracion_propia
+    Alcoholica, Analcoholica, elaboracion_propia
 }

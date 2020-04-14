@@ -16,9 +16,12 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.sql.rowset.serial.SerialBlob;
 import javax.swing.JOptionPane;
 
 /**
@@ -149,7 +152,14 @@ public class AltaMesa extends javax.swing.JInternalFrame {
 	}catch(IOException e){
 		System.out.println(e.getMessage());
 	}
-        Mesa mesa = new Mesa(Integer.parseInt(numMesa),imagenEnByte);
+    
+        Blob blobData = null;
+        try {
+            blobData = new SerialBlob(imagenEnByte);
+        } catch (SQLException ex) {
+            Logger.getLogger(AltaMesa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Mesa mesa = new Mesa(Integer.parseInt(numMesa),blobData);
         Conexion.getInstance().alta(mesa);
     }//GEN-LAST:event_generarActionPerformed
 

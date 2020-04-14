@@ -10,35 +10,37 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  *
  * @author Danilo
  */
 @Entity
-public abstract class Alimento implements Serializable {
+@Inheritance(strategy=InheritanceType.JOINED)
+public class Alimento implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private int idAlimento;
+    private Long idAlimento;
     private String nombre;
     private float precio;
     private enum_Categoria categoria;
 
     public Long getId() {
-        return id;
+        return idAlimento;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.idAlimento = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idAlimento != null ? idAlimento.hashCode() : 0);
         return hash;
     }
 
@@ -49,7 +51,7 @@ public abstract class Alimento implements Serializable {
             return false;
         }
         Alimento other = (Alimento) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idAlimento == null && other.idAlimento != null) || (this.idAlimento != null && !this.idAlimento.equals(other.idAlimento))) {
             return false;
         }
         return true;
@@ -57,15 +59,13 @@ public abstract class Alimento implements Serializable {
 
     @Override
     public String toString() {
-        return "Logica.Alimento[ id=" + id + " ]";
+        return "Logica.Alimento[ id=" + idAlimento + " ]";
     }
 
     public Alimento() {
     }
 
-    public Alimento(Long id, int idAlimento, String nombre, float precio, enum_Categoria categoria) {
-        this.id = id;
-        this.idAlimento = idAlimento;
+    public Alimento(String nombre, float precio, enum_Categoria categoria) {
         this.nombre = nombre;
         this.precio = precio;
         this.categoria = categoria;
@@ -73,10 +73,6 @@ public abstract class Alimento implements Serializable {
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
-    }
-
-    public int getIdAlimento() {
-        return idAlimento;
     }
 
     public String getNombre() {
@@ -89,10 +85,6 @@ public abstract class Alimento implements Serializable {
 
     public enum_Categoria getCategoria() {
         return categoria;
-    }
-
-    public void setIdAlimento(int idAlimento) {
-        this.idAlimento = idAlimento;
     }
 
     public void setNombre(String nombre) {
