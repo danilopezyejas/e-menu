@@ -21,6 +21,7 @@ public class BajaMesa extends javax.swing.JInternalFrame {
     
     public BajaMesa() {
         initComponents();
+        llenarComboBox();
     }
 
     /**
@@ -40,8 +41,6 @@ public class BajaMesa extends javax.swing.JInternalFrame {
         setTitle("Baja mesa");
 
         jLabel1.setText("Seleccionar mesa:");
-
-        mesa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
 
         borrar.setText("Borrar");
         borrar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,10 +111,18 @@ public class BajaMesa extends javax.swing.JInternalFrame {
             }
     }//GEN-LAST:event_borrarActionPerformed
 
-    void salir(){
+    private void salir(){
         e_menu m = (e_menu) this.getTopLevelAncestor();
         m.desbloquearFondo();
         this.dispose();
+    }
+    
+    private void llenarComboBox(){
+        List<Mesa> listaMesas = cp.buscarMesas();
+        for(int i = 0; i < listaMesas.size(); i++){
+            Mesa m = (Mesa)listaMesas.get(i);
+            this.mesa.addItem(Integer.toString(m.getNumeroMesa()));
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

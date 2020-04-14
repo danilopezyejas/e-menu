@@ -110,4 +110,17 @@ public class ctrl_Pedido implements ictrl_Pedido{
         }
         return lista;
     }
+    
+        public List<Mesa> buscarMesas() {
+        EntityManager em = Conexion.getInstance().getEntity();
+        List<Mesa> lista = null;
+        em.getTransaction().begin();
+        try {
+            lista = em.createNativeQuery("SELECT * FROM mesa ", Mesa.class).getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        return lista;
+    }
 }
