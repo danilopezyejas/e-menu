@@ -15,6 +15,8 @@ public class e_menu extends javax.swing.JFrame {
 
     AltaMesa am = null;
     AltaPersonal ap = null;
+    ConsultaPersonal cp = null;
+    AltaPlato apl = null;
     
     public e_menu() {
         initComponents();
@@ -55,8 +57,6 @@ public class e_menu extends javax.swing.JFrame {
         personal = new javax.swing.JMenu();
         alta_personal = new javax.swing.JMenuItem();
         consulta_personal = new javax.swing.JMenuItem();
-        modificacion_personal = new javax.swing.JMenuItem();
-        baja_personal = new javax.swing.JMenuItem();
         alimentos = new javax.swing.JMenu();
         alta_alimento = new javax.swing.JMenuItem();
         consulta_alimento = new javax.swing.JMenuItem();
@@ -91,19 +91,23 @@ public class e_menu extends javax.swing.JFrame {
         personal.add(alta_personal);
 
         consulta_personal.setText("Consulta");
+        consulta_personal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consulta_personalActionPerformed(evt);
+            }
+        });
         personal.add(consulta_personal);
-
-        modificacion_personal.setText("Modificacion");
-        personal.add(modificacion_personal);
-
-        baja_personal.setText("Baja");
-        personal.add(baja_personal);
 
         jMenuBar1.add(personal);
 
         alimentos.setText("Alimentos");
 
         alta_alimento.setText("Alta");
+        alta_alimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alta_alimentoActionPerformed(evt);
+            }
+        });
         alimentos.add(alta_alimento);
 
         consulta_alimento.setText("Consulta");
@@ -169,6 +173,24 @@ public class e_menu extends javax.swing.JFrame {
         centrarInternal(am);
     }//GEN-LAST:event_alta_mesaActionPerformed
 
+    private void consulta_personalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulta_personalActionPerformed
+        ConsultaPersonal cp = new ConsultaPersonal();
+        this.cp = cp;
+        panel.add(cp);
+        cp.setVisible(true);
+        bloquearFondo();
+        centrarInternal(cp);
+    }//GEN-LAST:event_consulta_personalActionPerformed
+
+    private void alta_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alta_alimentoActionPerformed
+        AltaPlato apl = new AltaPlato();
+        this.apl = apl;
+        panel.add(apl);
+        apl.setVisible(true);
+        bloquearFondo();
+        centrarInternal(apl);
+    }//GEN-LAST:event_alta_alimentoActionPerformed
+
     
     void ejecutarPanel(javax.swing.JInternalFrame o){
         
@@ -215,14 +237,12 @@ public class e_menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem alta_personal;
     private javax.swing.JMenuItem baja_alimento;
     private javax.swing.JMenuItem baja_mesa;
-    private javax.swing.JMenuItem baja_personal;
     private javax.swing.JMenuItem consulta_alimento;
     private javax.swing.JMenuItem consulta_mesa;
     private javax.swing.JMenuItem consulta_personal;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu mesa;
     private javax.swing.JMenuItem modificacion_alimento;
-    private javax.swing.JMenuItem modificacion_personal;
     private javax.swing.JDesktopPane panel;
     private javax.swing.JMenu personal;
     // End of variables declaration//GEN-END:variables
