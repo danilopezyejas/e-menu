@@ -14,8 +14,9 @@ import java.awt.Component;
 public class e_menu extends javax.swing.JFrame {
 
     AltaMesa am = null;
-    AltaPersonal ap = null;
     BajaMesa bm = null;
+    ConsultaMesa cm = null;
+    AltaPersonal ap = null;
     ConsultaPersonal cp = null;
     AltaPlato apl = null;
     
@@ -133,6 +134,11 @@ public class e_menu extends javax.swing.JFrame {
         mesa.add(alta_mesa);
 
         consulta_mesa.setText("Consulta");
+        consulta_mesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consulta_mesaActionPerformed(evt);
+            }
+        });
         mesa.add(consulta_mesa);
 
         baja_mesa.setText("Baja");
@@ -164,51 +170,45 @@ public class e_menu extends javax.swing.JFrame {
     private void alta_personalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alta_personalActionPerformed
         AltaPersonal ap = new AltaPersonal();
         this.ap = ap;
-        panel.add(ap);
-        ap.setVisible(true);
-        bloquearFondo();
-        centrarInternal(ap);
+        ejecutarPanel(ap);
     }//GEN-LAST:event_alta_personalActionPerformed
 
     private void alta_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alta_mesaActionPerformed
         AltaMesa am = new AltaMesa();
         this.am = am;
-        panel.add(am);
-        am.setVisible(true);
-        bloquearFondo();
-        centrarInternal(am);
+        ejecutarPanel(am);
     }//GEN-LAST:event_alta_mesaActionPerformed
 
     private void consulta_personalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulta_personalActionPerformed
         ConsultaPersonal cp = new ConsultaPersonal();
         this.cp = cp;
-        panel.add(cp);
-        cp.setVisible(true);
-        bloquearFondo();
-        centrarInternal(cp);
+        ejecutarPanel(cp);
     }//GEN-LAST:event_consulta_personalActionPerformed
 
     private void alta_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alta_alimentoActionPerformed
         AltaPlato apl = new AltaPlato();
         this.apl = apl;
-        panel.add(apl);
-        apl.setVisible(true);
-        bloquearFondo();
-        centrarInternal(apl);
+        ejecutarPanel(apl);
     }//GEN-LAST:event_alta_alimentoActionPerformed
 
     private void baja_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baja_mesaActionPerformed
         BajaMesa bm = new BajaMesa();
         this.bm = bm;
-        panel.add(bm);
-        bm.setVisible(true);
-        bloquearFondo();
-        centrarInternal(bm);
+        ejecutarPanel(bm);
     }//GEN-LAST:event_baja_mesaActionPerformed
 
+    private void consulta_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulta_mesaActionPerformed
+        ConsultaMesa cm = new ConsultaMesa();
+        this.cm = cm;
+        ejecutarPanel(cm);
+    }//GEN-LAST:event_consulta_mesaActionPerformed
+
     
-    void ejecutarPanel(javax.swing.JInternalFrame o){
-        
+    void ejecutarPanel(javax.swing.JInternalFrame obj){
+        panel.add(obj);
+        obj.setVisible(true);
+        centrarInternal(obj);
+        bloquearFondo();
     }
     /**
      * @param args the command line arguments

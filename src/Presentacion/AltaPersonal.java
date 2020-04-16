@@ -7,20 +7,6 @@ package Presentacion;
 
 import Controladores_Interfaces.IPersonalController;
 import Controladores_Interfaces.PersonalController;
-import Logica.Mesa;
-import Persistencia.Conexion;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.Writer;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 /**
  *
