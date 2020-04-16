@@ -19,6 +19,7 @@ public class e_menu extends javax.swing.JFrame {
     AltaPersonal ap = null;
     ConsultaPersonal cp = null;
     AltaPlato apl = null;
+    ConsultaPlato cpl = null;
     
     public e_menu() {
         initComponents();
@@ -113,6 +114,11 @@ public class e_menu extends javax.swing.JFrame {
         alimentos.add(alta_alimento);
 
         consulta_alimento.setText("Consulta");
+        consulta_alimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consulta_alimentoActionPerformed(evt);
+            }
+        });
         alimentos.add(consulta_alimento);
 
         modificacion_alimento.setText("Modificacion");
@@ -202,6 +208,12 @@ public class e_menu extends javax.swing.JFrame {
         this.cm = cm;
         ejecutarPanel(cm);
     }//GEN-LAST:event_consulta_mesaActionPerformed
+
+    private void consulta_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulta_alimentoActionPerformed
+        ConsultaPlato cpl = new ConsultaPlato();
+        this.cpl = cpl;
+        ejecutarPanel(cpl);
+    }//GEN-LAST:event_consulta_alimentoActionPerformed
 
     
     void ejecutarPanel(javax.swing.JInternalFrame obj){

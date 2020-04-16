@@ -6,17 +6,18 @@
 package Presentacion;
 
 import Controladores_Interfaces.IPersonalController;
-import Controladores_Interfaces.PersonalController;
+import Logica.Fabrica;
 import javax.swing.JOptionPane;
 /**
  *
  * @author Danilo
  */
 public class AltaPersonal extends javax.swing.JInternalFrame {
+    
     IPersonalController personaContoler;
     public AltaPersonal() {
         initComponents();
-         personaContoler = PersonalController.getInstance();
+        personaContoler = Fabrica.getInstancia().getPersonaController();
     }
 
     /**
