@@ -6,6 +6,9 @@
 package Presentacion;
 
 import java.awt.Component;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -24,8 +27,35 @@ public class e_menu extends javax.swing.JFrame {
     public e_menu() {
         initComponents();
         this.setLocationRelativeTo(null);
+        ajustarIconos();
     }
-    
+    public void ajustarIconos(){
+        int escalaIconos = 50;
+        ImageIcon imagen = new ImageIcon("src/iconos/ic_account_box_black_48dp.png");
+        ImageIcon imagen1 = new ImageIcon("src/iconos/ic_view_day_black_48dp.png");
+        ImageIcon imagen2 = new ImageIcon("src/iconos/ic_chrome_reader_mode_black_48dp.png");
+        
+        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(escalaIconos,escalaIconos,Image.SCALE_DEFAULT));
+        Icon icono1 = new ImageIcon(imagen1.getImage().getScaledInstance(escalaIconos,escalaIconos,Image.SCALE_DEFAULT));
+        Icon icono2 = new ImageIcon(imagen2.getImage().getScaledInstance(escalaIconos,escalaIconos,Image.SCALE_DEFAULT));
+        
+        personal.setIcon(icono);
+        mesa.setIcon(icono1);
+        alimentos.setIcon(icono2);
+        
+        ImageIcon subimagen = new ImageIcon("src/iconos/ic_group_add_black_48dp.png");
+        ImageIcon subimagen1 = new ImageIcon("src/iconos/ic_group_black_48dp.png");
+        
+        Icon subicono = new ImageIcon(subimagen.getImage().getScaledInstance(escalaIconos/2,escalaIconos/2,Image.SCALE_DEFAULT));
+        Icon subicono1 = new ImageIcon(subimagen1.getImage().getScaledInstance(escalaIconos/2,escalaIconos/2,Image.SCALE_DEFAULT));
+        
+        alta_personal.setIcon(subicono);
+        consulta_personal.setIcon(subicono1);
+        
+        
+        this.repaint();
+        
+    }
     public void centrarInternal(javax.swing.JInternalFrame o) {
         int x = this.panel.getWidth() / 2 - o.getWidth() / 2;
         int y = this.panel.getHeight() / 2 - o.getHeight() / 2;
