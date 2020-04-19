@@ -110,10 +110,12 @@ public class e_menu extends javax.swing.JFrame {
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 558, Short.MAX_VALUE)
+            .addGap(0, 556, Short.MAX_VALUE)
         );
 
         personal.setText("Personal");
+        personal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        personal.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
 
         alta_personal.setText("Alta");
         alta_personal.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +136,7 @@ public class e_menu extends javax.swing.JFrame {
         jMenuBar1.add(personal);
 
         alimentos.setText("Alimentos");
+        alimentos.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
 
         alta_alimento.setText("Alta");
         alta_alimento.addActionListener(new java.awt.event.ActionListener() {
@@ -160,6 +163,7 @@ public class e_menu extends javax.swing.JFrame {
         jMenuBar1.add(alimentos);
 
         mesa.setText("Mesa");
+        mesa.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
 
         alta_mesa.setText("Alta");
         alta_mesa.addActionListener(new java.awt.event.ActionListener() {

@@ -8,12 +8,15 @@ package Controladores_Interfaces;
 import Logica.Personal;
 import Logica.Plato;
 import Logica.enum_Categoria;
+import Persistencia.Conexion;
+import java.util.ArrayList;
 
 /**
  *
  * @author luisg
  */
 public class AlimentoController implements IAlimentoController{
+    ArrayList<Plato> platos = new ArrayList<Plato>();
     //singleton
     private AlimentoController() {
     } 
@@ -32,7 +35,9 @@ public class AlimentoController implements IAlimentoController{
         plato.setNombre(nom);
         plato.setIngredientes(ingred);
         plato.setCalorias(cal);
-        //plato.getPrecio(pre);
+        plato.setPrecio(pre);
+        platos.add(plato);
+        Conexion.getInstance().alta(plato);
         System.out.print("se dio de alta plato nombre"+nom);
     }
 }
