@@ -5,6 +5,7 @@
  */
 package Presentacion;
 
+import Controladores_Interfaces.IAlimentoController;
 import Controladores_Interfaces.IPersonalController;
 import Controladores_Interfaces.PersonalController;
 import Logica.Fabrica;
@@ -13,21 +14,16 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Danilo
  */
-public class ConsultaPersonal extends javax.swing.JInternalFrame {
-    IPersonalController personaContoler;
+public class ConsultaPlato extends javax.swing.JInternalFrame {
+    boolean comida=true;
+    IAlimentoController platoController;
     DefaultTableModel md; 
     String data[][]={};
-    String columnas[]={"Nombre","Apellido","Cedula"};
-    public ConsultaPersonal() {
+    
+    public ConsultaPlato() {
         initComponents();
-        personaContoler = Fabrica.getInstancia().getPersonaController();
-        
-        md=new DefaultTableModel(data,columnas);
-        Table.setModel(md);
-        //placeholder
-        String datos[]={"Luis","Guariglia","52628206"};
-        md.addRow(datos);
-        //
+        platoController = Fabrica.getInstancia().getAlimentoController();
+        cargarPlatos();
         
     }
 
@@ -45,11 +41,14 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         button2 = new java.awt.Button();
+        jToggleButton1 = new javax.swing.JToggleButton();
         eliminar = new javax.swing.JButton();
         salir = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         Table = new javax.swing.JTable();
         modificar = new javax.swing.JButton();
+        Platos = new javax.swing.JButton();
+        Bebidas = new javax.swing.JButton();
 
         button1.setLabel("button1");
 
@@ -57,8 +56,10 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
 
         button2.setLabel("button2");
 
+        jToggleButton1.setText("jToggleButton1");
+
         setResizable(true);
-        setTitle("Lista del Personal");
+        setTitle("Lista del Alimentos");
 
         eliminar.setBackground(new java.awt.Color(216, 30, 30));
         eliminar.setText("Eliminar");
@@ -95,6 +96,20 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
             }
         });
 
+        Platos.setText("Platos");
+        Platos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PlatosActionPerformed(evt);
+            }
+        });
+
+        Bebidas.setText("Bebidas");
+        Bebidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BebidasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,8 +118,13 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(Platos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Bebidas)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(22, Short.MAX_VALUE))
+                        .addContainerGap(24, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -116,9 +136,13 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Platos)
+                    .addComponent(Bebidas))
+                .addGap(4, 4, 4)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salir)
                     .addComponent(eliminar)
@@ -128,7 +152,24 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void cargarPlatos(){
+        String columnas[]={"Id","Nombre","Precio","TiempoPrep","Activo","Ingredientes","Calorias"};
+        md=new DefaultTableModel(data,columnas);
+        Table.setModel(md);
+        //placeholder
+        String datos[]={"1","Coca","200","20","si","Masa,Salsa,Mozzarella","2500"};
+        md.addRow(datos);
+        //
+    }
+    private void cargarBebidas(){ 
+        String columnas[]={"Id","Nombre","Precio","TiempoPrep","Activo","Contenido","Tipo","Calorias"};
+        md=new DefaultTableModel(data,columnas);
+        Table.setModel(md);
+        //placeholder
+        String datos[]={"1","CocaCola","100","5","si","500ml","Gaseosa","1000"};
+        md.addRow(datos);
+        //
+    }
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         /*String nombre = jNombre.getText();
         String apellido = jApellido.getText();
@@ -142,7 +183,7 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
         }*/
                 
     }//GEN-LAST:event_eliminarActionPerformed
-
+    
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         salir();
     }//GEN-LAST:event_salirActionPerformed
@@ -150,6 +191,16 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_modificarActionPerformed
+
+    private void BebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BebidasActionPerformed
+        this.comida=false;
+        cargarBebidas();
+    }//GEN-LAST:event_BebidasActionPerformed
+
+    private void PlatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlatosActionPerformed
+         this.comida=true;
+         cargarPlatos();
+    }//GEN-LAST:event_PlatosActionPerformed
 
     void salir(){
         e_menu m = (e_menu) this.getTopLevelAncestor();
@@ -160,6 +211,8 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Bebidas;
+    private javax.swing.JButton Platos;
     private javax.swing.JTable Table;
     private java.awt.Button button1;
     private java.awt.Button button2;
@@ -168,6 +221,7 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton modificar;
     private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables

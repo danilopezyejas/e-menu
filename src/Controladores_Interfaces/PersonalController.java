@@ -6,12 +6,15 @@
 package Controladores_Interfaces;
 
 import Logica.Personal;
+import Persistencia.Conexion;
+import java.util.ArrayList;
 
 /**
  *
  * @author luisg
  */
 public class PersonalController implements IPersonalController{
+    ArrayList<Personal> personal = new ArrayList<Personal>();
     //singleton
     private PersonalController() {
     } 
@@ -27,6 +30,8 @@ public class PersonalController implements IPersonalController{
     @Override
     public void altaPersonal(String nombre,String apellido,int cedula){
         Personal per=new Personal(nombre,apellido,cedula);
+        personal.add(per);
+        Conexion.getInstance().alta(per);
         System.out.print("se dio de alta personal nombre"+nombre);
     }
 }

@@ -5,17 +5,26 @@
  */
 package Logica;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
 /**
  *
  * @author luisg
  */
+@Entity
 public class Personal {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nombre;
     private String apellido;
     private int cedula;
     public Personal(String nombre,String apellido,int cedula){
-        this.id=1;              //TODO: cambiar esto
         this.nombre=nombre;
         this.apellido=apellido;
         this.cedula=cedula;

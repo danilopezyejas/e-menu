@@ -7,6 +7,7 @@ package Presentacion;
 
 import Controladores_Interfaces.AlimentoController;
 import Controladores_Interfaces.IAlimentoController;
+import Logica.Fabrica;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,7 +18,7 @@ public class AltaPlato extends javax.swing.JInternalFrame {
     IAlimentoController alimentoContoller;
     public AltaPlato() {
         initComponents();
-        alimentoContoller = AlimentoController.getInstance();
+        alimentoContoller = Fabrica.getInstancia().getAlimentoController();
     }
 
     /**

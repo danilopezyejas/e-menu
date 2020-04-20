@@ -5,6 +5,9 @@
  */
 package Logica;
 
+import Controladores_Interfaces.AlimentoController;
+import Controladores_Interfaces.PersonalController;
+
 /**
  *
  * @author Danilo
@@ -25,4 +28,13 @@ public class Fabrica {
         ictrl_Pedido interfacePedido = ctrl_Pedido.getInstancia();
         return interfacePedido;
     }
+    public PersonalController getPersonaController() {
+        PersonalController perController = PersonalController.getInstance();;
+        return perController;
+    }
+    public AlimentoController getAlimentoController() {
+        AlimentoController aliController = AlimentoController.getInstance();;
+        return aliController;
+    }
+   
 }
