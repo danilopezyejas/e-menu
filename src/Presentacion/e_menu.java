@@ -5,6 +5,9 @@
  */
 package Presentacion;
 
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
 public class e_menu extends javax.swing.JFrame {
 
     AltaMesa am = null;
@@ -20,8 +23,8 @@ public class e_menu extends javax.swing.JFrame {
     public e_menu() {
         initComponents();
         this.setLocationRelativeTo(null);
-        Animacion.Animacion.mover_izquierda(211, 5, 0, 1, btnMenu);
-        Animacion.Animacion.mover_izquierda(5, -201, 0, 1, pnlMenu);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setIconImage(new ImageIcon(getClass().getResource("/img/e_menu.png")).getImage());
         
     }
    
@@ -37,24 +40,18 @@ public class e_menu extends javax.swing.JFrame {
         personal.setEnabled(false);
         alimentos.setEnabled(false);
         mesa.setEnabled(false);
-        btnMenu.setEnabled(false);
         btnMesa.setEnabled(false);
         btnPersonal.setEnabled(false);
         btnAlimentos.setEnabled(false);
-        Animacion.Animacion.mover_izquierda(211, 5, 0, 2, btnMenu);
-        Animacion.Animacion.mover_izquierda(5, -201, 0, 2, pnlMenu);
     }
     
     public void desbloquearFondo() {
         personal.setEnabled(true);
         alimentos.setEnabled(true);
         mesa.setEnabled(true);
-        btnMenu.setEnabled(true);
         btnMesa.setEnabled(true);
         btnPersonal.setEnabled(true);
         btnAlimentos.setEnabled(true);
-        Animacion.Animacion.mover_izquierda(211, 5, 0, 2, btnMenu);
-        Animacion.Animacion.mover_izquierda(5, -201, 0, 2, pnlMenu);
  
     }
 
@@ -86,7 +83,6 @@ public class e_menu extends javax.swing.JFrame {
         btnAltaPersonal = new javax.swing.JButton();
         btnBajaPersonal = new javax.swing.JButton();
         btnConsultaPersonal = new javax.swing.JButton();
-        btnMenu = new javax.swing.JButton();
         btnAtender = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -327,18 +323,8 @@ public class e_menu extends javax.swing.JFrame {
                 .addComponent(btnMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(288, Short.MAX_VALUE))
+                .addContainerGap(318, Short.MAX_VALUE))
         );
-
-        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Menu2.png"))); // NOI18N
-        btnMenu.setContentAreaFilled(false);
-        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnMenu.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menu3.png"))); // NOI18N
-        btnMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenuActionPerformed(evt);
-            }
-        });
 
         btnAtender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/atender.png"))); // NOI18N
         btnAtender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -355,35 +341,26 @@ public class e_menu extends javax.swing.JFrame {
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(445, Short.MAX_VALUE)
                 .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 329, Short.MAX_VALUE)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 762, Short.MAX_VALUE)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                                .addComponent(btnAtender, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(79, 79, 79))))))
+                        .addComponent(btnAtender, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(79, 79, 79))))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(22, 516, Short.MAX_VALUE)
                 .addComponent(btnAtender, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addContainerGap())
-            .addGap(0, 556, Short.MAX_VALUE)
         );
 
         personal.setText("Personal");
@@ -526,17 +503,6 @@ public class e_menu extends javax.swing.JFrame {
         ejecutarPanel(cm);
     }//GEN-LAST:event_consulta_mesaActionPerformed
 
-    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        int posicion = btnMenu.getX();
-        if(posicion > 5){
-            Animacion.Animacion.mover_izquierda(211, 5, 2, 2, btnMenu);
-            Animacion.Animacion.mover_izquierda(5, -201, 2, 2, pnlMenu);
-        }else{
-            Animacion.Animacion.mover_derecha(5, 210, 2, 2, btnMenu);
-            Animacion.Animacion.mover_derecha(-200, 5, 2, 2, pnlMenu);
-        }
-    }//GEN-LAST:event_btnMenuActionPerformed
-
     private void btnConsultaMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaMesaActionPerformed
         this.consulta_mesaActionPerformed(evt);
     }//GEN-LAST:event_btnConsultaMesaActionPerformed
@@ -658,10 +624,9 @@ public class e_menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultaPersonalActionPerformed
 
     private void btnAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderActionPerformed
-
-        Atencion at = new Atencion();
-        this.atender = at;
-        ejecutarPanel(atender);
+        Atencion n = new Atencion(this);
+        this.setVisible(false);
+        n.setVisible(true);
     }//GEN-LAST:event_btnAtenderActionPerformed
 
     private void consulta_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulta_alimentoActionPerformed
@@ -729,7 +694,6 @@ public class e_menu extends javax.swing.JFrame {
     private javax.swing.JButton btnBajaPersonal;
     private javax.swing.JButton btnConsultaMesa;
     private javax.swing.JButton btnConsultaPersonal;
-    private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnMesa;
     private javax.swing.JButton btnModificacionAlimento;
     private javax.swing.JButton btnPersonal;
