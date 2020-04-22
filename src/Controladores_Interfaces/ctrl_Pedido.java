@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Logica;
+package Controladores_Interfaces;
 
+import Logica.Mesa;
+import Logica.Pedidos;
 import Persistencia.Conexion;
 import java.util.HashMap;
 import java.util.List;

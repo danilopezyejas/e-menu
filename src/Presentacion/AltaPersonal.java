@@ -141,7 +141,8 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
              JOptionPane.showMessageDialog(null,"Datos Incorrectos");
         }else{
             ci=Integer.parseInt(ciString);
-            personaContoler.altaPersonal(nombre, apellido, ci);           
+            personaContoler.altaPersonal(nombre, apellido, ci);    
+            JOptionPane.showMessageDialog(null,"Personal agregado correctamente");
         }
                 
     }//GEN-LAST:event_aceptarActionPerformed

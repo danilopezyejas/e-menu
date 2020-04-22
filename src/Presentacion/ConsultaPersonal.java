@@ -8,6 +8,9 @@ package Presentacion;
 import Controladores_Interfaces.IPersonalController;
 import Controladores_Interfaces.PersonalController;
 import Logica.Fabrica;
+import Logica.Personal;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -22,11 +25,17 @@ public class ConsultaPersonal extends javax.swing.JInternalFrame {
         initComponents();
         personaContoler = Fabrica.getInstancia().getPersonaController();
         
+       
+
         md=new DefaultTableModel(data,columnas);
         Table.setModel(md);
-        //placeholder
-        String datos[]={"Luis","Guariglia","52628206"};
-        md.addRow(datos);
+        //lleno la tabla
+         List<Personal> per = personaContoler.listarPersonal();
+        for(Personal aux : per){ 
+            String datos[]={aux.getNombre(),aux.getApellido(),String.valueOf(aux.getCedula())};
+            md.addRow(datos);
+        }
+        
         //
         
     }

@@ -195,7 +195,8 @@ public class AltaPlato extends javax.swing.JInternalFrame {
         }else{
             pre=Integer.parseInt(preString);
             cal=Integer.parseInt(caloriasSting);
-            alimentoContoller.altaPlato(nom, pre, ingred,desc,cal);           
+            alimentoContoller.altaPlato(nom, pre, ingred,desc,cal);       
+            JOptionPane.showMessageDialog(null,"Alimento agregado correctamente");
         }
     }//GEN-LAST:event_aceptarActionPerformed
 
