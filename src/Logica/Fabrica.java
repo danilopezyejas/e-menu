@@ -5,6 +5,8 @@
  */
 package Logica;
 
+import Controladores_Interfaces.ctrl_Pedido;
+import Controladores_Interfaces.ictrl_Pedido;
 import Controladores_Interfaces.AlimentoController;
 import Controladores_Interfaces.PersonalController;
 

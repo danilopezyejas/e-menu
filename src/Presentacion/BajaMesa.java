@@ -6,7 +6,7 @@
 package Presentacion;
 
 import Logica.Mesa;
-import Logica.ctrl_Pedido;
+import Controladores_Interfaces.ctrl_Pedido;
 import Persistencia.Conexion;
 import java.util.List;
 import javax.swing.JOptionPane;

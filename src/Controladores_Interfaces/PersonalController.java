@@ -8,6 +8,7 @@ package Controladores_Interfaces;
 import Logica.Personal;
 import Persistencia.Conexion;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -33,5 +34,10 @@ public class PersonalController implements IPersonalController{
         personal.add(per);
         Conexion.getInstance().alta(per);
         System.out.print("se dio de alta personal nombre"+nombre);
+    }
+     @Override
+    public List<Personal> listarPersonal(){
+        List<Personal> ret = Conexion.getInstance().consultarPersonal();
+        return ret;
     }
 }

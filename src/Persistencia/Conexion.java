@@ -5,6 +5,9 @@
  */
 package Persistencia;
 
+import Logica.Personal;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -66,5 +69,12 @@ private Conexion() {
             e.printStackTrace();
             em.getTransaction().rollback();
         }
+    }
+    public List<Personal> consultarPersonal() {
+        String QUERY = "Select a From Personal a";
+        EntityManager em = Conexion.getInstance().getEntity();
+        List<Personal> ret = em.createQuery(QUERY, Personal.class).getResultList();
+        //System.out.println("num of personal:" + ret.size());
+        return ret;
     }
 }
