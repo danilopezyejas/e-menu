@@ -5,10 +5,27 @@
  */
 package Controladores_Interfaces;
 
+import Logica.Alimento;
+import Logica.Categoria;
+import com.mysql.jdbc.Blob;
+import java.util.List;
+
 /**
  *
  * @author luisg
  */
 public interface IAlimentoController {
-    public void altaPlato(String nom,float pre,String ingred,String desc,int cal);
+    public abstract void altaPlato(String nom,float pre,String ingred,String desc,int cal);
+    public abstract void altaAlimento(Alimento a);
+    public abstract List<Alimento> listarAlimentos();
+    public abstract void modificarAlimento(Alimento a);
+    public abstract void eliminarAlimento(Alimento a);
+    public abstract void seleccionarAlimento(int idAlimento);
+    public abstract List<Alimento> elegirCategoria(Categoria categoria);
+    public abstract Alimento verDetalles(int idAlimento);
+    public abstract void seleccionarAlimento(int idAlimento, int cantidad);
+    public abstract void ingresarComentario(String comentario);
+    public abstract void ingresarFoto(Blob imagen);
+    public abstract void ingresarPuntaje (int puntaje);
+    public abstract void ingresarDatos(String nombre, String comentario);
 }

@@ -5,11 +5,15 @@
  */
 package Controladores_Interfaces;
 
+import Logica.Alimento;
+import Logica.Categoria;
 import Logica.Personal;
 import Logica.Plato;
 import Logica.enum_Categoria;
 import Persistencia.Conexion;
+import com.mysql.jdbc.Blob;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -23,6 +27,66 @@ public class AlimentoController implements IAlimentoController{
     public static AlimentoController getInstance() {
         return PersonalControllerHolder.INSTANCE;
     } 
+
+    @Override
+    public void altaAlimento(Alimento a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Alimento> listarAlimentos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modificarAlimento(Alimento a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminarAlimento(Alimento a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void seleccionarAlimento(int idAlimento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Alimento> elegirCategoria(Categoria categoria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Alimento verDetalles(int idAlimento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void seleccionarAlimento(int idAlimento, int cantidad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void ingresarComentario(String comentario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void ingresarFoto(Blob imagen) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void ingresarPuntaje(int puntaje) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void ingresarDatos(String nombre, String comentario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private static class PersonalControllerHolder {
         private static final AlimentoController INSTANCE = new AlimentoController();
     }
