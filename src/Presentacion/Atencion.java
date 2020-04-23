@@ -22,6 +22,7 @@ public class Atencion extends javax.swing.JFrame {
     static int velocidad = 1;
     static int cerrar = Atencion.DO_NOTHING_ON_CLOSE;;
     boolean cambiar = false;
+    Pedido p = null;
     
     public Atencion() {
 
@@ -29,6 +30,7 @@ public class Atencion extends javax.swing.JFrame {
 
     Atencion(e_menu menuPrincipal) {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/img/e_menu.png")).getImage());
         this.setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         Atencion atencion = this;
@@ -87,21 +89,22 @@ public class Atencion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panel = new javax.swing.JPanel();
         mesa1 = new javax.swing.JButton();
-        mesa2 = new javax.swing.JButton();
-        mesa4 = new javax.swing.JButton();
-        mesa3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         mesa6 = new javax.swing.JButton();
-        mesa7 = new javax.swing.JButton();
-        mesa9 = new javax.swing.JButton();
-        mesa10 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         mesa11 = new javax.swing.JButton();
         mesa12 = new javax.swing.JButton();
+        mesa7 = new javax.swing.JButton();
+        mesa2 = new javax.swing.JButton();
+        mesa3 = new javax.swing.JButton();
+        mesa9 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         mesa14 = new javax.swing.JButton();
+        mesa10 = new javax.swing.JButton();
+        mesa4 = new javax.swing.JButton();
         mesa15 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -118,13 +121,26 @@ public class Atencion extends javax.swing.JFrame {
             }
         });
 
+        mesa6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
+        mesa6.setContentAreaFilled(false);
+        mesa6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        mesa11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
+        mesa11.setContentAreaFilled(false);
+        mesa11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        mesa12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
+        mesa12.setContentAreaFilled(false);
+        mesa12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        mesa7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
+        mesa7.setBorderPainted(false);
+        mesa7.setContentAreaFilled(false);
+        mesa7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         mesa2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
         mesa2.setContentAreaFilled(false);
         mesa2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        mesa4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Atendida.png"))); // NOI18N
-        mesa4.setContentAreaFilled(false);
-        mesa4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         mesa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa con pedido 1.png"))); // NOI18N
         mesa3.setContentAreaFilled(false);
@@ -135,39 +151,9 @@ public class Atencion extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        mesa6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
-        mesa6.setContentAreaFilled(false);
-        mesa6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        mesa7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
-        mesa7.setBorderPainted(false);
-        mesa7.setContentAreaFilled(false);
-        mesa7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         mesa9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
         mesa9.setContentAreaFilled(false);
         mesa9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        mesa10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
-        mesa10.setContentAreaFilled(false);
-        mesa10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
-        jButton2.setText("jButton2");
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        mesa11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
-        mesa11.setContentAreaFilled(false);
-        mesa11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        mesa12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
-        mesa12.setContentAreaFilled(false);
-        mesa12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
         jButton3.setContentAreaFilled(false);
@@ -177,80 +163,126 @@ public class Atencion extends javax.swing.JFrame {
         mesa14.setContentAreaFilled(false);
         mesa14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        mesa10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
+        mesa10.setContentAreaFilled(false);
+        mesa10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        mesa4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Atendida.png"))); // NOI18N
+        mesa4.setContentAreaFilled(false);
+        mesa4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         mesa15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
         mesa15.setContentAreaFilled(false);
         mesa15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
+        jButton2.setText("jButton2");
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Mesa Libre.png"))); // NOI18N
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mesa1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesa6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesa11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mesa2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesa7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesa12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mesa3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesa9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mesa4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesa10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesa14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mesa15, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mesa15, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mesa4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesa2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesa1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mesa3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mesa3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mesa6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesa7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesa9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesa10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mesa11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesa12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mesa14)
                     .addComponent(mesa15, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mesa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesa3ActionPerformed
-        ImageIcon icon = new ImageIcon("img/Mesa Libre.png");
-        this.mesa3.setIcon(icon);
-    }//GEN-LAST:event_mesa3ActionPerformed
+    void ejecutarPanel(javax.swing.JInternalFrame obj){
+        panel.add(obj);
+        obj.setVisible(true);
+        centrarInternal(obj);
+    }
 
+    public void centrarInternal(javax.swing.JInternalFrame o) {
+        int x = this.panel.getWidth() / 2 - o.getWidth() / 2;
+        int y = this.panel.getHeight() / 2 - o.getHeight() / 2;
+        if (this.panel.isShowing()) {
+            o.setLocation(x, y);
+        }
+    }
+    
+    private void mesa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesa3ActionPerformed
+        Pedido p = new Pedido();
+        this.p = p;
+        ejecutarPanel(p);
+    }//GEN-LAST:event_mesa3ActionPerformed
+ 
     private void mesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesa1ActionPerformed
-        ImageIcon icon = new ImageIcon("img/Mesa Libre.png");
-                mesa1.setIcon(icon);
+        
     }//GEN-LAST:event_mesa1ActionPerformed
 
     /**
@@ -304,5 +336,6 @@ public class Atencion extends javax.swing.JFrame {
     private javax.swing.JButton mesa6;
     private javax.swing.JButton mesa7;
     private javax.swing.JButton mesa9;
+    private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }

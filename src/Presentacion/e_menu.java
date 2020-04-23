@@ -43,6 +43,7 @@ public class e_menu extends javax.swing.JFrame {
         btnMesa.setEnabled(false);
         btnPersonal.setEnabled(false);
         btnAlimentos.setEnabled(false);
+        pnlMenu.setVisible(false);
     }
     
     public void desbloquearFondo() {
@@ -52,7 +53,7 @@ public class e_menu extends javax.swing.JFrame {
         btnMesa.setEnabled(true);
         btnPersonal.setEnabled(true);
         btnAlimentos.setEnabled(true);
- 
+        pnlMenu.setVisible(true);
     }
 
     /**
