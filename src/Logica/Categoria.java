@@ -5,9 +5,11 @@
  */
 package Logica;
 
+import Persistencia.Conexion;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +29,7 @@ public class Categoria implements Serializable {
     private String nombre;
     
     @OneToMany(mappedBy = "categoria")
-    List<Alimento> alimentos;
+    List<Alimento> alimentos = obtenerAlimentos();
 
     public Long getId() {
         return id;
@@ -68,6 +70,14 @@ public class Categoria implements Serializable {
     @Override
     public String toString() {
         return "Logica.Categoria[ id=" + id + " ]";
+    }
+    
+    public List<Alimento> obtenerAlimentos() {
+        String QUERY = "Select * From Alimento where categoria_id = ?n";
+        EntityManager em = Conexion.getInstance().getEntity();
+        List<Alimento> ret = em.createQuery(QUERY, Alimento.class).setParameter("n",nombre).getResultList();
+        //System.out.println("num of personal:" + ret.size());
+        return ret;
     }
     
 }

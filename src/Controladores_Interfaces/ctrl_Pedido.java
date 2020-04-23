@@ -5,9 +5,11 @@
  */
 package Controladores_Interfaces;
 
+import Logica.Categoria;
 import Logica.Mesa;
 import Logica.Pedidos;
 import Persistencia.Conexion;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -16,12 +18,15 @@ import javax.persistence.EntityManager;
  *
  * @author Danilo
  */
-public class ctrl_Pedido implements ictrl_Pedido{
+public class ctrl_Pedido implements ictrl_Pedido {
+
     private static ctrl_Pedido instancia;
     private int cant;
     private int idMesa;
-    
-    public static ctrl_Pedido getInstancia(){
+
+    Conexion c = new Conexion();
+
+    public static ctrl_Pedido getInstancia() {
         if (instancia == null) {
             instancia = new ctrl_Pedido();
         }
@@ -45,9 +50,16 @@ public class ctrl_Pedido implements ictrl_Pedido{
 
     @Override
     public HashMap<String, String> listarCategorias() {
-        
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HashMap<String, String> lista = new HashMap<>();
+        List<Categoria> categorias = new ArrayList<>();
+        categorias = c.consultarCategoria();
+
+        for (Categoria c : categorias) {
+            lista.put(c.getNombre(),c.getNombre());
+        }
+        System.out.println("Map is " + lista);
+        return lista;
+
     }
 
     @Override
@@ -100,27 +112,26 @@ public class ctrl_Pedido implements ictrl_Pedido{
     public void setIdMesa(int idMesa) {
         this.idMesa = idMesa;
     }
-    
-    
-    public List<Mesa> buscarMesaPorId(int id ) {
+
+    public List<Mesa> buscarMesaPorId(int id) {
         EntityManager em = Conexion.getInstance().getEntity();
         List<Mesa> lista = null;
         em.getTransaction().begin();
         try {
-            lista = em.createNativeQuery("SELECT * FROM mesa WHERE numeroMesa="+id, Mesa.class).getResultList();
+            lista = em.createNativeQuery("SELECT * FROM Mesa WHERE numeroMesa=" + id, Mesa.class).getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
         }
         return lista;
     }
-    
-        public List<Mesa> buscarMesas() {
+
+    public List<Mesa> buscarMesas() {
         EntityManager em = Conexion.getInstance().getEntity();
         List<Mesa> lista = null;
         em.getTransaction().begin();
         try {
-            lista = em.createNativeQuery("SELECT * FROM mesa ", Mesa.class).getResultList();
+            lista = em.createNativeQuery("SELECT * FROM Mesa ", Mesa.class).getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
