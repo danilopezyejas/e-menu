@@ -45,6 +45,8 @@ public class ctrl_Pedido implements ictrl_Pedido{
 
     @Override
     public HashMap<String, String> listarCategorias() {
+        
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
