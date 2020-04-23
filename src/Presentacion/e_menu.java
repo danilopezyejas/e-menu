@@ -5,8 +5,11 @@
  */
 package Presentacion;
 
+import java.awt.Image;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.border.Border;
 
 public class e_menu extends javax.swing.JFrame {
 
@@ -25,9 +28,49 @@ public class e_menu extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         setIconImage(new ImageIcon(getClass().getResource("/img/e_menu.png")).getImage());
+        ajustarIconos();
+    }
+     public void ajustarIconos(){
+        int escalaIconos = 25;
+        
+        //Iconos Personal
+        ImageIcon subimagen = new ImageIcon("src/iconos/ic_group_add_black_48dp.png");
+        ImageIcon subimagen1 = new ImageIcon("src/iconos/ic_group_black_48dp.png");
+        ImageIcon subimagen2 = new ImageIcon("src/iconos/ic_perm_identity_black_48dp.png" );  
+        Icon subicono = new ImageIcon(subimagen.getImage().getScaledInstance(escalaIconos,escalaIconos,Image.SCALE_DEFAULT));
+        Icon subicono1 = new ImageIcon(subimagen1.getImage().getScaledInstance(escalaIconos,escalaIconos,Image.SCALE_DEFAULT));
+        Icon subicono2 = new ImageIcon(subimagen2.getImage().getScaledInstance(escalaIconos,escalaIconos,Image.SCALE_DEFAULT));
+        
+        btnAltaPersonal.setIcon(subicono);
+        btnConsultaPersonal.setIcon(subicono1);
+        btnBajaPersonal.setIcon(subicono2);
+        //
+        //Iconos Alimentos
+        ImageIcon subimagen4 = new ImageIcon("src/iconos/ic_assignment_turned_in_black_48dp.png");
+        ImageIcon subimagen5 = new ImageIcon("src/iconos/ic_assignment_late_black_48dp.png");
+        ImageIcon subimagen6 = new ImageIcon("src/iconos/ic_bookmark_border_black_48dp.png");   
+        Icon subicono4 = new ImageIcon(subimagen4.getImage().getScaledInstance(escalaIconos,escalaIconos,Image.SCALE_DEFAULT));
+        Icon subicono5 = new ImageIcon(subimagen5.getImage().getScaledInstance(escalaIconos,escalaIconos,Image.SCALE_DEFAULT));
+        Icon subicono6 = new ImageIcon(subimagen6.getImage().getScaledInstance(escalaIconos,escalaIconos,Image.SCALE_DEFAULT));
+        btnAltaAlimento.setIcon(subicono4);
+        btnModificacionAlimento.setIcon(subicono5);
+        btnBajaAlimento.setIcon(subicono6);
+        //
+        //Iconos Mesa
+        ImageIcon subimagen7 = new ImageIcon("src/iconos/ic_queue_play_next_black_48dp.png");
+        ImageIcon subimagen8 = new ImageIcon("src/iconos/ic_apps_black_48dp.png");
+        ImageIcon subimagen9 = new ImageIcon("src/iconos/ic_remove_from_queue_black_48dp.png");   
+        Icon subicono7 = new ImageIcon(subimagen7.getImage().getScaledInstance(escalaIconos,escalaIconos,Image.SCALE_DEFAULT));
+        Icon subicono8 = new ImageIcon(subimagen8.getImage().getScaledInstance(escalaIconos,escalaIconos,Image.SCALE_DEFAULT));
+        Icon subicono9 = new ImageIcon(subimagen9.getImage().getScaledInstance(escalaIconos,escalaIconos,Image.SCALE_DEFAULT));
+        btnAltaMesa.setIcon(subicono7);
+        btnConsultaMesa.setIcon(subicono8);
+        btnBajaMesa.setIcon(subicono9);
+        //
+        
+        this.repaint();
         
     }
-   
     public void centrarInternal(javax.swing.JInternalFrame o) {
         int x = this.panel.getWidth() / 2 - o.getWidth() / 2;
         int y = this.panel.getHeight() / 2 - o.getHeight() / 2;
@@ -121,7 +164,7 @@ public class e_menu extends javax.swing.JFrame {
         btnPersonal.setForeground(new java.awt.Color(255, 255, 255));
         btnPersonal.setText("Personal");
         btnPersonal.setContentAreaFilled(false);
-        btnPersonal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPersonal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPersonal.setOpaque(true);
         btnPersonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +177,7 @@ public class e_menu extends javax.swing.JFrame {
         btnAlimentos.setForeground(new java.awt.Color(255, 255, 255));
         btnAlimentos.setText("Alimentos");
         btnAlimentos.setContentAreaFilled(false);
-        btnAlimentos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAlimentos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAlimentos.setOpaque(true);
         btnAlimentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +190,7 @@ public class e_menu extends javax.swing.JFrame {
         btnMesa.setForeground(new java.awt.Color(255, 255, 255));
         btnMesa.setText("Mesa");
         btnMesa.setContentAreaFilled(false);
-        btnMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMesa.setOpaque(true);
         btnMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,7 +371,7 @@ public class e_menu extends javax.swing.JFrame {
         );
 
         btnAtender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/atender.png"))); // NOI18N
-        btnAtender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAtender.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAtender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtenderActionPerformed(evt);
@@ -504,6 +547,50 @@ public class e_menu extends javax.swing.JFrame {
         ejecutarPanel(cm);
     }//GEN-LAST:event_consulta_mesaActionPerformed
 
+    private void baja_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baja_alimentoActionPerformed
+        
+    }//GEN-LAST:event_baja_alimentoActionPerformed
+
+    private void modificacion_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificacion_alimentoActionPerformed
+        
+    }//GEN-LAST:event_modificacion_alimentoActionPerformed
+
+    private void consulta_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulta_alimentoActionPerformed
+        ConsultaPlato cpl = new ConsultaPlato();
+        this.cpl = cpl;
+        ejecutarPanel(cpl);
+    }//GEN-LAST:event_consulta_alimentoActionPerformed
+
+    private void btnAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderActionPerformed
+        Atencion n = new Atencion(this);
+        this.setVisible(false);
+        n.setVisible(true);
+    }//GEN-LAST:event_btnAtenderActionPerformed
+
+    private void btnConsultaPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaPersonalActionPerformed
+        this.consulta_personalActionPerformed(evt);
+    }//GEN-LAST:event_btnConsultaPersonalActionPerformed
+
+    private void btnBajaPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaPersonalActionPerformed
+
+    }//GEN-LAST:event_btnBajaPersonalActionPerformed
+
+    private void btnAltaPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaPersonalActionPerformed
+        this.alta_personalActionPerformed(evt);
+    }//GEN-LAST:event_btnAltaPersonalActionPerformed
+
+    private void btnModificacionAlimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificacionAlimentoActionPerformed
+        this.baja_alimentoActionPerformed(evt);
+    }//GEN-LAST:event_btnModificacionAlimentoActionPerformed
+
+    private void btnBajaAlimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaAlimentoActionPerformed
+        this.baja_alimentoActionPerformed(evt);
+    }//GEN-LAST:event_btnBajaAlimentoActionPerformed
+
+    private void btnAltaAlimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaAlimentoActionPerformed
+        this.alta_alimentoActionPerformed(evt);
+    }//GEN-LAST:event_btnAltaAlimentoActionPerformed
+
     private void btnConsultaMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaMesaActionPerformed
         this.consulta_mesaActionPerformed(evt);
     }//GEN-LAST:event_btnConsultaMesaActionPerformed
@@ -520,7 +607,7 @@ public class e_menu extends javax.swing.JFrame {
         pnlMesa.setLocation(20, 400);
         int tamanio = pnlMesa.getWidth();
         int tamBoton = btnPersonal.getHeight();
-        int desplazarY = 150;
+        int desplazarY = 170;
         int separacion = 15;
         int posicionMesaY = btnMesa.getY();
         int posicionAlimY = btnAlimentos.getY();
@@ -544,7 +631,7 @@ public class e_menu extends javax.swing.JFrame {
         pnlAlimentos.setLocation(20, 330);
         int tamanio = pnlAlimentos.getWidth();
         int tamBoton = btnPersonal.getHeight();
-        int desplazarY = 150;
+        int desplazarY = 170;
         int separacion = 15;
         int posicionMesaY = btnMesa.getY();
         int posicionAlimY = btnAlimentos.getY();
@@ -571,7 +658,7 @@ public class e_menu extends javax.swing.JFrame {
         int tamanio = pnlPersonal.getWidth();
         pnlPersonal.setLocation(20, 270);
         int tamBoton = btnPersonal.getHeight();
-        int desplazarY = 150;
+        int desplazarY = 170;
         int separacion = 15;
         int posicionY = btnPersonal.getY();
         if(tamanio <= 0){
@@ -591,50 +678,6 @@ public class e_menu extends javax.swing.JFrame {
             btnMesa.setLocation(0, posicionY +(2*(tamBoton + separacion)));
         }
     }//GEN-LAST:event_btnPersonalActionPerformed
-
-    private void btnAltaAlimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaAlimentoActionPerformed
-        this.alta_alimentoActionPerformed(evt);
-    }//GEN-LAST:event_btnAltaAlimentoActionPerformed
-
-    private void btnBajaAlimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaAlimentoActionPerformed
-        this.baja_alimentoActionPerformed(evt);
-    }//GEN-LAST:event_btnBajaAlimentoActionPerformed
-
-    private void baja_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baja_alimentoActionPerformed
-        
-    }//GEN-LAST:event_baja_alimentoActionPerformed
-
-    private void btnModificacionAlimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificacionAlimentoActionPerformed
-        this.baja_alimentoActionPerformed(evt);
-    }//GEN-LAST:event_btnModificacionAlimentoActionPerformed
-
-    private void modificacion_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificacion_alimentoActionPerformed
-        
-    }//GEN-LAST:event_modificacion_alimentoActionPerformed
-
-    private void btnAltaPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaPersonalActionPerformed
-        this.alta_personalActionPerformed(evt);
-    }//GEN-LAST:event_btnAltaPersonalActionPerformed
-
-    private void btnBajaPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaPersonalActionPerformed
-   
-    }//GEN-LAST:event_btnBajaPersonalActionPerformed
-
-    private void btnConsultaPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaPersonalActionPerformed
-        this.consulta_personalActionPerformed(evt);
-    }//GEN-LAST:event_btnConsultaPersonalActionPerformed
-
-    private void btnAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderActionPerformed
-        Atencion n = new Atencion(this);
-        this.setVisible(false);
-        n.setVisible(true);
-    }//GEN-LAST:event_btnAtenderActionPerformed
-
-    private void consulta_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulta_alimentoActionPerformed
-        ConsultaPlato cpl = new ConsultaPlato();
-        this.cpl = cpl;
-        ejecutarPanel(cpl);
-    }//GEN-LAST:event_consulta_alimentoActionPerformed
 
     
     void ejecutarPanel(javax.swing.JInternalFrame obj){
