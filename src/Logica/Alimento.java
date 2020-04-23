@@ -5,8 +5,10 @@
  */
 package Logica;
 
+import Persistencia.Conexion;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -101,5 +103,11 @@ public class Alimento implements Serializable {
         this.categoria = categoria;
     }
     
-    
+    public Alimento obtenerAlimentoPorId(int id) {
+        String QUERY = "Select * From Alimento where idAlimento=?id ";
+        EntityManager em = Conexion.getInstance().getEntity();
+        Alimento ret = (Alimento) em.createQuery(QUERY, Alimento.class).setParameter("id", id).getResultList();
+        //System.out.println("num of personal:" + ret.size());
+        return ret;
+    }
 }

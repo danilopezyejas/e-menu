@@ -13,14 +13,23 @@ import Logica.enum_Categoria;
 import Persistencia.Conexion;
 import com.mysql.jdbc.Blob;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author luisg
  */
 public class AlimentoController implements IAlimentoController{
-    ArrayList<Plato> platos = new ArrayList<Plato>();
+    private ArrayList<Plato> platos = new ArrayList<Plato>();
+    private int idCategoria;
+    private int idAlimento;
+    private int puntaje;
+    private String comentario;
+    private String nombre;
+    private HashMap<Integer, Integer> alimentos_cantidad;
+
     //singleton
     private AlimentoController() {
     } 
@@ -55,17 +64,26 @@ public class AlimentoController implements IAlimentoController{
 
     @Override
     public List<Alimento> elegirCategoria(Categoria categoria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        List<Alimento> l = categoria.getAlimentos();
+        return l;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Alimento verDetalles(int idAlimento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Alimento a = new Alimento();
+        
+        a = a.obtenerAlimentoPorId(idAlimento);
+        return a;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void seleccionarAlimento(int idAlimento, int cantidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        alimentos_cantidad = new HashMap<>();
+        alimentos_cantidad.put(idAlimento,cantidad);
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

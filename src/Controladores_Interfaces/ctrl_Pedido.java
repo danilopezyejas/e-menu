@@ -8,8 +8,10 @@ package Controladores_Interfaces;
 import Logica.Categoria;
 import Logica.Mesa;
 import Logica.Pedidos;
+import Logica.enum_Estado;
 import Persistencia.Conexion;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -35,6 +37,11 @@ public class ctrl_Pedido implements ictrl_Pedido {
 
     @Override
     public void confirmarPedido() {
+        Pedidos p = new Pedidos();
+        p.setContraseña("123456");
+        p.setEstado(enum_Estado.Activo);
+        Date fecha_hora = new Date();//se crea con la fecha y hora del sistema
+        p.setFecha_hora(fecha_hora);
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

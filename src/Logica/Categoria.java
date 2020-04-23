@@ -47,6 +47,19 @@ public class Categoria implements Serializable {
         this.nombre = nombre;
     }
 
+    public List<Alimento> getAlimentos() {
+        return alimentos;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public void setAlimentos(List<Alimento> alimentos) {
+        this.alimentos = alimentos;
+    }
+    
+
     @Override
     public int hashCode() {
         int hash = 0;
