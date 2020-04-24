@@ -13,7 +13,7 @@ import java.util.HashMap;
  * @author Danilo
  */
 public interface ictrl_Pedido {
-    public abstract void confirmarPedido();
+    public abstract void confirmarPedido(String contra);
     public abstract boolean escanearCodigo(int idMesa);
     public abstract float solicitarPago(int idMesa);
     public abstract HashMap<String, String> listarCategorias();

@@ -46,7 +46,7 @@ public class Pedidos implements Serializable {
     private List<Observaciones> observacioness;
     @OneToOne(mappedBy = "pedido")
     private Pago pago;
-    private HashMap<Integer,Integer> alimentos;
+    private HashMap<Integer,Integer> alimentos_cantidad;
 
     public Long getId() {
         return id;
@@ -95,6 +95,10 @@ public class Pedidos implements Serializable {
     public Pago getPago() {
         return pago;
     }
+
+    public HashMap<Integer, Integer> getAlimentos_cantidad() {
+        return alimentos_cantidad;
+    }
     
 
     public void setFecha_hora(Date fecha_hora) {
@@ -131,6 +135,10 @@ public class Pedidos implements Serializable {
 
     public void setPago(Pago pago) {
         this.pago = pago;
+    }
+
+    public void setAlimentos_cantidad(HashMap<Integer, Integer> alimentos) {
+        this.alimentos_cantidad = alimentos;
     }
     
 

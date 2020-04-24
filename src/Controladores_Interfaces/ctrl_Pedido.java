@@ -5,8 +5,10 @@
  */
 package Controladores_Interfaces;
 
+import Logica.Alimento;
 import Logica.Categoria;
 import Logica.Mesa;
+import Logica.Observaciones;
 import Logica.Pedidos;
 import Logica.enum_Estado;
 import Persistencia.Conexion;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.EntityManager;
 
 /**
@@ -27,6 +30,7 @@ public class ctrl_Pedido implements ictrl_Pedido {
     private int idMesa;
 
     Conexion c = new Conexion();
+    AlimentoController ca = AlimentoController.getInstance();
 
     public static ctrl_Pedido getInstancia() {
         if (instancia == null) {
@@ -36,16 +40,46 @@ public class ctrl_Pedido implements ictrl_Pedido {
     }
 
     @Override
-    public void confirmarPedido() {
-        Pedidos p = new Pedidos();
-        p.setContraseña("123456");
-        p.setEstado(enum_Estado.Activo);
+    public void confirmarPedido(String contraseña) {
         Date fecha_hora = new Date();//se crea con la fecha y hora del sistema
+        Mesa m = buscarMesaPorId(idMesa);
+        List<Alimento> listAlimentos = new ArrayList<>();
+        List<Observaciones> o = ca.getObservaciones();//las observaciones que se ingresaron previamente en el controlador de alimento
+        int precio_total = 0;
+        
+//se crea el objeto pedido con todos los datos vacios
+        Pedidos p = new Pedidos();
+        //se setean los datos 
+        p.setContraseña(contraseña);
+        p.setEstado(enum_Estado.Activo);
         p.setFecha_hora(fecha_hora);
-        p.setPrecio_total(cant);
+        //p.setPrecio_total(cant);
+        p.setMesa(m);
+        p.setAlimentos_cantidad(ca.getAlimentos_cantidad());
         
+        //Se cargan los alimentos del pedido
+        for (Map.Entry<Integer,Integer> entry : p.getAlimentos_cantidad().entrySet()) {
+            Integer idAlimento = entry.getKey();
+            Alimento a = new Alimento();
+            a = ca.buscarAlimentoPorId(idAlimento);
+            listAlimentos.add(a);
+        }
+        p.setAlimento(listAlimentos);
         
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //A cada objeto observaciones se le setea el atributo pedido
+        for (int i = 0; i < o.size(); i++) {
+            Observaciones aux = (Observaciones) o.get(i);
+            aux.setPedido(p);
+        }
+        p.setObservacioness(ca.getObservaciones());
+        
+        //recorro todos los alimentos para saber el precio total del pedido
+        
+        for (int i = 0; i < listAlimentos.size(); i++) {
+            Alimento aux = (Alimento) listAlimentos.get(i);
+            precio_total += aux.getPrecio();
+        }
+        p.setPrecio_total(precio_total);
     }
 
     @Override
@@ -123,17 +157,17 @@ public class ctrl_Pedido implements ictrl_Pedido {
         this.idMesa = idMesa;
     }
 
-    public List<Mesa> buscarMesaPorId(int id) {
+    public Mesa buscarMesaPorId(int id) {
         EntityManager em = Conexion.getInstance().getEntity();
-        List<Mesa> lista = null;
+        Mesa m = null;
         em.getTransaction().begin();
         try {
-            lista = em.createNativeQuery("SELECT * FROM Mesa WHERE numeroMesa=" + id, Mesa.class).getResultList();
+            m = (Mesa) em.createNativeQuery("SELECT * FROM Mesa WHERE numeroMesa=" + id, Mesa.class).getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
         }
-        return lista;
+        return m;
     }
 
     public List<Mesa> buscarMesas() {

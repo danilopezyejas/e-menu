@@ -33,10 +33,38 @@ public class Observaciones implements Serializable {
     public Long getId() {
         return id;
     }
+public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public Alimento getAlimento() {
+        return alimento;
+    }
+
+    public Pedidos getPedido() {
+        return pedido;
+    }
     public void setId(Long id) {
         this.id = id;
     }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+
+    public void setAlimento(Alimento alimento) {
+        this.alimento = alimento;
+    }
+
+    public void setPedido(Pedidos pedido) {
+        this.pedido = pedido;
+    }
+
+    
 
     @Override
     public int hashCode() {

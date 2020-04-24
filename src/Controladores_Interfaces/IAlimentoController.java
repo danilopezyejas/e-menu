@@ -23,7 +23,7 @@ public interface IAlimentoController {
     public abstract void seleccionarAlimento(int idAlimento);
     public abstract List<Alimento> elegirCategoria(Categoria categoria);
     public abstract Alimento verDetalles(int idAlimento);
-    public abstract void seleccionarAlimento(int idAlimento, int cantidad);
+    public abstract void seleccionarAlimento(int idAlimento, int cantidad, String observacion);
     public abstract void ingresarComentario(String comentario);
     public abstract void ingresarFoto(Blob imagen);
     public abstract void ingresarPuntaje (int puntaje);
