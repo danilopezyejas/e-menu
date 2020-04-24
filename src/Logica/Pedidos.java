@@ -7,10 +7,15 @@ package Logica;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -29,6 +34,17 @@ public class Pedidos implements Serializable {
     private int precio_total;
     private String contraseña;
     private enum_Estado estado;
+    
+    @ManyToOne
+    private Personal personal; //Este sería el mozo que atiende el pedido
+    @ManyToOne
+    private Mesa mesa;//Esta es la mesa en la que hacen el pedido
+    @ManyToMany
+    private List<Alimento> alimento;
+    @OneToMany(mappedBy = "pedido")
+    private List<Observaciones> observacioness;
+    @OneToOne(mappedBy = "pedido")
+    private Pago pago;
 
     public Long getId() {
         return id;

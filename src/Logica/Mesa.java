@@ -12,8 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Blob;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -30,6 +32,8 @@ public class Mesa implements Serializable {
     @Column
     @Lob
     private Blob foto;
+    @OneToMany(mappedBy = "mesa")
+    private List<Pedidos> pedidoss;
     
     public Long getId() {
         return id;
