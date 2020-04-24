@@ -29,7 +29,7 @@ public class Categoria implements Serializable {
     private String nombre;
     
     @OneToMany(mappedBy = "categoria")
-    List<Alimento> alimentos;// = obtenerAlimentos();
+    List<Alimento> alimentos; //= obtenerAlimentos();
 
     public Long getId() {
         return id;
@@ -86,11 +86,16 @@ public class Categoria implements Serializable {
     }
     
     public List<Alimento> obtenerAlimentos() {
-        String QUERY = "Select * From Alimento where categoria_id = ?n";
         EntityManager em = Conexion.getInstance().getEntity();
-        List<Alimento> ret = em.createQuery(QUERY, Alimento.class).setParameter("n",nombre).getResultList();
-        //System.out.println("num of personal:" + ret.size());
-        return ret;
+        List<Alimento> lista = null;
+        em.getTransaction().begin();
+        try {
+            lista = em.createNativeQuery("SELECT * FROM Alimento WHERE categoria_id =" + id, Categoria.class).getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        return lista;
     }
     
 }
