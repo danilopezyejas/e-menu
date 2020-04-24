@@ -43,6 +43,8 @@ public class ctrl_Pedido implements ictrl_Pedido {
         Date fecha_hora = new Date();//se crea con la fecha y hora del sistema
         p.setFecha_hora(fecha_hora);
         p.setPrecio_total(cant);
+        
+        
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

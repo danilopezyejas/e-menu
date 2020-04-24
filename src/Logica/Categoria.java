@@ -29,7 +29,7 @@ public class Categoria implements Serializable {
     private String nombre;
     
     @OneToMany(mappedBy = "categoria")
-    List<Alimento> alimentos = obtenerAlimentos();
+    List<Alimento> alimentos;// = obtenerAlimentos();
 
     public Long getId() {
         return id;

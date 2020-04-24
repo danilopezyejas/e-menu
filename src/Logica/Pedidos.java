@@ -7,6 +7,7 @@ package Logica;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,6 +46,7 @@ public class Pedidos implements Serializable {
     private List<Observaciones> observacioness;
     @OneToOne(mappedBy = "pedido")
     private Pago pago;
+    private HashMap<Integer,Integer> alimentos;
 
     public Long getId() {
         return id;
@@ -74,6 +76,27 @@ public class Pedidos implements Serializable {
         return estado;
     }
 
+    public Personal getPersonal() {
+        return personal;
+    }
+
+    public Mesa getMesa() {
+        return mesa;
+    }
+
+    public List<Alimento> getAlimento() {
+        return alimento;
+    }
+
+    public List<Observaciones> getObservacioness() {
+        return observacioness;
+    }
+
+    public Pago getPago() {
+        return pago;
+    }
+    
+
     public void setFecha_hora(Date fecha_hora) {
         this.fecha_hora = fecha_hora;
     }
@@ -88,6 +111,26 @@ public class Pedidos implements Serializable {
 
     public void setEstado(enum_Estado estado) {
         this.estado = estado;
+    }
+
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
+    }
+
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
+    }
+
+    public void setAlimento(List<Alimento> alimento) {
+        this.alimento = alimento;
+    }
+
+    public void setObservacioness(List<Observaciones> observacioness) {
+        this.observacioness = observacioness;
+    }
+
+    public void setPago(Pago pago) {
+        this.pago = pago;
     }
     
 
