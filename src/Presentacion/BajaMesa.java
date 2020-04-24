@@ -101,10 +101,10 @@ public class BajaMesa extends javax.swing.JInternalFrame {
         Mesa mesaBorrar = cp.buscarMesaPorId(Integer.parseInt(numMesa));
         try{
             if(mesaBorrar!=null){
-            Conexion.getInstance().baja(mesaBorrar);
-            JOptionPane.showMessageDialog(null,  "Mesa borrada exitosamente.");
+                Conexion.getInstance().baja(mesaBorrar);
+                JOptionPane.showMessageDialog(null,  "Mesa borrada exitosamente.");
             }else{
-                JOptionPane.showMessageDialog(null,  "La mesa seleccionada no existe en el sistem.");
+                JOptionPane.showMessageDialog(null,  "La mesa seleccionada no existe en el sistema.");
             }
         }catch(Exception e){
                 JOptionPane.showMessageDialog(null,  "ERROR: " + e);

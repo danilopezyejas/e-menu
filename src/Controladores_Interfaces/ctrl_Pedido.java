@@ -162,7 +162,7 @@ public class ctrl_Pedido implements ictrl_Pedido {
         Mesa m = null;
         em.getTransaction().begin();
         try {
-            m = (Mesa) em.createNativeQuery("SELECT * FROM Mesa WHERE numeroMesa=" + id, Mesa.class).getResultList();
+            m = (Mesa) em.createNativeQuery("SELECT * FROM Mesa WHERE numeroMesa=" + id, Mesa.class).getSingleResult();
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
