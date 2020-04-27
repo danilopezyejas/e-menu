@@ -6,6 +6,7 @@
 package Persistencia;
 
 import Logica.Personal;
+import Logica.Plato;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -74,6 +75,13 @@ private Conexion() {
         String QUERY = "Select a From Personal a";
         EntityManager em = Conexion.getInstance().getEntity();
         List<Personal> ret = em.createQuery(QUERY, Personal.class).getResultList();
+        //System.out.println("num of personal:" + ret.size());
+        return ret;
+    }
+    public List<Plato> consultaPlato() {
+        String QUERY = "Select a From Plato a";
+        EntityManager em = Conexion.getInstance().getEntity();
+        List<Plato> ret = em.createQuery(QUERY, Plato.class).getResultList();
         //System.out.println("num of personal:" + ret.size());
         return ret;
     }

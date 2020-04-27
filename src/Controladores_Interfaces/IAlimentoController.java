@@ -11,4 +11,5 @@ package Controladores_Interfaces;
  */
 public interface IAlimentoController {
     public void altaPlato(String nom,float pre,String ingred,String desc,int cal);
+    public void altaBebida(String nom,float pre,String ingred,String desc,int cant); //falta tipo
 }

@@ -14,11 +14,37 @@ import javax.swing.JOptionPane;
  *
  * @author Danilo
  */
-public class AltaPlato extends javax.swing.JInternalFrame {
+public class AltaAlimento extends javax.swing.JInternalFrame {
     IAlimentoController alimentoContoller;
-    public AltaPlato() {
+    boolean isPlato;
+    public AltaAlimento() {
         initComponents();
+        String[] options = {"Plato", "Bebida","Salir"};
+        int x =JOptionPane.showOptionDialog(null,"Que quiere dar de alta?","Seleccione una opcion", JOptionPane.DEFAULT_OPTION, JOptionPane.DEFAULT_OPTION, null, options, null);
+       
+        switch(x) {
+            case 0:
+                //ocultar tipo bebida
+                tipoTexto.setVisible(false);
+                isPlato=true;
+            break;
+            case 1:
+                this.setTitle("Alta bebida");
+                //cambio calorias por cantidad
+                jLabel6.setText("Cantidad");
+                isPlato=false;
+            break;
+            case 2:
+                 salir();
+            break;
+            default:
+                break;
+        }
+        
+        
+        
         alimentoContoller = Fabrica.getInstancia().getAlimentoController();
+
     }
 
     /**
@@ -50,6 +76,7 @@ public class AltaPlato extends javax.swing.JInternalFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         descripcion = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        tipoTexto = new javax.swing.JLabel();
 
         setTitle("Alta Plato");
 
@@ -99,6 +126,8 @@ public class AltaPlato extends javax.swing.JInternalFrame {
 
         jButton1.setText("Abrir Fotos");
 
+        tipoTexto.setText("Tipo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,10 +143,6 @@ public class AltaPlato extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(31, 31, 31)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel1))
@@ -130,12 +155,18 @@ public class AltaPlato extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel2))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel8))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel8))
+                                        .addGap(12, 12, 12)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton1)
+                                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(tipoTexto))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -146,33 +177,36 @@ public class AltaPlato extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel6)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tipoTexto)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jButton1))
+                        .addGap(27, 27, 27)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salir)
                     .addComponent(aceptar))
@@ -193,10 +227,16 @@ public class AltaPlato extends javax.swing.JInternalFrame {
         if(nom.equals("")||preString.equals("")||caloriasSting.equals("")||ingred.equals("")||desc.equals("")){
              JOptionPane.showMessageDialog(null,"Datos Incorrectos");
         }else{
-            pre=Integer.parseInt(preString);
-            cal=Integer.parseInt(caloriasSting);
-            alimentoContoller.altaPlato(nom, pre, ingred,desc,cal);       
-            JOptionPane.showMessageDialog(null,"Alimento agregado correctamente");
+            if(isPlato){
+                pre=Integer.parseInt(preString);
+                cal=Integer.parseInt(caloriasSting);
+                alimentoContoller.altaPlato(nom, pre, ingred,desc,cal);       
+                JOptionPane.showMessageDialog(null,"Plato agregado correctamente");
+            }else{
+                //preguntar por tipo
+                //hagolo de bebida
+            }
+           
         }
     }//GEN-LAST:event_aceptarActionPerformed
 
@@ -233,5 +273,6 @@ public class AltaPlato extends javax.swing.JInternalFrame {
     private javax.swing.JTextPane nombre;
     private javax.swing.JTextPane precio;
     private javax.swing.JButton salir;
+    private javax.swing.JLabel tipoTexto;
     // End of variables declaration//GEN-END:variables
 }
