@@ -12,6 +12,7 @@ import Logica.Categoria;
 import Logica.Observaciones;
 import Logica.Personal;
 import Logica.Plato;
+import Logica.enum_Bebida;
 import Logica.enum_Categoria;
 import Persistencia.Conexion;
 import com.mysql.jdbc.Blob;
@@ -27,6 +28,7 @@ import javax.persistence.EntityManager;
  */
 public class AlimentoController implements IAlimentoController{
     private ArrayList<Plato> platos = new ArrayList<Plato>();
+    private ArrayList<Bebida> bebidas = new ArrayList<Bebida>();
     private int idCategoria;
     private int idAlimento;
     private int puntaje;
@@ -188,20 +190,35 @@ public class AlimentoController implements IAlimentoController{
     
     //funcion de la interface
     @Override
-    public void altaPlato(String nom,float pre,String ingred,String desc,int cal){
+    public void altaPlato(String nom,float pre,String ingred,String desc,int cal,int tiempoPreparacion){
         Plato plato=new Plato(); 
-        
+
         plato.setNombre(nom);
         plato.setIngredientes(ingred);
         plato.setCalorias(cal);
         plato.setPrecio(pre);
+        plato.setTiempoPreparacion(tiempoPreparacion);
+        plato.setActivo(true);
         
         platos.add(plato);
         Conexion.getInstance().alta(plato);
         System.out.print("se dio de alta plato nombre"+nom);
     }
-    public void altaBebida(String nom,float pre,String ingred,String desc,int cant){
-        Bebida plato=new Bebida(); 
+    @Override
+    public void altaBebida(String nom,float pre,String ingred,String desc,int cant,enum_Bebida tipo,int tiempoPreparacion){
+        Bebida bebida=new Bebida(); 
+
+        bebida.setNombre(nom);
+        bebida.setIngredientes(ingred);
+        bebida.setCantidad(cant);
+        bebida.setPrecio(pre);
+        bebida.setTiempoPreparacion(tiempoPreparacion);
+        bebida.setTipo(tipo);
+        bebida.setActivo(true);
+        
+        bebidas.add(bebida);
+        Conexion.getInstance().alta(bebida);
+        System.out.print("se dio de alta bebida nombre"+nom);
     }
     
     public Alimento buscarAlimentoPorId(int id) {
@@ -215,5 +232,15 @@ public class AlimentoController implements IAlimentoController{
             em.getTransaction().rollback();
         }
         return a;
+    }
+    @Override
+    public List<Plato> listarPlatos(){
+        List<Plato> ret = Conexion.getInstance().consultaPlato();
+        return ret;
+    }
+    @Override
+    public List<Bebida> listarBebidas(){
+        List<Bebida> ret = Conexion.getInstance().consultaBebida();
+        return ret;
     }
 }

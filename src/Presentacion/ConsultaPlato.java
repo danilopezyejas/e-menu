@@ -8,7 +8,10 @@ package Presentacion;
 import Controladores_Interfaces.IAlimentoController;
 import Controladores_Interfaces.IPersonalController;
 import Controladores_Interfaces.PersonalController;
+import Logica.Bebida;
 import Logica.Fabrica;
+import Logica.Plato;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -156,18 +159,39 @@ public class ConsultaPlato extends javax.swing.JInternalFrame {
         String columnas[]={"Id","Nombre","Precio","TiempoPrep","Activo","Ingredientes","Calorias"};
         md=new DefaultTableModel(data,columnas);
         Table.setModel(md);
-        //placeholder
-        String datos[]={"1","Coca","200","20","si","Masa,Salsa,Mozzarella","2500"};
-        md.addRow(datos);
+        //lleno la tabla
+        List<Plato> per = platoController.listarPlatos();
+        for(Plato aux : per){ 
+            String datos[]={String.valueOf(aux.getId()),
+                aux.getNombre(),
+                String.valueOf(aux.getPrecio()),
+                String.valueOf(aux.getTiempoPreparacion()),
+                String.valueOf(aux.isActivo()),
+                aux.getIngredientes(),
+                String.valueOf(aux.getCalorias())
+            };
+            md.addRow(datos);
+        }
         //
     }
     private void cargarBebidas(){ 
-        String columnas[]={"Id","Nombre","Precio","TiempoPrep","Activo","Contenido","Tipo","Calorias"};
+        String columnas[]={"Id","Nombre","Precio","TiempoPrep","Activo","Ingredientes","Contenido","Tipo"};
         md=new DefaultTableModel(data,columnas);
         Table.setModel(md);
-        //placeholder
-        String datos[]={"1","CocaCola","100","5","si","500ml","Gaseosa","1000"};
-        md.addRow(datos);
+        //lleno la tabla
+        List<Bebida> per = platoController.listarBebidas();
+        for(Bebida aux : per){ 
+            String datos[]={String.valueOf(aux.getId()),
+                aux.getNombre(),
+                String.valueOf(aux.getPrecio()),
+                String.valueOf(aux.getTiempoPreparacion()),
+                String.valueOf(aux.isActivo()),
+                aux.getIngredientes(),
+                String.valueOf(aux.getCantidad()),
+                String.valueOf(aux.getTipo())
+            };
+            md.addRow(datos);
+        }
         //
     }
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed

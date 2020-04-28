@@ -55,7 +55,7 @@ public class PersonalController implements IPersonalController{
         Conexion.getInstance().alta(per);
         System.out.print("se dio de alta personal nombre"+nombre);
     }
-     @Override
+    @Override
     public List<Personal> listarPersonal(){
         List<Personal> ret = Conexion.getInstance().consultarPersonal();
         return ret;

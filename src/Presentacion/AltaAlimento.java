@@ -8,6 +8,7 @@ package Presentacion;
 import Controladores_Interfaces.AlimentoController;
 import Controladores_Interfaces.IAlimentoController;
 import Logica.Fabrica;
+import Logica.enum_Bebida;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +27,7 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
             case 0:
                 //ocultar tipo bebida
                 tipoTexto.setVisible(false);
+                ComboBoxTipo.setVisible(false);
                 isPlato=true;
             break;
             case 1:
@@ -33,6 +35,9 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
                 //cambio calorias por cantidad
                 jLabel6.setText("Cantidad");
                 isPlato=false;
+                ComboBoxTipo.addItem("Alcoholica");
+                ComboBoxTipo.addItem("Analcoholica");
+                ComboBoxTipo.addItem("Elaboracion propia");
             break;
             case 2:
                  salir();
@@ -77,6 +82,10 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
         descripcion = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         tipoTexto = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tiempoPreparacion = new javax.swing.JTextPane();
+        ComboBoxTipo = new javax.swing.JComboBox<>();
 
         setTitle("Alta Plato");
 
@@ -128,6 +137,11 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
 
         tipoTexto.setText("Tipo");
 
+        jLabel7.setText("Tiempo de Preparación");
+
+        tiempoPreparacion.setContentType(""); // NOI18N
+        jScrollPane6.setViewportView(tiempoPreparacion);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,23 +165,30 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                                         .addComponent(jLabel2))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel5)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel8))
-                                        .addGap(12, 12, 12)
+                                            .addComponent(jLabel6))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton1)
                                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(tipoTexto))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel7)
+                                            .addComponent(tipoTexto))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                                            .addComponent(jButton1)
+                                            .addComponent(ComboBoxTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -176,13 +197,9 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -194,19 +211,28 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel3)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tipoTexto)
                         .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tipoTexto)
+                            .addComponent(ComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jButton1))
-                        .addGap(27, 27, 27)))
+                            .addComponent(jButton1)
+                            .addComponent(jLabel8))
+                        .addGap(46, 46, 46))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salir)
                     .addComponent(aceptar))
@@ -221,20 +247,44 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
         String nom = nombre.getText();
         String preString = precio.getText();
         String caloriasSting = calorias.getText();
+        String tiempoPrepString = tiempoPreparacion.getText();
         String ingred = ingredientes.getText();
         String desc = descripcion.getText();
-        int cal,pre;
-        if(nom.equals("")||preString.equals("")||caloriasSting.equals("")||ingred.equals("")||desc.equals("")){
+        enum_Bebida a= enum_Bebida.Alcoholica;
+        int cal,pre,tiempoPrep,cant;
+        if(nom.equals("")||preString.equals("")||caloriasSting.equals("")||ingred.equals("")||desc.equals("")||tiempoPrepString.equals("")){
              JOptionPane.showMessageDialog(null,"Datos Incorrectos");
         }else{
             if(isPlato){
                 pre=Integer.parseInt(preString);
                 cal=Integer.parseInt(caloriasSting);
-                alimentoContoller.altaPlato(nom, pre, ingred,desc,cal);       
+                tiempoPrep= Integer.parseInt(tiempoPrepString);
+                alimentoContoller.altaPlato(nom, pre, ingred,desc,tiempoPrep,cal);       
                 JOptionPane.showMessageDialog(null,"Plato agregado correctamente");
             }else{
                 //preguntar por tipo
-                //hagolo de bebida
+                pre=Integer.parseInt(preString);
+                cant=Integer.parseInt(caloriasSting);
+                tiempoPrep= Integer.parseInt(tiempoPrepString);
+               
+                int tipoInt=ComboBoxTipo.getSelectedIndex();
+                switch(tipoInt){
+                 case 0:
+                   a= enum_Bebida.Alcoholica;
+                    break;
+                 case 1:
+                   a= enum_Bebida.Analcoholica;
+                    break;
+                case 2:
+                   a= enum_Bebida.elaboracion_propia;
+                    break;
+                case -1:
+                    JOptionPane.showMessageDialog(null,"Seleccione tipo de bebida");
+                    return;
+            }
+                
+                alimentoContoller.altaBebida(nom, pre, ingred,desc,cant,a,tiempoPrep);       
+                JOptionPane.showMessageDialog(null,"Bebida agregada correctamente");
             }
            
         }
@@ -253,6 +303,7 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboBoxTipo;
     private javax.swing.JButton aceptar;
     private javax.swing.JTextPane calorias;
     private javax.swing.JTextArea descripcion;
@@ -264,15 +315,18 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextPane nombre;
     private javax.swing.JTextPane precio;
     private javax.swing.JButton salir;
+    private javax.swing.JTextPane tiempoPreparacion;
     private javax.swing.JLabel tipoTexto;
     // End of variables declaration//GEN-END:variables
 }

@@ -39,7 +39,10 @@ public class Alimento implements Serializable {
     private List<Pedidos> pedidoss;
     @OneToMany(mappedBy = "alimento")
     private List<Observaciones> observacioness;
-
+    private String ingredientes;   
+    private int tiempoPreparacion;   
+    private boolean activo;
+    
     public Long getId() {
         return idAlimento;
     }
@@ -108,6 +111,30 @@ public class Alimento implements Serializable {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public String getIngredientes() {
+        return ingredientes;
+    }
+
+    public void setIngredientes(String ingredientes) {
+        this.ingredientes = ingredientes;
+    }
+
+    public int getTiempoPreparacion() {
+        return tiempoPreparacion;
+    }
+
+    public void setTiempoPreparacion(int tiempoPreparacion) {
+        this.tiempoPreparacion = tiempoPreparacion;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
     
     public Alimento obtenerAlimentoPorId(int id) {
