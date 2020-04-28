@@ -50,7 +50,7 @@ public class ctrl_Pedido implements ictrl_Pedido {
 //se crea el objeto pedido con todos los datos vacios
         Pedidos p = new Pedidos();
         //se setean los datos 
-        p.setContraseña(contraseña);
+        p.setContrasenia(contraseña);
         p.setEstado(enum_Estado.Activo);
         p.setFecha_hora(fecha_hora);
         //p.setPrecio_total(cant);

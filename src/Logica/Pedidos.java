@@ -109,8 +109,8 @@ public class Pedidos implements Serializable {
         this.precio_total = precio_total;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contrasenia = contraseña;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public void setEstado(enum_Estado estado) {
