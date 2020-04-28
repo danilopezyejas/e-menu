@@ -5,6 +5,7 @@
  */
 package Persistencia;
 
+import Logica.Categoria;
 import Logica.Personal;
 import Logica.Plato;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import javax.persistence.Persistence;
  * @author Danilo
  */
 public class Conexion {
-private Conexion() {
+public Conexion() {
     }
     
     public static Conexion getInstance() {
@@ -82,6 +83,12 @@ private Conexion() {
         String QUERY = "Select a From Plato a";
         EntityManager em = Conexion.getInstance().getEntity();
         List<Plato> ret = em.createQuery(QUERY, Plato.class).getResultList();
+         return ret;
+    }
+    public List<Categoria> consultarCategoria() {
+        String QUERY = "Select * From Categoria";
+        EntityManager em = Conexion.getInstance().getEntity();
+        List<Categoria> ret = em.createQuery(QUERY, Categoria.class).getResultList();
         //System.out.println("num of personal:" + ret.size());
         return ret;
     }

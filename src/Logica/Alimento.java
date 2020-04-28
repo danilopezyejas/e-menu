@@ -5,13 +5,19 @@
  */
 package Logica;
 
+import Persistencia.Conexion;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -27,7 +33,12 @@ public class Alimento implements Serializable {
     private Long idAlimento;
     private String nombre;
     private float precio;
-    private enum_Categoria categoria;
+    @ManyToOne
+    private Categoria categoria;
+    @ManyToMany(mappedBy = "alimento")
+    private List<Pedidos> pedidoss;
+    @OneToMany(mappedBy = "alimento")
+    private List<Observaciones> observacioness;
 
     public Long getId() {
         return idAlimento;
@@ -65,7 +76,7 @@ public class Alimento implements Serializable {
     public Alimento() {
     }
 
-    public Alimento(String nombre, float precio, enum_Categoria categoria) {
+    public Alimento(String nombre, float precio, Categoria categoria) {
         this.nombre = nombre;
         this.precio = precio;
         this.categoria = categoria;
@@ -83,7 +94,7 @@ public class Alimento implements Serializable {
         return precio;
     }
 
-    public enum_Categoria getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
@@ -95,9 +106,15 @@ public class Alimento implements Serializable {
         this.precio = precio;
     }
 
-    public void setCategoria(enum_Categoria categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
     
-    
+    public Alimento obtenerAlimentoPorId(int id) {
+        String QUERY = "Select * From Alimento where idAlimento=?id ";
+        EntityManager em = Conexion.getInstance().getEntity();
+        Alimento ret = (Alimento) em.createQuery(QUERY, Alimento.class).setParameter("id", id).getResultList();
+        //System.out.println("num of personal:" + ret.size());
+        return ret;
+    }
 }
