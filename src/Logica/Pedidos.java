@@ -33,7 +33,7 @@ public class Pedidos implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fecha_hora;
     private int precio_total;
-    private String contraseña;
+    private String contrasenia;
     private enum_Estado estado;
     
     @ManyToOne
@@ -69,7 +69,7 @@ public class Pedidos implements Serializable {
     }
 
     public String getContraseña() {
-        return contraseña;
+        return contrasenia;
     }
 
     public enum_Estado getEstado() {
@@ -110,7 +110,7 @@ public class Pedidos implements Serializable {
     }
 
     public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+        this.contrasenia = contraseña;
     }
 
     public void setEstado(enum_Estado estado) {
