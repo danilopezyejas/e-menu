@@ -98,13 +98,13 @@ public class BajaMesa extends javax.swing.JInternalFrame {
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
         String numMesa = mesa.getSelectedItem().toString();
-        List<Mesa> mesaBorrar = cp.buscarMesaPorId(Integer.parseInt(numMesa));
+        Mesa mesaBorrar = cp.buscarMesaPorId(Integer.parseInt(numMesa));
         try{
-            if(mesaBorrar.size() == 1){
-            Conexion.getInstance().baja(mesaBorrar.get(0));
-            JOptionPane.showMessageDialog(null,  "Mesa borrada exitosamente.");
+            if(mesaBorrar!=null){
+                Conexion.getInstance().baja(mesaBorrar);
+                JOptionPane.showMessageDialog(null,  "Mesa borrada exitosamente.");
             }else{
-                JOptionPane.showMessageDialog(null,  "La mesa seleccionada no existe en el sistem.");
+                JOptionPane.showMessageDialog(null,  "La mesa seleccionada no existe en el sistema.");
             }
         }catch(Exception e){
                 JOptionPane.showMessageDialog(null,  "ERROR: " + e);

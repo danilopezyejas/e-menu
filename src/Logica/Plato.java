@@ -16,7 +16,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name="idAlimento")
 public class Plato extends Alimento {
 
-    private String ingredientes;
     private int calorias;
 
     
@@ -27,17 +26,11 @@ public class Plato extends Alimento {
 //        super(id, idAlimento, nombre, precio, categoria);
 //    }
 
-    public String getIngredientes() {
-        return ingredientes;
-    }
-
     public int getCalorias() {
         return calorias;
     }
 
-    public void setIngredientes(String ingredientes) {
-        this.ingredientes = ingredientes;
-    }
+   
 
     public void setCalorias(int calorias) {
         this.calorias = calorias;

@@ -5,7 +5,10 @@
  */
 package Persistencia;
 
+import Logica.Bebida;
+import Logica.Categoria;
 import Logica.Personal;
+import Logica.Plato;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -17,7 +20,7 @@ import javax.persistence.Persistence;
  * @author Danilo
  */
 public class Conexion {
-private Conexion() {
+public Conexion() {
     }
     
     public static Conexion getInstance() {
@@ -74,6 +77,25 @@ private Conexion() {
         String QUERY = "Select a From Personal a";
         EntityManager em = Conexion.getInstance().getEntity();
         List<Personal> ret = em.createQuery(QUERY, Personal.class).getResultList();
+        //System.out.println("num of personal:" + ret.size());
+        return ret;
+    }
+    public List<Plato> consultaPlato() {
+        String QUERY = "Select a From Plato a";
+        EntityManager em = Conexion.getInstance().getEntity();
+        List<Plato> ret = em.createQuery(QUERY, Plato.class).getResultList();
+         return ret;
+    }
+     public List<Bebida> consultaBebida() {
+        String QUERY = "Select a From Bebida a";
+        EntityManager em = Conexion.getInstance().getEntity();
+        List<Bebida> ret = em.createQuery(QUERY, Bebida.class).getResultList();
+         return ret;
+    }
+    public List<Categoria> consultarCategoria() {
+        String QUERY = "Select * From Categoria";
+        EntityManager em = Conexion.getInstance().getEntity();
+        List<Categoria> ret = em.createQuery(QUERY, Categoria.class).getResultList();
         //System.out.println("num of personal:" + ret.size());
         return ret;
     }

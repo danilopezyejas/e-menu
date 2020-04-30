@@ -5,12 +5,14 @@
  */
 package Logica;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -24,6 +26,9 @@ public class Personal {
     private String nombre;
     private String apellido;
     private int cedula;
+    @OneToMany(mappedBy = "personal")
+    private List<Pedidos> pedidoss;
+    
     public Personal(String nombre,String apellido,int cedula){
         this.nombre=nombre;
         this.apellido=apellido;

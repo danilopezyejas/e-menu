@@ -31,5 +31,21 @@ public class Bebida extends Alimento {
 //        super(id, idAlimento, nombre, precio, categoria);
 //    }
 
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public enum_Bebida getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(enum_Bebida tipo) {
+        this.tipo = tipo;
+    }
+
     
 }

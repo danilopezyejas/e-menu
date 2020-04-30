@@ -22,6 +22,26 @@ public class PersonalController implements IPersonalController{
     public static PersonalController getInstance() {
         return PersonalControllerHolder.INSTANCE;
     } 
+
+    @Override
+    public void seleccionarPersonal(int idPersonal) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modificarPersonal(Personal personal) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminarPersonal(Personal personal) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void ingresarDatosPersonal(String nombre, String apellido, String ci) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private static class PersonalControllerHolder {
         private static final PersonalController INSTANCE = new PersonalController();
     }
@@ -35,7 +55,7 @@ public class PersonalController implements IPersonalController{
         Conexion.getInstance().alta(per);
         System.out.print("se dio de alta personal nombre"+nombre);
     }
-     @Override
+    @Override
     public List<Personal> listarPersonal(){
         List<Personal> ret = Conexion.getInstance().consultarPersonal();
         return ret;
