@@ -5,6 +5,7 @@
  */
 package Presentacion;
 
+import java.awt.Container;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Timer;
@@ -265,6 +266,15 @@ public class Atencion extends javax.swing.JFrame {
         panel.add(obj);
         obj.setVisible(true);
         centrarInternal(obj);
+        mandarAlFrente(obj);
+    }
+    
+    void mandarAlFrente(javax.swing.JInternalFrame obj){
+        Container parent = obj.getParent();
+        synchronized (parent.getTreeLock()) {
+        parent.setComponentZOrder(obj, 1);
+  
+    }
     }
 
     public void centrarInternal(javax.swing.JInternalFrame o) {

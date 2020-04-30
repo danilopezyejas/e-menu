@@ -17,6 +17,11 @@ public class Pedido extends javax.swing.JInternalFrame {
     public Pedido() {
         initComponents();
     }
+    
+    void salir(){
+        this.dispose();
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,6 +35,7 @@ public class Pedido extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        salir = new javax.swing.JButton();
 
         setOpaque(true);
 
@@ -49,6 +55,13 @@ public class Pedido extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        salir.setText("Salir");
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,24 +75,35 @@ public class Pedido extends javax.swing.JInternalFrame {
                         .addGap(121, 121, 121)
                         .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(salir)
+                .addGap(82, 82, 82))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81)
+                .addComponent(salir)
+                .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        salir();
+    }//GEN-LAST:event_salirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables
 }
