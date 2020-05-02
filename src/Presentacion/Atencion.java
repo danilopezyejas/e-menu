@@ -33,7 +33,7 @@ public class Atencion extends javax.swing.JFrame {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/img/e_menu.png")).getImage());
         this.setLocationRelativeTo(null);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);   //Para que se ejecute maximisado 
         Atencion atencion = this;
         mesas();
         
@@ -272,7 +272,7 @@ public class Atencion extends javax.swing.JFrame {
     void mandarAlFrente(javax.swing.JInternalFrame obj){
         Container parent = obj.getParent();
         synchronized (parent.getTreeLock()) {
-        parent.setComponentZOrder(obj, 1);
+        parent.setComponentZOrder(obj, 1);  //Para que se muestre por arriba de lo demas
   
     }
     }

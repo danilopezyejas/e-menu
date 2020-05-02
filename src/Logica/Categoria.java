@@ -97,5 +97,12 @@ public class Categoria implements Serializable {
         }
         return lista;
     }
+
+    public Categoria() {
+    }
+
+    public Categoria(String nombre) {
+        this.nombre = nombre;
+    }
     
 }

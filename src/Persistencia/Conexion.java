@@ -93,10 +93,9 @@ public Conexion() {
          return ret;
     }
     public List<Categoria> consultarCategoria() {
-        String QUERY = "Select * From Categoria";
+        String QUERY = "Select a From Categoria a";
         EntityManager em = Conexion.getInstance().getEntity();
         List<Categoria> ret = em.createQuery(QUERY, Categoria.class).getResultList();
-        //System.out.println("num of personal:" + ret.size());
         return ret;
     }
 }

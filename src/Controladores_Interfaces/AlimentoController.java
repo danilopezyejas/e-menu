@@ -128,10 +128,6 @@ public class AlimentoController implements IAlimentoController{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void seleccionarAlimento(int idAlimento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public List<Alimento> elegirCategoria(Categoria categoria) {
@@ -190,7 +186,7 @@ public class AlimentoController implements IAlimentoController{
     
     //funcion de la interface
     @Override
-    public void altaPlato(String nom,float pre,String ingred,String desc,int cal,int tiempoPreparacion){
+    public void altaPlato(String nom,float pre,String ingred,int cal,int tiempoPreparacion){
         Plato plato=new Plato(); 
 
         plato.setNombre(nom);
@@ -205,7 +201,7 @@ public class AlimentoController implements IAlimentoController{
         System.out.print("se dio de alta plato nombre"+nom);
     }
     @Override
-    public void altaBebida(String nom,float pre,String ingred,String desc,int cant,enum_Bebida tipo,int tiempoPreparacion){
+    public void altaBebida(String nom,float pre,String ingred,int cant,enum_Bebida tipo,int tiempoPreparacion){
         Bebida bebida=new Bebida(); 
 
         bebida.setNombre(nom);
@@ -220,7 +216,7 @@ public class AlimentoController implements IAlimentoController{
         Conexion.getInstance().alta(bebida);
         System.out.print("se dio de alta bebida nombre"+nom);
     }
-    
+    @Override
     public Alimento buscarAlimentoPorId(int id) {
         EntityManager em = Conexion.getInstance().getEntity();
         Alimento a = null;
@@ -234,6 +230,19 @@ public class AlimentoController implements IAlimentoController{
         return a;
     }
     @Override
+    public List<Plato> buscarPlatoPorId(int id) {
+        EntityManager em = Conexion.getInstance().getEntity();
+        List<Plato> p = null;
+        em.getTransaction().begin();
+        try {
+            String QUERY = "Select a From Plato WHERE idAlimento=" + id;
+            p = em.createQuery(QUERY, Plato.class).getResultList();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        return p;
+    }
+    @Override
     public List<Plato> listarPlatos(){
         List<Plato> ret = Conexion.getInstance().consultaPlato();
         return ret;
@@ -241,6 +250,11 @@ public class AlimentoController implements IAlimentoController{
     @Override
     public List<Bebida> listarBebidas(){
         List<Bebida> ret = Conexion.getInstance().consultaBebida();
+        return ret;
+    }
+    @Override
+    public List<Categoria> listarCategoria(){
+        List<Categoria> ret = Conexion.getInstance().consultarCategoria();
         return ret;
     }
 }

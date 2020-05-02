@@ -6,11 +6,10 @@
 package Presentacion;
 
 import Controladores_Interfaces.IAlimentoController;
-import Controladores_Interfaces.IPersonalController;
-import Controladores_Interfaces.PersonalController;
 import Logica.Bebida;
 import Logica.Fabrica;
 import Logica.Plato;
+import java.awt.Container;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -144,7 +143,7 @@ public class ConsultaPlato extends javax.swing.JInternalFrame {
                     .addComponent(Platos)
                     .addComponent(Bebidas))
                 .addGap(4, 4, 4)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salir)
@@ -213,7 +212,30 @@ public class ConsultaPlato extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-        // TODO add your handling code here:
+        e_menu menu = (e_menu) this.getTopLevelAncestor();
+        
+        if(comida){
+            int[] seleccionados = this.Table.getSelectedRows();
+           
+            if(seleccionados.length == 1){
+                String nombre = (String) this.Table.getValueAt(0, 1);
+                String precio = (String) this.Table.getValueAt(0, 2);
+                String demora = (String) this.Table.getValueAt(0, 3);
+                String ingredientes = (String) this.Table.getValueAt(0, 4);
+                String calorias = (String) this.Table.getValueAt(0, 5);
+                String[] datos = {nombre,precio,demora,ingredientes,calorias};
+//                AltaAlimento aa = new AltaAlimento(comida);
+//                menu.add(aa);
+//                this.setVisible(false);
+//                aa.setVisible(true);
+//                mandarAlFrente(aa);
+//                menu.centrarInternal(aa);
+            }else{
+                
+            }
+        }else{
+            
+        }
     }//GEN-LAST:event_modificarActionPerformed
 
     private void BebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BebidasActionPerformed
@@ -230,6 +252,13 @@ public class ConsultaPlato extends javax.swing.JInternalFrame {
         e_menu m = (e_menu) this.getTopLevelAncestor();
         m.desbloquearFondo();
         this.dispose();
+    }
+    
+    void mandarAlFrente(javax.swing.JInternalFrame obj){
+        Container parent = obj.getParent();
+        synchronized (parent.getTreeLock()) {
+            parent.setComponentZOrder(obj, 0);  //Para que se muestre por arriba de lo demas
+        }
     }
     
 
