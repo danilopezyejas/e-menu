@@ -5,6 +5,8 @@
  */
 package Presentacion;
 
+import Controladores_Interfaces.ictrl_Pedido;
+import Logica.Fabrica;
 import Logica.Mesa;
 import Persistencia.Conexion;
 import com.google.zxing.BarcodeFormat;
@@ -18,11 +20,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -35,9 +40,29 @@ public class AltaMesa extends javax.swing.JInternalFrame {
     private static final String formato = "png";
     private static final String ruta = "../qr/CodigoQR_Mesa_";
     private static final String pagina = "www.e-menu.com.uy/";
+    DefaultTableModel md; 
+    ictrl_Pedido controladorPedido = Fabrica.getInstancia().getPedidoController();
+    List<Mesa> mesas;
     
     public AltaMesa() {
         initComponents();
+        cargarTabla();
+    }
+    
+    void cargarTabla(){
+        String data[][]={};
+        String columnas[]={"Id","Numero"};
+        md = new DefaultTableModel(data,columnas);
+        tabla.setModel(md);
+        this.mesas = this.controladorPedido.listarMesas();
+
+        for(Mesa aux : this.mesas){
+            String datos[]={
+                String.valueOf(aux.getId()),
+                String.valueOf(aux.getNumeroMesa())
+            };
+            md.addRow(datos);
+        }
     }
 
     /**
@@ -53,6 +78,9 @@ public class AltaMesa extends javax.swing.JInternalFrame {
         mesa = new javax.swing.JComboBox<>();
         generar = new javax.swing.JButton();
         salir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
+        btnEliminar = new javax.swing.JButton();
 
         setTitle("Alta mesa");
 
@@ -60,7 +88,7 @@ public class AltaMesa extends javax.swing.JInternalFrame {
 
         mesa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
 
-        generar.setText("Aceptar");
+        generar.setText("Agregar");
         generar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generarActionPerformed(evt);
@@ -74,23 +102,51 @@ public class AltaMesa extends javax.swing.JInternalFrame {
             }
         });
 
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID", "Numero"
+            }
+        ));
+        jScrollPane1.setViewportView(tabla);
+        if (tabla.getColumnModel().getColumnCount() > 0) {
+            tabla.getColumnModel().getColumn(0).setResizable(false);
+            tabla.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tabla.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(103, 103, 103)
-                        .addComponent(mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 102, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(generar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(64, 64, 64)
+                            .addComponent(btnEliminar)
+                            .addGap(64, 64, 64)
+                            .addComponent(generar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,11 +155,14 @@ public class AltaMesa extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(mesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salir)
-                    .addComponent(generar))
-                .addGap(33, 33, 33))
+                    .addComponent(generar)
+                    .addComponent(btnEliminar))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -160,12 +219,16 @@ public class AltaMesa extends javax.swing.JInternalFrame {
             Logger.getLogger(AltaMesa.class.getName()).log(Level.SEVERE, null, ex);
         }
         Mesa mesa = new Mesa(Integer.parseInt(numMesa),blobData);
-        Conexion.getInstance().alta(mesa);
+        controladorPedido.altaMesa(mesa);
     }//GEN-LAST:event_generarActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         salir();
     }//GEN-LAST:event_salirActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     void salir(){
         e_menu m = (e_menu) this.getTopLevelAncestor();
@@ -176,9 +239,12 @@ public class AltaMesa extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton generar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> mesa;
     private javax.swing.JButton salir;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

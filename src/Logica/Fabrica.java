@@ -35,8 +35,12 @@ public class Fabrica {
         return perController;
     }
     public AlimentoController getAlimentoController() {
-        AlimentoController aliController = AlimentoController.getInstance();;
+        AlimentoController aliController = AlimentoController.getInstance();
         return aliController;
+    }
+    public ctrl_Pedido getPedidoController(){
+        ctrl_Pedido pedidoControler = ctrl_Pedido.getInstancia();
+        return pedidoControler;
     }
    
 }

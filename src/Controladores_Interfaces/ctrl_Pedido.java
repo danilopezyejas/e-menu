@@ -127,8 +127,13 @@ public class ctrl_Pedido implements ictrl_Pedido {
     }
 
     @Override
-    public void altaMesa(int idMesa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void altaMesa(Mesa mesa) {
+        Conexion.getInstance().alta(mesa);
+    }
+    
+    @Override
+    public List<Mesa> listarMesas(){
+        return Conexion.getInstance().consultaMesas();
     }
 
     @Override

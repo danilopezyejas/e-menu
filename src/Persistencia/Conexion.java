@@ -7,6 +7,7 @@ package Persistencia;
 
 import Logica.Bebida;
 import Logica.Categoria;
+import Logica.Mesa;
 import Logica.Personal;
 import Logica.Plato;
 import java.util.ArrayList;
@@ -96,6 +97,12 @@ public Conexion() {
         String QUERY = "Select a From Categoria a";
         EntityManager em = Conexion.getInstance().getEntity();
         List<Categoria> ret = em.createQuery(QUERY, Categoria.class).getResultList();
+        return ret;
+    }
+    public List<Mesa> consultaMesas(){
+        String QUERY = "Select a From Mesa a";
+        EntityManager em = Conexion.getInstance().getEntity();
+        List<Mesa> ret = em.createQuery(QUERY, Mesa.class).getResultList();
         return ret;
     }
 }

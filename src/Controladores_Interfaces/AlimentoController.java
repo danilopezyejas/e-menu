@@ -10,16 +10,13 @@ import Logica.Bebida;
 import Logica.Alimento;
 import Logica.Categoria;
 import Logica.Observaciones;
-import Logica.Personal;
 import Logica.Plato;
 import Logica.enum_Bebida;
-import Logica.enum_Categoria;
 import Persistencia.Conexion;
 import com.mysql.jdbc.Blob;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.persistence.EntityManager;
 
 /**

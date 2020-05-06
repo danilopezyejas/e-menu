@@ -9,7 +9,6 @@ import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.border.Border;
 
 public class e_menu extends javax.swing.JFrame {
 
@@ -114,7 +113,6 @@ public class e_menu extends javax.swing.JFrame {
         pnlMenu = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         btnPersonal = new javax.swing.JButton();
-        btnAlimentos = new javax.swing.JButton();
         btnMesa = new javax.swing.JButton();
         pnlMesa = new javax.swing.JPanel();
         btnAltaMesa = new javax.swing.JButton();
@@ -129,6 +127,8 @@ public class e_menu extends javax.swing.JFrame {
         btnBajaPersonal = new javax.swing.JButton();
         btnConsultaPersonal = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnAlimentos = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         btnAtender = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -158,6 +158,10 @@ public class e_menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        panel.setBackground(new java.awt.Color(255, 0, 51));
+
+        pnlMenu.setBackground(new java.awt.Color(255, 0, 51));
+
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/elbar.png"))); // NOI18N
 
@@ -172,20 +176,6 @@ public class e_menu extends javax.swing.JFrame {
         btnPersonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPersonalActionPerformed(evt);
-            }
-        });
-
-        btnAlimentos.setBackground(new java.awt.Color(0, 153, 153));
-        btnAlimentos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnAlimentos.setForeground(new java.awt.Color(255, 255, 255));
-        btnAlimentos.setText("Alimentos");
-        btnAlimentos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnAlimentos.setContentAreaFilled(false);
-        btnAlimentos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAlimentos.setOpaque(true);
-        btnAlimentos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlimentosActionPerformed(evt);
             }
         });
 
@@ -335,11 +325,33 @@ public class e_menu extends javax.swing.JFrame {
         );
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Categoria");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnAlimentos.setBackground(new java.awt.Color(0, 153, 153));
+        btnAlimentos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnAlimentos.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlimentos.setText("Alimentos");
+        btnAlimentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlimentosActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(0, 153, 153));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Mesa");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -349,7 +361,7 @@ public class e_menu extends javax.swing.JFrame {
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnPersonal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnAlimentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,12 +370,13 @@ public class e_menu extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addComponent(btnAlimentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlMenuLayout.createSequentialGroup()
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlAlimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnlPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,11 +385,11 @@ public class e_menu extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(btnPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addComponent(pnlPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(btnAlimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(45, 45, 45)
                 .addComponent(pnlAlimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addComponent(btnMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -384,6 +397,8 @@ public class e_menu extends javax.swing.JFrame {
                 .addComponent(pnlMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -528,56 +543,6 @@ public class e_menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void alta_personalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alta_personalActionPerformed
-        AltaPersonal ap = new AltaPersonal();
-        this.ap = ap;
-        ejecutarPanel(ap);
-    }//GEN-LAST:event_alta_personalActionPerformed
-
-    private void alta_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alta_mesaActionPerformed
-        AltaMesa am = new AltaMesa();
-        this.am = am;
-        ejecutarPanel(am);
-    }//GEN-LAST:event_alta_mesaActionPerformed
-
-    private void consulta_personalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulta_personalActionPerformed
-        ConsultaPersonal cp = new ConsultaPersonal();
-        this.cp = cp;
-        ejecutarPanel(cp);
-    }//GEN-LAST:event_consulta_personalActionPerformed
-
-    private void alta_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alta_alimentoActionPerformed
-        AltaAlimento apl = new AltaAlimento();
-        this.apl = apl;
-        ejecutarPanel(apl);
-    }//GEN-LAST:event_alta_alimentoActionPerformed
-
-    private void baja_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baja_mesaActionPerformed
-        BajaMesa bm = new BajaMesa();
-        this.bm = bm;
-        ejecutarPanel(bm);
-    }//GEN-LAST:event_baja_mesaActionPerformed
-
-    private void consulta_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulta_mesaActionPerformed
-        ConsultaMesa cm = new ConsultaMesa();
-        this.cm = cm;
-        ejecutarPanel(cm);
-    }//GEN-LAST:event_consulta_mesaActionPerformed
-
-    private void baja_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baja_alimentoActionPerformed
-        
-    }//GEN-LAST:event_baja_alimentoActionPerformed
-
-    private void modificacion_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificacion_alimentoActionPerformed
-        
-    }//GEN-LAST:event_modificacion_alimentoActionPerformed
-
-    private void consulta_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulta_alimentoActionPerformed
-        ConsultaPlato cpl = new ConsultaPlato();
-        this.cpl = cpl;
-        ejecutarPanel(cpl);
-    }//GEN-LAST:event_consulta_alimentoActionPerformed
-
     private void btnAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderActionPerformed
         Atencion n = new Atencion(this);
         this.setVisible(false);
@@ -644,36 +609,6 @@ public class e_menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnMesaActionPerformed
 
-    private void btnAlimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlimentosActionPerformed
-//        pnlAlimentos.setLocation(20, 330);
-//        int tamanio = pnlAlimentos.getWidth();
-//        int tamBoton = btnPersonal.getHeight();
-//        int desplazarY = 170;
-//        int separacion = 15;
-//        int posicionMesaY = btnMesa.getY();
-//        int posicionAlimY = btnAlimentos.getY();
-//        if(tamanio <= 0){
-//            if(pnlMesa.getWidth() > 0 ){
-//                pnlMesa.setSize(0, 0);
-//            }
-//            if(pnlPersonal.getWidth() > 0){
-//                pnlPersonal.setSize(0, 0);
-//                btnAlimentos.setLocation(0, posicionAlimY - (desplazarY - tamBoton));
-//                btnMesa.getY();
-//                btnMesa.setLocation(0, desplazarY);
-//            }
-//            posicionAlimY = btnAlimentos.getY();
-//            btnMesa.setLocation(0, posicionAlimY + desplazarY +separacion);
-//            pnlAlimentos.setSize(130, desplazarY);
-//        }else{
-//            pnlAlimentos.setSize(0, 0);
-//            btnMesa.setLocation(0, posicionAlimY + tamBoton + separacion);
-//        }
-        AltaAlimento apl = new AltaAlimento();
-        this.apl = apl;
-        ejecutarPanel(apl);
-    }//GEN-LAST:event_btnAlimentosActionPerformed
-
     private void btnPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonalActionPerformed
         int tamanio = pnlPersonal.getWidth();
         pnlPersonal.setLocation(20, 270);
@@ -703,6 +638,66 @@ public class e_menu extends javax.swing.JFrame {
         Categorias c = new Categorias();
         ejecutarPanel(c);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void baja_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baja_mesaActionPerformed
+        BajaMesa bm = new BajaMesa();
+        this.bm = bm;
+        ejecutarPanel(bm);
+    }//GEN-LAST:event_baja_mesaActionPerformed
+
+    private void consulta_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulta_mesaActionPerformed
+        ConsultaMesa cm = new ConsultaMesa();
+        this.cm = cm;
+        ejecutarPanel(cm);
+    }//GEN-LAST:event_consulta_mesaActionPerformed
+
+    private void alta_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alta_mesaActionPerformed
+        
+    }//GEN-LAST:event_alta_mesaActionPerformed
+
+    private void baja_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baja_alimentoActionPerformed
+
+    }//GEN-LAST:event_baja_alimentoActionPerformed
+
+    private void modificacion_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificacion_alimentoActionPerformed
+
+    }//GEN-LAST:event_modificacion_alimentoActionPerformed
+
+    private void consulta_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulta_alimentoActionPerformed
+        ConsultaPlato cpl = new ConsultaPlato();
+        this.cpl = cpl;
+        ejecutarPanel(cpl);
+    }//GEN-LAST:event_consulta_alimentoActionPerformed
+
+    private void alta_alimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alta_alimentoActionPerformed
+        AltaAlimento apl = new AltaAlimento();
+        this.apl = apl;
+        ejecutarPanel(apl);
+    }//GEN-LAST:event_alta_alimentoActionPerformed
+
+    private void consulta_personalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consulta_personalActionPerformed
+        ConsultaPersonal cp = new ConsultaPersonal();
+        this.cp = cp;
+        ejecutarPanel(cp);
+    }//GEN-LAST:event_consulta_personalActionPerformed
+
+    private void alta_personalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alta_personalActionPerformed
+        AltaPersonal ap = new AltaPersonal();
+        this.ap = ap;
+        ejecutarPanel(ap);
+    }//GEN-LAST:event_alta_personalActionPerformed
+
+    private void btnAlimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlimentosActionPerformed
+        AltaAlimento apl = new AltaAlimento();
+        this.apl = apl;
+        ejecutarPanel(apl);
+    }//GEN-LAST:event_btnAlimentosActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        AltaMesa am = new AltaMesa();
+        this.am = am;
+        ejecutarPanel(am);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     
     void ejecutarPanel(javax.swing.JInternalFrame obj){
@@ -770,6 +765,7 @@ public class e_menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem consulta_mesa;
     private javax.swing.JMenuItem consulta_personal;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

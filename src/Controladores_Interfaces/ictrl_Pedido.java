@@ -5,8 +5,10 @@
  */
 package Controladores_Interfaces;
 
+import Logica.Mesa;
 import Logica.Pedidos;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -21,8 +23,8 @@ public interface ictrl_Pedido {
     public abstract boolean pagar();
     public abstract boolean realizarReclamo(String reclamo);
     public abstract void bajaMesa(int idMesa);
-//    public abstract HashMap<int, Mesa> getMesa();
-    public abstract void altaMesa(int idMesa);
+    public abstract List<Mesa> listarMesas();
+    public abstract void altaMesa(Mesa mesa);
     public abstract Pedidos consultaPedidoMesa(int idMesa);
     public abstract void agregarObservacion(String observacion);
 }
