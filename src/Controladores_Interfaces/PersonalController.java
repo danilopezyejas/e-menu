@@ -9,6 +9,8 @@ import Logica.Personal;
 import Persistencia.Conexion;
 import java.util.ArrayList;
 import java.util.List;
+import Logica.Error;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -24,8 +26,17 @@ public class PersonalController implements IPersonalController{
     } 
 
     @Override
-    public void seleccionarPersonal(int idPersonal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Personal buscarPersonal(String ci) {
+        EntityManager em = Conexion.getInstance().getEntity();
+        Personal p = null;
+        em.getTransaction().begin();
+        try {
+            p = (Personal) em.createNativeQuery("SELECT * FROM Personal WHERE cedula=" + ci, Personal.class).getSingleResult();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        return p;
     }
 
     @Override
@@ -34,8 +45,8 @@ public class PersonalController implements IPersonalController{
     }
 
     @Override
-    public void eliminarPersonal(Personal personal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void bajaPersonal(String ci) {
+        Conexion.getInstance().baja(buscarPersonal(ci));
     }
 
     @Override
@@ -49,15 +60,56 @@ public class PersonalController implements IPersonalController{
     
     //funcion de la interface
     @Override
-    public void altaPersonal(String nombre,String apellido,int cedula){
-        Personal per=new Personal(nombre,apellido,cedula);
+    public void altaPersonal(String nombre,String apellido,String cedula){
+        Personal per=new Personal(nombre, apellido, cedula);
         personal.add(per);
         Conexion.getInstance().alta(per);
-        System.out.print("se dio de alta personal nombre"+nombre);
     }
     @Override
     public List<Personal> listarPersonal(){
         List<Personal> ret = Conexion.getInstance().consultarPersonal();
         return ret;
+    }
+    
+        public boolean isValid(final String ci) {
+        final int MINIMO_DIGITOS = 7;
+        final String ciFixed;
+        if (ci.length() <= MINIMO_DIGITOS) {
+          //El algoritmo esta hecho para 8 dígitos, se completa con 0 las cédulas de 7 dígitos o menos
+          final String DEFAULT_DIGITOS_FORMAT = "%08d";
+          ciFixed = String.format(DEFAULT_DIGITOS_FORMAT, Integer.parseInt(ci));
+        } else {
+          ciFixed = ci;
+        }
+        final int ciNumeric[] = new int[ciFixed.length()];
+        for (int i = 0; i < 8; i++) {
+          ciNumeric[i] = Character.getNumericValue(ciFixed.charAt(i));
+        }
+        final int digitoOriginal = ciNumeric[ciNumeric.length - 1];
+        final int[] COEFICIENTES_ALGORITMO = {2, 9, 8, 7, 6, 3, 4};
+        int suma = 0;
+        for (int i = 0; i < 7; i++) {
+          suma += ciNumeric[i] * COEFICIENTES_ALGORITMO[i] % 10;
+        }
+        final int digitoCalculado;
+        if (suma % 10 == 0) {
+          digitoCalculado = 0;
+        } else {
+          digitoCalculado = 10 - suma % 10;
+        }
+    return digitoOriginal == digitoCalculado;
+    }
+  
+    @Override
+    public void ComprobarDatos(String nombre,String apellido,String cedula) throws Error{
+        if(nombre.equals("")){
+            throw new Error("No ingreso el nombre.");
+        }
+        if(apellido.equals("")){
+            throw new Error("No ingreso el apellido.");
+        }
+        if(!isValid(cedula)){
+            throw new Error("La cedula no es valida.");
+        }
     }
 }

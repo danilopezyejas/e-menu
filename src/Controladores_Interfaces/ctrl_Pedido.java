@@ -123,7 +123,7 @@ public class ctrl_Pedido implements ictrl_Pedido {
 
     @Override
     public void bajaMesa(int idMesa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Conexion.getInstance().baja(buscarMesaPorId(idMesa));
     }
 
     @Override
@@ -167,7 +167,7 @@ public class ctrl_Pedido implements ictrl_Pedido {
         Mesa m = null;
         em.getTransaction().begin();
         try {
-            m = (Mesa) em.createNativeQuery("SELECT * FROM Mesa WHERE numeroMesa=" + id, Mesa.class).getSingleResult();
+            m = (Mesa) em.createNativeQuery("SELECT * FROM Mesa WHERE id=" + id, Mesa.class).getSingleResult();
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();

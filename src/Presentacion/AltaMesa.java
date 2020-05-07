@@ -170,56 +170,69 @@ public class AltaMesa extends javax.swing.JInternalFrame {
 
     private void generarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarActionPerformed
 
+        boolean existe = false;
 //GENERO EL CODIGO QR
         BitMatrix matriz = null;
         Writer writer = new QRCodeWriter();
         String numMesa = mesa.getSelectedItem().toString();
-        try{
-            matriz = writer.encode(pagina + numMesa, BarcodeFormat.QR_CODE, qrTamAlto, qrTamAlto);
-        }catch(WriterException e){
-            e.printStackTrace();
-        }
-        BufferedImage imagen = new BufferedImage(qrTamAlto,qrTamAlto,BufferedImage.TYPE_INT_RGB);
-        for(int x = 0; x < qrTamAlto; x++){
-            for(int y = 0; y < qrTamAncho; y++){
-                int valor = (matriz.get(x,y) ? 0 : 1) & 0xff;
-                imagen.setRGB(x, y, (valor == 0 ? 0 : 0xFF0000));
+        for(Mesa aux : this.mesas){
+            if(aux.getNumeroMesa() == Integer.parseInt(numMesa)){
+                existe = true;
+                break;
             }
         }
-        
-//CREO EL ARCHIVO DEL CODIGO Y LO GUARDO EN LA ruta
-        FileOutputStream codigo;
-        try {
-            codigo = new FileOutputStream(ruta+numMesa+"."+formato);
-            ImageIO.write(imagen, formato, codigo);
-            codigo.close();
+        if(!existe){
+            try{
+                matriz = writer.encode(pagina + numMesa, BarcodeFormat.QR_CODE, qrTamAlto, qrTamAlto);
+            }catch(WriterException e){
+                e.printStackTrace();
+            }
+            BufferedImage imagen = new BufferedImage(qrTamAlto,qrTamAlto,BufferedImage.TYPE_INT_RGB);
+            for(int x = 0; x < qrTamAlto; x++){
+                for(int y = 0; y < qrTamAncho; y++){
+                    int valor = (matriz.get(x,y) ? 0 : 1) & 0xff;
+                    imagen.setRGB(x, y, (valor == 0 ? 0 : 0xFF0000));
+                }
+            }
+
+    //CREO EL ARCHIVO DEL CODIGO Y LO GUARDO EN LA ruta
+            FileOutputStream codigo;
+            try {
+                codigo = new FileOutputStream(ruta+numMesa+"."+formato);
+                ImageIO.write(imagen, formato, codigo);
+                codigo.close();
+                
+                mesa.setSelectedIndex(0);
+            } catch (IOException ex) {
+                Logger.getLogger(AltaMesa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+    //GUARDO LA IMAGEN Y EL NUMERO DE MESA EN LA BASE DE DATOS
+        byte[] imagenEnByte = null;
+        try{		
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write( imagen, formato, baos );
+            baos.flush();
+            imagenEnByte = baos.toByteArray();
+            baos.close();
+
+            }catch(IOException e){
+                    System.out.println(e.getMessage());
+            }
+
+            Blob blobData = null;
+            try {
+                blobData = new SerialBlob(imagenEnByte);
+            } catch (SQLException ex) {
+                Logger.getLogger(AltaMesa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Mesa mesa = new Mesa(Integer.parseInt(numMesa),blobData);
+            controladorPedido.altaMesa(mesa);
             JOptionPane.showMessageDialog(null, "Mesa " + numMesa + " creada correctamente.");
-            mesa.setSelectedIndex(0);
-        } catch (IOException ex) {
-            Logger.getLogger(AltaMesa.class.getName()).log(Level.SEVERE, null, ex);
+            cargarTabla();
+        }else{
+            JOptionPane.showMessageDialog(null, "La mesa que quiere crear ya existe.");
         }
-        
-//GUARDO LA IMAGEN Y EL NUMERO DE MESA EN LA BASE DE DATOS
-    byte[] imagenEnByte = null;
-    try{		
-	ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	ImageIO.write( imagen, formato, baos );
-	baos.flush();
-	imagenEnByte = baos.toByteArray();
-	baos.close();
-			
-	}catch(IOException e){
-		System.out.println(e.getMessage());
-	}
-    
-        Blob blobData = null;
-        try {
-            blobData = new SerialBlob(imagenEnByte);
-        } catch (SQLException ex) {
-            Logger.getLogger(AltaMesa.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Mesa mesa = new Mesa(Integer.parseInt(numMesa),blobData);
-        controladorPedido.altaMesa(mesa);
     }//GEN-LAST:event_generarActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
@@ -227,7 +240,17 @@ public class AltaMesa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int[] seleccionadas = this.tabla.getSelectedRows();
         
+        if(seleccionadas.length > 0){
+            for(int i = 0; i < seleccionadas.length; i++ ){
+                int id = Integer.parseInt(this.tabla.getValueAt(seleccionadas[i], 0).toString());
+                controladorPedido.bajaMesa(id);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una mesa.");
+        }
+        cargarTabla();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     void salir(){

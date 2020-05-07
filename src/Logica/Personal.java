@@ -25,11 +25,14 @@ public class Personal {
     private int id;
     private String nombre;
     private String apellido;
-    private int cedula;
+    private String cedula;
     @OneToMany(mappedBy = "personal")
     private List<Pedidos> pedidoss;
     
-    public Personal(String nombre,String apellido,int cedula){
+    public Personal(){}
+    
+    public Personal(String nombre,String apellido,String cedula){
+        
         this.nombre=nombre;
         this.apellido=apellido;
         this.cedula=cedula;
@@ -59,11 +62,11 @@ public class Personal {
         this.apellido = apellido;
     }
 
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
     
