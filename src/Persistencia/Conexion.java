@@ -10,7 +10,6 @@ import Logica.Categoria;
 import Logica.Mesa;
 import Logica.Personal;
 import Logica.Plato;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

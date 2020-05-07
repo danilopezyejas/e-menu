@@ -41,7 +41,7 @@ public class PersonalController implements IPersonalController{
 
     @Override
     public void modificarPersonal(Personal personal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Conexion.getInstance().modificar(personal);
     }
 
     @Override

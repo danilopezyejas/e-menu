@@ -9,10 +9,7 @@ import Controladores_Interfaces.IPersonalController;
 import Logica.Error;
 import Logica.Fabrica;
 import Logica.Personal;
-import java.awt.HeadlessException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -24,7 +21,7 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
     IPersonalController personaContoler;
     DefaultTableModel md; 
     String data[][]={};
-    String columnas[]={"Nombre","Apellido","Cedula"};
+    String columnas[]={"ID","Nombre","Apellido","Cedula"};
     
     public AltaPersonal() {
         initComponents();
@@ -38,20 +35,9 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
         //lleno la tabla
          List<Personal> per = personaContoler.listarPersonal();
         for(Personal aux : per){ 
-            String datos[]={aux.getNombre(),aux.getApellido(),String.valueOf(aux.getCedula())};
+            String datos[]={Integer.toString(aux.getId()) , aux.getNombre(),aux.getApellido(),aux.getCedula()};
             md.addRow(datos);
         }
-    }
-    
-    void comprobarDatos(){
-        boolean correcto = true;
-        String nombre = jNombre.getText();
-        String apellido = jApellido.getText();
-        String ciString = jCedula.getText();
-        if(ciString.equals("")||nombre.equals("")||apellido.equals("")){
-             correcto = false;
-        }
-        
     }
     
 
@@ -68,17 +54,18 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
         salir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jNombre = new javax.swing.JTextPane();
+        nombre = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jApellido = new javax.swing.JTextPane();
+        apellido = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jCedula = new javax.swing.JTextPane();
+        cedula = new javax.swing.JTextPane();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         eliminar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
 
         setTitle("Personal");
 
@@ -98,7 +85,7 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        jScrollPane1.setViewportView(jNombre);
+        jScrollPane1.setViewportView(nombre);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel1.setText("Nombre: ");
@@ -106,10 +93,10 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setText("Apellido:");
 
-        jScrollPane2.setViewportView(jApellido);
+        jScrollPane2.setViewportView(apellido);
 
-        jCedula.setContentType(""); // NOI18N
-        jScrollPane3.setViewportView(jCedula);
+        cedula.setContentType(""); // NOI18N
+        jScrollPane3.setViewportView(cedula);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel3.setText("Cédula:");
@@ -151,21 +138,39 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tabla);
+        if (tabla.getColumnModel().getColumnCount() > 0) {
+            tabla.getColumnModel().getColumn(0).setPreferredWidth(30);
+            tabla.getColumnModel().getColumn(1).setPreferredWidth(140);
+            tabla.getColumnModel().getColumn(2).setPreferredWidth(140);
+            tabla.getColumnModel().getColumn(3).setPreferredWidth(140);
+        }
 
         eliminar.setText("Eliminar");
         eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarActionPerformed(evt);
+            }
+        });
+
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
             }
         });
 
@@ -178,13 +183,15 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96)
+                        .addGap(37, 37, 37)
+                        .addComponent(btnModificar)
+                        .addGap(37, 37, 37)
                         .addComponent(eliminar)
-                        .addGap(96, 96, 96)
+                        .addGap(37, 37, 37)
                         .addComponent(aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(30, 30, 30))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,11 +200,12 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(aceptar)
                     .addComponent(salir)
-                    .addComponent(eliminar))
+                    .addComponent(eliminar)
+                    .addComponent(btnModificar))
                 .addGap(30, 30, 30))
         );
 
@@ -205,9 +213,9 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
-        String nombre = jNombre.getText();
-        String apellido = jApellido.getText();
-        String ciString = jCedula.getText();
+        String nombre = this.nombre.getText();
+        String apellido = this.apellido.getText();
+        String ciString = cedula.getText();
         try {
             personaContoler.ComprobarDatos(nombre, apellido, ciString);       
             personaContoler.altaPersonal(nombre, apellido, ciString);    
@@ -227,7 +235,7 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
         
         if(seleccionadas.length > 0){
             for(int i = 0; i < seleccionadas.length; i++ ){
-                String ci = this.tabla.getValueAt(seleccionadas[i], 2).toString();
+                String ci = this.tabla.getValueAt(seleccionadas[i], 3).toString();
                 personaContoler.bajaPersonal(ci);
             }
         }else{
@@ -235,6 +243,47 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
         }
         cargarTabla();        
     }//GEN-LAST:event_eliminarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        int[] seleccionados = this.tabla.getSelectedRows();
+        int cantSelec = seleccionados.length;
+        
+        try{
+            switch (cantSelec){
+                case 0:
+                    JOptionPane.showMessageDialog(null,"Debe seleccionar al menos una persona.");
+                    break;
+                case 1:
+                    String ci = this.tabla.getValueAt(seleccionados[0], 3).toString();
+                    Personal aModificar = personaContoler.buscarPersonal(ci);
+                    String nuevoNombre = this.nombre.getText();
+                    String nuevoApellido = this.apellido.getText();
+                    String nuevaCedula = this.cedula.getText();
+                    personaContoler.ComprobarDatos(nuevoNombre, nuevoApellido, nuevaCedula);
+                    aModificar.setNombre(nuevoNombre);
+                    aModificar.setApellido(nuevoApellido);
+                    aModificar.setCedula(nuevaCedula);
+                    personaContoler.modificarPersonal(aModificar);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null,"Debe seleccionar solo una persona.");
+                    break;
+            }
+        }catch(Error ex) {
+            JOptionPane.showMessageDialog(null,"Error: " + ex.getMessage());
+        }
+        cargarTabla();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        int seleccionados = this.tabla.getSelectedRow();
+        String nombre = (String) this.tabla.getValueAt(seleccionados, 1);
+        String apellido = (String) this.tabla.getValueAt(seleccionados, 2);
+        String cedula = (String) this.tabla.getValueAt(seleccionados, 3);
+        this.nombre.setText(nombre);
+        this.apellido.setText(apellido);
+        this.cedula.setText(cedula);
+    }//GEN-LAST:event_tablaMouseClicked
 
     void salir(){
         e_menu m = (e_menu) this.getTopLevelAncestor();
@@ -246,18 +295,19 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aceptar;
+    private javax.swing.JTextPane apellido;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JTextPane cedula;
     private javax.swing.JButton eliminar;
-    private javax.swing.JTextPane jApellido;
-    private javax.swing.JTextPane jCedula;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextPane jNombre;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextPane nombre;
     private javax.swing.JButton salir;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables

@@ -8,7 +8,6 @@ package Presentacion;
 import Controladores_Interfaces.ictrl_Pedido;
 import Logica.Fabrica;
 import Logica.Mesa;
-import Persistencia.Conexion;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Writer;
 import com.google.zxing.WriterException;
@@ -27,7 +26,6 @@ import javax.imageio.ImageIO;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 
 /**
  *
