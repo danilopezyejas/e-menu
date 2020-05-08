@@ -151,6 +151,9 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tablaMouseEntered(evt);
+            }
         });
         jScrollPane4.setViewportView(tabla);
         if (tabla.getColumnModel().getColumnCount() > 0) {
@@ -284,6 +287,10 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
         this.apellido.setText(apellido);
         this.cedula.setText(cedula);
     }//GEN-LAST:event_tablaMouseClicked
+
+    private void tablaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseEntered
+        
+    }//GEN-LAST:event_tablaMouseEntered
 
     void salir(){
         e_menu m = (e_menu) this.getTopLevelAncestor();

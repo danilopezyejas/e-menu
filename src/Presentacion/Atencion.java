@@ -9,6 +9,9 @@ import Controladores_Interfaces.ictrl_Pedido;
 import Logica.Fabrica;
 import Logica.Mesa;
 import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
@@ -23,13 +26,14 @@ import javax.swing.JOptionPane;
  *
  * @author Danilo
  */
-public class Atencion extends javax.swing.JFrame {
+public class Atencion extends javax.swing.JFrame implements ActionListener{
 
     ictrl_Pedido controladorPedido = Fabrica.getInstancia().getPedidoController();
     static int velocidad = 1;
     static int cerrar = Atencion.DO_NOTHING_ON_CLOSE;;
     boolean cambiar = false;
     Pedido p = null;
+    JButton[] arregloBotones;
     
     public Atencion() {
 
@@ -62,73 +66,56 @@ public class Atencion extends javax.swing.JFrame {
                 });
     }
     
-    public void cargarMesas(){
-        int anchoBoton = 100;
-        int altoBoton = 100;
-        int separacionVertical = 50;
-        int separacionHorizontal;
-        int anchoPanel = this.panel.getWidth();
-        int altoPanel = this.panel.getHeight();
-        int posicionHorizontal = 0;
-        int posicionVertical = 0;
-        int cantMesas = 0;
+    public void cargarMesas() {
         List<Mesa> mesas = controladorPedido.listarMesas();
+        int cantMesas = mesas.size();
+        int filas = (int)Math.ceil(Math.sqrt(cantMesas));
+        int columnas = filas;
         
-        double resultado = Math.sqrt(mesas.size()); //Con la raiz cuadrada se cuantas filas necesito si me da un numero redondo
-        int filas = (int)Math.ceil(resultado);  //Redondeo el numero para arriba para tener el numero de filas que voy a necesitar
+        this.panel.setLayout(new GridLayout(filas,columnas,20,20));
+        arregloBotones = new JButton[cantMesas];
         
-        separacionHorizontal = anchoPanel/filas;
-        separacionVertical = altoPanel/filas;
-        posicionHorizontal = separacionHorizontal;
-        posicionVertical = separacionVertical;
-        
-        for(int j=0; j<filas; j++){
-            for(int i=0; i<filas; i++){
-                JButton botonNuevo = crearBotonMesa();  //Creo el boton con el icono
-                if(i == 0){
-                    botonNuevo.setBounds(posicionHorizontal, posicionVertical, anchoBoton, altoBoton);  //Le doy dimenciones y lo posiciono
-                }else{
-                    botonNuevo.setBounds(posicionHorizontal, posicionVertical += anchoBoton+separacionVertical, anchoBoton, altoBoton); //Le doy dimenciones y lo posiciono
-                }
-                
-                if(cantMesas < mesas.size()){
-                    this.panel.add(botonNuevo); //LO agrego al panel si no supere las cantidad de mesas que hay
-                }
-                cantMesas++;
-            }
-            
-            posicionVertical = separacionVertical;
-            posicionHorizontal += anchoBoton+separacionHorizontal;
+        for(int j=0; j<arregloBotones.length; j++){
+            arregloBotones[j] = new JButton();
+            ImageIcon icon = new ImageIcon("img/Mesa Libre.png");
+            arregloBotones[j].setIcon(icon);                               //Creo el boton con el icono
+            arregloBotones[j].setName("btnMesa"+Integer.toString(j));
+            arregloBotones[j].addActionListener(this);
+            this.panel.add(arregloBotones[j]); //Lo agrego al panel si no supere las cantidad de mesas que hay
         }
-        
-
+        temporizador();
     }
     
-    JButton crearBotonMesa(){
-        
-        JButton botonNuevo = new JButton();
-        ImageIcon icon = new ImageIcon("img/Mesa Libre.png");
-        botonNuevo.setIcon(icon);
-        return botonNuevo;
-    }
+    @Override
+     public void actionPerformed(ActionEvent e){
+         JButton b = (JButton)e.getSource();
+         for(int i=0; i<panel.getComponentCount();i++){
+            if(b.getName().equals(this.arregloBotones[i].getName())){
+                JOptionPane.showMessageDialog(null, "Boton: "+b.getName());
+            }
+         }
+     }
     
-    void temporizador(int numMesa){
+    void temporizador(){
         Timer timer;
         TimerTask tarea;
-        int parpadeo = velocidad*1000;
+        int parpadeo = velocidad*500;
         
         tarea = new TimerTask(){
             @Override
             public void run() {
+                JButton b= (JButton) panel.getComponent(1);
                  if(cambiar){
                     ImageIcon icon = new ImageIcon("img/Mesa con pedido 1.png");
-//                    mesa3.setIcon(icon);
+                    b.setIcon(icon);
                     cambiar =false;
                 }else{
                     ImageIcon icon = new ImageIcon("img/Mesa con pedido 2.png");
-//                    mesa3.setIcon(icon);
+                    b.setIcon(icon);
                     cambiar =true;
                 }
+                 panel.remove(1);
+                 panel.add(b, 1);
             }
         };
         timer = new Timer();
@@ -155,11 +142,11 @@ public class Atencion extends javax.swing.JFrame {
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1327, Short.MAX_VALUE)
+            .addGap(0, 1311, Short.MAX_VALUE)
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
+            .addGap(0, 96, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

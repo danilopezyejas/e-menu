@@ -111,5 +111,12 @@ public class PersonalController implements IPersonalController{
         if(!isValid(cedula)){
             throw new Error("La cedula no es valida.");
         }
+        StackTraceElement[] elemento = Thread.currentThread().getStackTrace();
+        String accion = elemento[2].getMethodName();
+        if(accion.equals("aceptarActionPerformed")){
+            if(buscarPersonal(cedula) != null){
+                throw new Error("Ya se a registrado una persona con el mismo numero de cedula.");
+            }
+        }
     }
 }

@@ -14,6 +14,7 @@ import Logica.enum_Bebida;
 import Persistencia.Conexion;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
@@ -316,10 +317,21 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
             new String [] {
                 "ID", "Nombre", "Precio", "Demora", "Calorias", "Ingredientes", "Title 7", "Title 8"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tablaMouseEntered(evt);
             }
         });
         jScrollPane4.setViewportView(tabla);
@@ -335,6 +347,11 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
         nombre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nombreMouseClicked(evt);
+            }
+        });
+        nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreKeyTyped(evt);
             }
         });
         jScrollPane1.setViewportView(nombre);
@@ -360,6 +377,11 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
                 precioMouseClicked(evt);
             }
         });
+        precio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                precioKeyTyped(evt);
+            }
+        });
         jScrollPane3.setViewportView(precio);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -371,12 +393,22 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
                 tiempoPreparacionMouseClicked(evt);
             }
         });
+        tiempoPreparacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tiempoPreparacionKeyTyped(evt);
+            }
+        });
         jScrollPane6.setViewportView(tiempoPreparacion);
 
         calorias.setContentType(""); // NOI18N
         calorias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 caloriasMouseClicked(evt);
+            }
+        });
+        calorias.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                caloriasKeyTyped(evt);
             }
         });
         jScrollPane5.setViewportView(calorias);
@@ -554,14 +586,9 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
                 .addGap(0, 0, 0))
         );
 
-        busqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                busquedaActionPerformed(evt);
-            }
-        });
         busqueda.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                busquedaKeyReleased(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                busquedaKeyTyped(evt);
             }
         });
 
@@ -580,7 +607,7 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(30, 30, 30)
                         .addComponent(jLabel4)
                         .addGap(24, 24, 24)
                         .addComponent(busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -593,22 +620,17 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnPlatos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(50, 50, 50)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(btnPlatos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                .addGap(39, 39, 39)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -831,13 +853,39 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
         this.categoria.setBorder(null);
     }//GEN-LAST:event_categoriaMouseClicked
 
-    private void busquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaActionPerformed
-        cargarSeleccionado();
-    }//GEN-LAST:event_busquedaActionPerformed
+    private void tablaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseEntered
+        tabla.setToolTipText("Para modificar los datos seleccione uno. Si quiere modificar el precio de un conjunto seleccione mas de uno.");
+    }//GEN-LAST:event_tablaMouseEntered
 
-    private void busquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_busquedaKeyReleased
-        
-    }//GEN-LAST:event_busquedaKeyReleased
+    private void busquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_busquedaKeyTyped
+        char teclaPresionada = evt.getKeyChar();
+        if(teclaPresionada == KeyEvent.VK_ENTER)
+            cargarSeleccionado();
+    }//GEN-LAST:event_busquedaKeyTyped
+
+    private void nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreKeyTyped
+        char teclaPresionada = evt.getKeyChar();
+        if(teclaPresionada == KeyEvent.VK_TAB)
+            this.ingredientes.transferFocus();
+    }//GEN-LAST:event_nombreKeyTyped
+
+    private void precioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_precioKeyTyped
+        char teclaPresionada = evt.getKeyChar();
+        if(teclaPresionada == KeyEvent.VK_TAB)
+            this.precio.transferFocus();
+    }//GEN-LAST:event_precioKeyTyped
+
+    private void tiempoPreparacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tiempoPreparacionKeyTyped
+        char teclaPresionada = evt.getKeyChar();
+        if(teclaPresionada == KeyEvent.VK_TAB)
+            this.tiempoPreparacion.transferFocus();
+    }//GEN-LAST:event_tiempoPreparacionKeyTyped
+
+    private void caloriasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_caloriasKeyTyped
+        char teclaPresionada = evt.getKeyChar();
+        if(teclaPresionada == KeyEvent.VK_TAB)
+            this.nombre.transferFocus();
+    }//GEN-LAST:event_caloriasKeyTyped
 
 
     
