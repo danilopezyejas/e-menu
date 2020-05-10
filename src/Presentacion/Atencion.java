@@ -48,22 +48,22 @@ public class Atencion extends javax.swing.JFrame implements ActionListener{
         cargarMesas();
         
         this.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        int result = JOptionPane.showConfirmDialog(
-                                null, "Quiere salir del modo Atencion?");
-                        if( result==JOptionPane.OK_OPTION){
-                            // Cuando cambie se cierra DO_NOTHING_ON_CLOSE = 0 y DISPOSE_ON_CLOSE = 2
-                             cerrar = Atencion.DISPOSE_ON_CLOSE;
-                        }
-                                if(cerrar != 0){
-                                    menuPrincipal.desbloquearFondo();
-                                    menuPrincipal.setVisible(true);
-                                    atencion.dispose();
-                                    atencion.setDefaultCloseOperation(cerrar);
-                                }
+        @Override
+        public void windowClosing(WindowEvent e) {
+            int result = JOptionPane.showConfirmDialog(
+                    null, "Quiere salir del modo Atencion?");
+            if( result==JOptionPane.OK_OPTION){
+                // Cuando cambie se cierra DO_NOTHING_ON_CLOSE = 0 y DISPOSE_ON_CLOSE = 2
+                 cerrar = Atencion.DISPOSE_ON_CLOSE;
+            }
+                    if(cerrar != 0){
+                        menuPrincipal.desbloquearFondo();
+                        menuPrincipal.setVisible(true);
+                        atencion.dispose();
+                        atencion.setDefaultCloseOperation(cerrar);
                     }
-                });
+            }
+        });
     }
     
     public void cargarMesas() {
@@ -86,20 +86,22 @@ public class Atencion extends javax.swing.JFrame implements ActionListener{
         temporizador();
     }
     
+    
+//Acá campturo un boton cuando se preciona
     @Override
-     public void actionPerformed(ActionEvent e){
-         JButton b = (JButton)e.getSource();
-         for(int i=0; i<panel.getComponentCount();i++){
+    public void actionPerformed(ActionEvent e){
+        JButton b = (JButton)e.getSource();
+        for(int i=0; i<panel.getComponentCount();i++){
             if(b.getName().equals(this.arregloBotones[i].getName())){
                 JOptionPane.showMessageDialog(null, "Boton: "+b.getName());
             }
-         }
-     }
+        }
+    }
     
     void temporizador(){
         Timer timer;
         TimerTask tarea;
-        int parpadeo = velocidad*500;
+        int parpadeo = velocidad*5000;
         
         tarea = new TimerTask(){
             @Override
@@ -114,8 +116,6 @@ public class Atencion extends javax.swing.JFrame implements ActionListener{
                     b.setIcon(icon);
                     cambiar =true;
                 }
-                 panel.remove(1);
-                 panel.add(b, 1);
             }
         };
         timer = new Timer();
