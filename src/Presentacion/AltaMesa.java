@@ -229,7 +229,7 @@ public class AltaMesa extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Mesa " + numMesa + " creada correctamente.");
             cargarTabla();
         }else{
-            JOptionPane.showMessageDialog(null, "La mesa que quiere crear ya existe.");
+            JOptionPane.showMessageDialog(null, "La mesa que quiere crear ya existe.","ERROR",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_generarActionPerformed
 
@@ -246,7 +246,7 @@ public class AltaMesa extends javax.swing.JInternalFrame {
                 controladorPedido.bajaMesa(id);
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una mesa.");
+            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una mesa.","ERROR",JOptionPane.ERROR_MESSAGE);
         }
         cargarTabla();
     }//GEN-LAST:event_btnEliminarActionPerformed

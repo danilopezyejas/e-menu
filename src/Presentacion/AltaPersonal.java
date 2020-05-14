@@ -224,7 +224,7 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
             personaContoler.altaPersonal(nombre, apellido, ciString);    
             JOptionPane.showMessageDialog(null,"Personal agregado correctamente.");
         } catch (Error ex) {
-            JOptionPane.showMessageDialog(null,"Error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null,ex.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
         }
         cargarTabla();
     }//GEN-LAST:event_aceptarActionPerformed
@@ -242,7 +242,7 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
                 personaContoler.bajaPersonal(ci);
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una mesa.");
+            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una mesa.","ERROR",JOptionPane.ERROR_MESSAGE);
         }
         cargarTabla();        
     }//GEN-LAST:event_eliminarActionPerformed
@@ -254,7 +254,7 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
         try{
             switch (cantSelec){
                 case 0:
-                    JOptionPane.showMessageDialog(null,"Debe seleccionar al menos una persona.");
+                    JOptionPane.showMessageDialog(null,"Debe seleccionar al menos una persona.","ERROR",JOptionPane.ERROR_MESSAGE);
                     break;
                 case 1:
                     String ci = this.tabla.getValueAt(seleccionados[0], 3).toString();
@@ -269,11 +269,11 @@ public class AltaPersonal extends javax.swing.JInternalFrame {
                     personaContoler.modificarPersonal(aModificar);
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null,"Debe seleccionar solo una persona.");
+                    JOptionPane.showMessageDialog(null,"Debe seleccionar solo una persona.","ERROR",JOptionPane.ERROR_MESSAGE);
                     break;
             }
         }catch(Error ex) {
-            JOptionPane.showMessageDialog(null,"Error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null,ex.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
         }
         cargarTabla();
     }//GEN-LAST:event_btnModificarActionPerformed

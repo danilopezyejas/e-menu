@@ -650,7 +650,7 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
         int cal,tiempoPrep,cant;
         float pre;
         if(!comprobarCampos()){
-            JOptionPane.showMessageDialog(null,"Datos Incorrectos");
+            JOptionPane.showMessageDialog(null,"Datos Incorrectos","ERROR",JOptionPane.ERROR_MESSAGE);
         }else{
             if(isPlato){
                 pre=Float.parseFloat(preString);
@@ -676,7 +676,7 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
                    a= enum_Bebida.elaboracion_propia;
                     break;
                 case -1:
-                    JOptionPane.showMessageDialog(null,"Seleccione tipo de bebida");
+                    JOptionPane.showMessageDialog(null,"Seleccione tipo de bebida","ERROR",JOptionPane.ERROR_MESSAGE);
                     return;
             }
                 
@@ -725,7 +725,7 @@ public class AltaAlimento extends javax.swing.JInternalFrame {
         int cantSelec = seleccionados.length;
         
         if(cantSelec < 1){
-            JOptionPane.showMessageDialog(null,"Debe seleccionar al menos un alimento.");
+            JOptionPane.showMessageDialog(null,"Debe seleccionar al menos un alimento.","ERROR",JOptionPane.ERROR_MESSAGE);
         }else{
             if(cantSelec == 1){  //Si selecciona solo un alimento puede modificar cualquier dato
                 int id = Integer.parseInt(this.tabla.getValueAt(seleccionados[0], 0).toString());
