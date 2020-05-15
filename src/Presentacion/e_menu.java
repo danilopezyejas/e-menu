@@ -12,13 +12,9 @@ import javax.swing.JFrame;
 
 public class e_menu extends javax.swing.JFrame {
 
-    AltaMesa am = null;
-    BajaMesa bm = null;
-    ConsultaMesa cm = null;
-    AltaPersonal ap = null;
-    ConsultaPersonal cp = null;
-    AltaAlimento apl = null;
-    ConsultaPlato cpl = null;
+    Mesas am = null;
+    Personal_Vistas ap = null;
+    Alimentos apl = null;
     Atencion atender = null;
     
     
@@ -248,13 +244,13 @@ public class e_menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtenderActionPerformed
 
     private void btnMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMesaActionPerformed
-        AltaMesa am = new AltaMesa();
+        Mesas am = new Mesas();
         this.am = am;
         ejecutarPanel(am);
     }//GEN-LAST:event_btnMesaActionPerformed
 
     private void btnAlimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlimentosActionPerformed
-        AltaAlimento apl = new AltaAlimento();
+        Alimentos apl = new Alimentos();
         this.apl = apl;
         ejecutarPanel(apl);
     }//GEN-LAST:event_btnAlimentosActionPerformed
@@ -265,7 +261,7 @@ public class e_menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonalActionPerformed
-        AltaPersonal ap = new AltaPersonal();
+        Personal_Vistas ap = new Personal_Vistas();
         this.ap = ap;
         ejecutarPanel(ap);
     }//GEN-LAST:event_btnPersonalActionPerformed

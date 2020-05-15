@@ -16,14 +16,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Danilo
  */
-public class AltaPersonal extends javax.swing.JInternalFrame {
+public class Personal_Vistas extends javax.swing.JInternalFrame {
     
     IPersonalController personaContoler;
     DefaultTableModel md; 
     String data[][]={};
     String columnas[]={"ID","Nombre","Apellido","Cedula"};
     
-    public AltaPersonal() {
+    public Personal_Vistas() {
         initComponents();
         personaContoler = Fabrica.getInstancia().getPersonaController();
         cargarTabla();

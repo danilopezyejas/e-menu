@@ -31,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Danilo
  */
-public class AltaMesa extends javax.swing.JInternalFrame {
+public class Mesas extends javax.swing.JInternalFrame {
 
     private static final int qrTamAncho = 4000;
     private static final int qrTamAlto = 4000;
@@ -42,7 +42,7 @@ public class AltaMesa extends javax.swing.JInternalFrame {
     ictrl_Pedido controladorPedido = Fabrica.getInstancia().getPedidoController();
     List<Mesa> mesas;
     
-    public AltaMesa() {
+    public Mesas() {
         initComponents();
         cargarTabla();
     }
@@ -136,14 +136,13 @@ public class AltaMesa extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)
                         .addGap(103, 103, 103)
                         .addComponent(mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(64, 64, 64)
-                            .addComponent(btnEliminar)
-                            .addGap(64, 64, 64)
-                            .addComponent(generar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(btnEliminar)
+                        .addGap(64, 64, 64)
+                        .addComponent(generar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
@@ -202,7 +201,7 @@ public class AltaMesa extends javax.swing.JInternalFrame {
                 
                 mesa.setSelectedIndex(0);
             } catch (IOException ex) {
-                Logger.getLogger(AltaMesa.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Mesas.class.getName()).log(Level.SEVERE, null, ex);
             }
 
     //GUARDO LA IMAGEN Y EL NUMERO DE MESA EN LA BASE DE DATOS
@@ -222,7 +221,7 @@ public class AltaMesa extends javax.swing.JInternalFrame {
             try {
                 blobData = new SerialBlob(imagenEnByte);
             } catch (SQLException ex) {
-                Logger.getLogger(AltaMesa.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Mesas.class.getName()).log(Level.SEVERE, null, ex);
             }
             Mesa mesa = new Mesa(Integer.parseInt(numMesa),blobData);
             controladorPedido.altaMesa(mesa);
