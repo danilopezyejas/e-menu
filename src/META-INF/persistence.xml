@@ -5,6 +5,12 @@
     <class>Logica.Mesa</class>
     <class>Logica.Personal</class>
     <class>Logica.Categoria</class>
+    <class>Logica.Alimento</class>
+    <class>Logica.Bebida</class>
+    <class>Logica.Observaciones</class>
+    <class>Logica.Pago</class>
+    <class>Logica.Pedidos</class>
+    <class>Logica.Plato</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/e_menu?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="admin"/>
