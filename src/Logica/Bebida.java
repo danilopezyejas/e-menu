@@ -27,10 +27,6 @@ public class Bebida extends Alimento {
         this.tipo = tipo;
     }
 
-//    public Bebida(Long id, int idAlimento, String nombre, float precio, enum_Categoria categoria) {
-//        super(id, idAlimento, nombre, precio, categoria);
-//    }
-
     public int getCantidad() {
         return cantidad;
     }

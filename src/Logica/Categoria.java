@@ -7,6 +7,7 @@ package Logica;
 
 import Persistencia.Conexion;
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -27,6 +28,7 @@ public class Categoria implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nombre;
+    private Blob imagen;
     
     @OneToMany(mappedBy = "categoria")
     List<Alimento> alimentos; //= obtenerAlimentos();
@@ -45,6 +47,13 @@ public class Categoria implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    
+    public Blob getImagen(){
+        return this.imagen;
+    }
+    public void setImagen(Blob imagen){
+        this.imagen = imagen;
     }
 
     public List<Alimento> getAlimentos() {
@@ -101,8 +110,9 @@ public class Categoria implements Serializable {
     public Categoria() {
     }
 
-    public Categoria(String nombre) {
+    public Categoria(String nombre, Blob imagen) {
         this.nombre = nombre;
+        this.imagen = imagen;
     }
     
 }

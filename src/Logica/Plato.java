@@ -22,10 +22,6 @@ public class Plato extends Alimento {
     public Plato() {
     }
 
-//    public Plato(Long id, int idAlimento, String nombre, float precio, enum_Categoria categoria) {
-//        super(id, idAlimento, nombre, precio, categoria);
-//    }
-
     public int getCalorias() {
         return calorias;
     }

@@ -122,16 +122,19 @@ public class AlimentoController implements IAlimentoController{
 
     @Override
     public void eliminarAlimento(Alimento a) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(a.isActivo()){
+            a.setActivo(false);
+            Conexion.getInstance().modificar(a);
+        }else{
+            Conexion.getInstance().baja(a);
+        }
     }
 
 
     @Override
     public List<Alimento> elegirCategoria(Categoria categoria) {
-        
         List<Alimento> l = categoria.getAlimentos();
         return l;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -140,7 +143,6 @@ public class AlimentoController implements IAlimentoController{
         
         a = a.obtenerAlimentoPorId(idAlimento);
         return a;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -183,7 +185,7 @@ public class AlimentoController implements IAlimentoController{
     
     //funcion de la interface
     @Override
-    public void altaPlato(String nom,float pre,String ingred,int cal,int tiempoPreparacion){
+    public void altaPlato(String nom,float pre,String ingred,int cal,int tiempoPreparacion, Categoria categoria){
         Plato plato=new Plato(); 
 
         plato.setNombre(nom);
@@ -192,13 +194,13 @@ public class AlimentoController implements IAlimentoController{
         plato.setPrecio(pre);
         plato.setTiempoPreparacion(tiempoPreparacion);
         plato.setActivo(true);
+        plato.setCategoria(categoria);
         
         platos.add(plato);
         Conexion.getInstance().alta(plato);
-        System.out.print("se dio de alta plato nombre"+nom);
     }
     @Override
-    public void altaBebida(String nom,float pre,String ingred,int cant,enum_Bebida tipo,int tiempoPreparacion){
+    public void altaBebida(String nom,float pre,String ingred,int cant,enum_Bebida tipo,int tiempoPreparacion, Categoria categoria){
         Bebida bebida=new Bebida(); 
 
         bebida.setNombre(nom);
@@ -208,10 +210,10 @@ public class AlimentoController implements IAlimentoController{
         bebida.setTiempoPreparacion(tiempoPreparacion);
         bebida.setTipo(tipo);
         bebida.setActivo(true);
+        bebida.setCategoria(categoria);
         
         bebidas.add(bebida);
         Conexion.getInstance().alta(bebida);
-        System.out.print("se dio de alta bebida nombre"+nom);
     }
     @Override
     public Alimento buscarAlimentoPorId(int id) {

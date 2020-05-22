@@ -141,7 +141,6 @@ public class Alimento implements Serializable {
         String QUERY = "Select * From Alimento where idAlimento=?id ";
         EntityManager em = Conexion.getInstance().getEntity();
         Alimento ret = (Alimento) em.createQuery(QUERY, Alimento.class).setParameter("id", id).getResultList();
-        //System.out.println("num of personal:" + ret.size());
         return ret;
     }
 }
