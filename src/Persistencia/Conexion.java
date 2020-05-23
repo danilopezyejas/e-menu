@@ -5,6 +5,7 @@
  */
 package Persistencia;
 
+import Logica.Alimento;
 import Logica.Bebida;
 import Logica.Categoria;
 import Logica.Mesa;
@@ -80,11 +81,18 @@ public Conexion() {
         //System.out.println("num of personal:" + ret.size());
         return ret;
     }
+    public List<Alimento> consultaAlimentos() {
+    String QUERY = "Select * From alimento ";
+    EntityManager em = Conexion.getInstance().getEntity();
+    List<Alimento> ret = em.createQuery(QUERY, Alimento.class).getResultList();
+    return ret;
+    }
+    
     public List<Plato> consultaPlato() {
         String QUERY = "Select a From Plato a";
         EntityManager em = Conexion.getInstance().getEntity();
         List<Plato> ret = em.createQuery(QUERY, Plato.class).getResultList();
-         return ret;
+        return ret;
     }
      public List<Bebida> consultaBebida() {
         String QUERY = "Select a From Bebida a";

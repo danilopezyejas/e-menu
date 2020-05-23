@@ -112,7 +112,8 @@ public class AlimentoController implements IAlimentoController{
 
     @Override
     public List<Alimento> listarAlimentos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Alimento> ret = Conexion.getInstance().consultaAlimentos();
+        return ret;
     }
 
     @Override
