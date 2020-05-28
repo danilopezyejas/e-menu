@@ -24,7 +24,9 @@ public interface ictrl_Pedido {
     public abstract boolean realizarReclamo(String reclamo);
     public abstract void bajaMesa(int idMesa);
     public abstract List<Mesa> listarMesas();
+    public abstract Mesa buscarMesaPorId(int id);
     public abstract void altaMesa(Mesa mesa);
+    public abstract Pedidos getUltimoInsertado();
     public abstract Pedidos consultaPedidoMesa(int idMesa);
     public abstract void agregarObservacion(String observacion);
 }

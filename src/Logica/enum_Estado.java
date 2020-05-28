@@ -14,4 +14,4 @@ public enum enum_Estado {
 }
 //Cuando el cliente realiza un pedido y el mozo no lo a aceptado esta en PENDIENTE
 //Cuando el mozo acepto el pedido y el cliente esta esperando que le lleven la comida esta en ACTIVO
-//Cuando el mozo le llevo el pedido al cliente 
+//Cuando el mozo le llevo el pedido al cliente el estado es FINALIZADO

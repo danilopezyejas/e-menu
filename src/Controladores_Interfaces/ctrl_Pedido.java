@@ -162,12 +162,14 @@ public class ctrl_Pedido implements ictrl_Pedido {
         this.idMesa = idMesa;
     }
 
+    @Override
     public Mesa buscarMesaPorId(int id) {
+        long idMesa = id;
         EntityManager em = Conexion.getInstance().getEntity();
         Mesa m = null;
         em.getTransaction().begin();
         try {
-            m = (Mesa) em.createNativeQuery("SELECT * FROM Mesa WHERE id=" + id, Mesa.class).getSingleResult();
+            m = (Mesa) em.createNativeQuery("SELECT * FROM Mesa WHERE id=" + idMesa, Mesa.class).getSingleResult();
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -186,5 +188,19 @@ public class ctrl_Pedido implements ictrl_Pedido {
             em.getTransaction().rollback();
         }
         return lista;
+    }
+    
+    @Override
+    public Pedidos getUltimoInsertado(){
+        EntityManager em = Conexion.getInstance().getEntity();
+        Pedidos pedido = null;
+        em.getTransaction().begin();
+        try {
+            pedido = (Pedidos)em.createNativeQuery("SELECT * FROM `pedidos` WHERE id=(SELECT MAX(id) FROM pedidos)", Pedidos.class).getSingleResult();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        return pedido;
     }
 }

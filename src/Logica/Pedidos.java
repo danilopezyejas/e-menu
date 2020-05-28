@@ -46,7 +46,7 @@ public class Pedidos implements Serializable {
     private List<Observaciones> observacioness;
     @OneToOne(mappedBy = "pedido")
     private Pago pago;
-    private HashMap<Integer,Integer> alimentos_cantidad;
+    private HashMap<Integer, Integer> alimentos_cantidad;
 
     public Long getId() {
         return id;
@@ -96,10 +96,13 @@ public class Pedidos implements Serializable {
         return pago;
     }
 
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
     public HashMap<Integer, Integer> getAlimentos_cantidad() {
         return alimentos_cantidad;
     }
-    
 
     public void setFecha_hora(Date fecha_hora) {
         this.fecha_hora = fecha_hora;
@@ -137,8 +140,8 @@ public class Pedidos implements Serializable {
         this.pago = pago;
     }
 
-    public void setAlimentos_cantidad(HashMap<Integer, Integer> alimentos) {
-        this.alimentos_cantidad = alimentos;
+    public void setAlimentos_cantidad(HashMap<Integer, Integer> alimentos_cantidad) {
+        this.alimentos_cantidad = alimentos_cantidad;
     }
     
 
@@ -166,5 +169,21 @@ public class Pedidos implements Serializable {
     public String toString() {
         return "Logica.Pedidos[ id=" + id + " ]";
     }
+
+    public Pedidos() {
+    }
+
+    public Pedidos(Date fecha_hora, int precio_total, String contrasenia, enum_Estado estado, Mesa mesa, List<Alimento> alimento, List<Observaciones> observacioness, Pago pago, HashMap<Integer, Integer> alimentos_cantidad) {
+        this.fecha_hora = fecha_hora;
+        this.precio_total = precio_total;
+        this.contrasenia = contrasenia;
+        this.estado = estado;
+        this.mesa = mesa;
+        this.alimento = alimento;
+        this.observacioness = observacioness;
+        this.pago = pago;
+        this.alimentos_cantidad = alimentos_cantidad;
+    }
+    
     
 }

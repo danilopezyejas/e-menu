@@ -90,5 +90,9 @@ public static long getSerialVersionUID() {
     public String toString() {
         return "Logica.Observaciones[ id=" + id + " ]";
     }
+
+    public Observaciones() {
+    }
+    
     
 }

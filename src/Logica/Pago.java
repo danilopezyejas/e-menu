@@ -61,5 +61,43 @@ public class Pago implements Serializable {
     public String toString() {
         return "Logica.Pago[ id=" + id + " ]";
     }
+
+    public Pago() {
+    }
+
+    public void setRut(Long rut) {
+        this.rut = rut;
+    }
+
+    public void setMetodoPago(enum_Pago metodoPago) {
+        this.metodoPago = metodoPago;
+    }
+
+    public void setPedido(Pedidos pedido) {
+        this.pedido = pedido;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Long getRut() {
+        return rut;
+    }
+
+    public enum_Pago getMetodoPago() {
+        return metodoPago;
+    }
+
+    public Pedidos getPedido() {
+        return pedido;
+    }
+
+    public Pago(Long rut, enum_Pago metodoPago, Pedidos pedido) {
+        this.rut = rut;
+        this.metodoPago = metodoPago;
+        this.pedido = pedido;
+    }
+    
     
 }
