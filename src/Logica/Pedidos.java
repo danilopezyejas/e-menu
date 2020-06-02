@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -46,7 +47,7 @@ public class Pedidos implements Serializable {
     private List<Alimento> alimento;
     @OneToMany(mappedBy = "pedido")
     private List<Observaciones> observacioness;
-    @OneToOne(mappedBy = "pedido")
+    @OneToOne(mappedBy = "pedido",cascade = CascadeType.PERSIST)
     private Pago pago;
     private HashMap<Integer, Integer> alimentos_cantidad;
 
