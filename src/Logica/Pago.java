@@ -11,12 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author vanessa
  */
 @Entity
+@Table(name = "pago")
 public class Pago implements Serializable {
 
     private static final long serialVersionUID = 1L;

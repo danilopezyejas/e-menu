@@ -16,12 +16,14 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Danilo
  */
 @Entity
+@Table(name = "mesa")
 public class Mesa implements Serializable {
 
     private static final long serialVersionUID = 1L;

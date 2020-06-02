@@ -7,6 +7,7 @@ package Logica;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  *
@@ -14,6 +15,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  */
 @Entity
 @PrimaryKeyJoinColumn(name="idAlimento")
+@Table(name = "bebida")
 public class Bebida extends Alimento {
 
     private int cantidad;
