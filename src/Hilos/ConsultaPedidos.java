@@ -30,19 +30,17 @@ public class ConsultaPedidos extends Thread {
         @Override
     public void run (){
         //le puse un ciclo infinito para que desde que se abre la ventana de atención
-        //quede consultando los pedidos, esto se termina cuando se cierra el hilo 
+        //quede consultando los pedidos, esto se termina cuando se cierra el hilo
         //que sería antes de que se cierre la ventana atención
         while (true){
-//            String QUERY = "SELECT pedidos.id, Pedidos.alimentos_cantidad, Pedidos.estado, Pedidos.mesa_id"
-//                    + " FROM Pedidos INNER JOIN Mesa on Pedidos.mesa_id=Mesa.id";
-//            EntityManager em = Conexion.getInstance().getEntity();
-//            List<Pedidos> ret = em.createQuery(QUERY, Pedidos.class).getResultList();
+            String QUERY = "SELECT * FROM pedidos INNER JOIN Mesa on pedidos.mesa_id=Mesa.id";
+            EntityManager em = Conexion.getInstance().getEntity();
+            List<Pedidos> ret = em.createQuery(QUERY, Pedidos.class).getResultList();
 
             for(int i=0; i<arregloBotones.length;i=i+2){
                 Pedidos p = new Pedidos();//(Pedidos) ret.get(i);
                 p.setFecha_hora(new Date());
                 JButton botonx = (JButton) arregloBotones[i];
-                botonx.setBackground(Color.green);
                 temporizador(botonx);
             }
             try {
@@ -66,11 +64,11 @@ public class ConsultaPedidos extends Thread {
             @Override
             public void run() {
                  if(cambiar){
-                    ImageIcon icon = new ImageIcon("../Imagenes/Mesa con pedido 1.png");
+                    ImageIcon icon = new ImageIcon("img/Mesa con pedido 1.png");
                     b.setIcon(icon);
                     cambiar =false;
                 }else{
-                    ImageIcon icon = new ImageIcon("../Imagenes/Mesa con pedido 2.png");
+                    ImageIcon icon = new ImageIcon("img/Mesa con pedido 2.png");
                     b.setIcon(icon);
                     cambiar =true;
                 }
