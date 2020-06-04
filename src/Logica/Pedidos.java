@@ -43,7 +43,7 @@ public class Pedidos implements Serializable {
     private Mesa mesa;//Esta es la mesa en la que hacen el pedido
     @ManyToMany
     private List<Alimento> alimento;
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido",cascade = CascadeType.PERSIST)
     private List<Observaciones> observacioness;
     @OneToOne(mappedBy = "pedido",cascade = CascadeType.PERSIST)
     private Pago pago;
