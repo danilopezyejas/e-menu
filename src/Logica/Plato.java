@@ -7,12 +7,14 @@ package Logica;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  *
  * @author Danilo
  */
 @Entity
+@Table(name = "plato")
 @PrimaryKeyJoinColumn(name="idAlimento")
 public class Plato extends Alimento {
 

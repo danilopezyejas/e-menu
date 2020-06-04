@@ -18,6 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 /**
@@ -25,6 +26,7 @@ import javax.persistence.Temporal;
  * @author Danilo
  */
 @Entity
+@Table(name = "pedidos")
 public class Pedidos implements Serializable {
 
     private static final long serialVersionUID = 1L;

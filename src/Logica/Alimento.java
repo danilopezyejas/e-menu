@@ -18,6 +18,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
@@ -25,6 +26,7 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
+@Table(name = "alimento")
 public class Alimento implements Serializable {
 
     private static final long serialVersionUID = 1L;
