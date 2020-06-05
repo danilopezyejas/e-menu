@@ -32,7 +32,7 @@ public class ConsultaPedidos extends Thread {
         @Override
     public void run (){
         //le puse un ciclo infinito para que desde que se abre la ventana de atención
-        //quede consultando los pedidos, esto se termina cuando se cierra el hilo 
+        //quede consultando los pedidos, esto se termina cuando se cierra el hilo
         //que sería antes de que se cierre la ventana atención
         while (true){
             String QUERY = "SELECT p.* "
@@ -97,10 +97,12 @@ public class ConsultaPedidos extends Thread {
             @Override
             public void run() {
                  if(cambiar){
-                    b.setBackground(Color.black);
+                    ImageIcon icon = new ImageIcon("img/Mesa con pedido 1.png");
+                    b.setIcon(icon);
                     cambiar =false;
                 }else{
-                    b.setBackground(Color.red);
+                    ImageIcon icon = new ImageIcon("img/Mesa con pedido 2.png");
+                    b.setIcon(icon);
                     cambiar =true;
                 }
             }

@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -31,6 +32,9 @@ public class Categoria implements Serializable {
     private Long id;
     private String nombre;
     private Blob imagen;
+    
+    @OneToOne
+    private Categoria secundaria;
     
     @OneToMany(mappedBy = "categoria")
     List<Alimento> alimentos; //= obtenerAlimentos();
