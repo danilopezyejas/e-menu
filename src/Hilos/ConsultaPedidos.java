@@ -32,10 +32,11 @@ public class ConsultaPedidos extends Thread {
         
         @Override
     public void run (){
+        boolean consulta = true; 
         //le puse un ciclo infinito para que desde que se abre la ventana de atención
         //quede consultando los pedidos, esto se termina cuando se cierra el hilo
         //que sería antes de que se cierre la ventana atención
-        while (true){
+        while (consulta){
             String QUERY = "SELECT p.* "
                     + "FROM pedidos  p, mesa where p.mesa_id=mesa.id";
             EntityManager em = Conexion.getInstance().getEntity();
@@ -57,23 +58,27 @@ public class ConsultaPedidos extends Thread {
                         String nombreBoton = "btnMesa" + p.getMesa().getNumeroMesa();
                         if (nombreBoton.compareTo(arregloBotones[j].getName()) == 0){
                             JButton botonx = (JButton) arregloBotones[j];
+                            ConsultaPedidos hilo_auxiliar = new ConsultaPedidos();
                             if (p.getEstado().equals(enum_Estado.Pendiente)){
-                                ConsultaPedidos hilo_auxiliar = new ConsultaPedidos();
                                 hilo_auxiliar.temporizador(botonx);
                             }
                             else if (p.getEstado().equals(enum_Estado.Activo)){
+                                hilo_auxiliar.stop();
                                 ImageIcon icon = new ImageIcon("img/Mesa Atendida.png");
                                 botonx.setIcon(icon);
                             }
                             else if (p.getEstado().equals(enum_Estado.Cancelado)){
+                                hilo_auxiliar.stop();
                                 ImageIcon icon = new ImageIcon("img/Mesa Libre.png");
                                 botonx.setIcon(icon);
                             }
                             else if (p.getEstado().equals(enum_Estado.Finalizado)){
+                                hilo_auxiliar.stop();
                                 ImageIcon icon = new ImageIcon("img/Mesa Libre.png");
                                 botonx.setIcon(icon);
                             }
                             else {
+                                hilo_auxiliar.stop();
                                 ImageIcon icon = new ImageIcon("img/Mesa Libre.png");
                                 botonx.setIcon(icon);
                             }
@@ -85,8 +90,10 @@ public class ConsultaPedidos extends Thread {
             }
             
             try {
-                sleep(30 * 1000);
+                ConsultaPedidos.sleep(30000);
             } catch (InterruptedException ex) {
+                consulta = false;
+                System.out.println(ex.getMessage());
                 Logger.getLogger(ConsultaPedidos.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
