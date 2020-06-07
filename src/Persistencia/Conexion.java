@@ -9,12 +9,16 @@ import Logica.Alimento;
 import Logica.Bebida;
 import Logica.Categoria;
 import Logica.Mesa;
+import Logica.Pedidos;
 import Logica.Personal;
 import Logica.Plato;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import static org.hibernate.criterion.Expression.sql;
 
 /**
  *
@@ -110,6 +114,15 @@ public Conexion() {
         String QUERY = "Select a From Mesa a";
         EntityManager em = Conexion.getInstance().getEntity();
         List<Mesa> ret = em.createQuery(QUERY, Mesa.class).getResultList();
+        return ret;
+    }
+    public List<Pedidos> consultaPedidosMesa(int idMesa){
+        String QUERY = "SELECT p.* FROM pedidos as p, mesa as m WHERE p.mesa_id=m.id AND m.numeroMesa=?";
+        EntityManager em = Conexion.getInstance().getEntity();
+        Query query = em.createNativeQuery(QUERY, Pedidos.class);
+        query.setParameter(1, idMesa);
+        List<Pedidos> ret = new ArrayList<>();
+        ret = query.getResultList();
         return ret;
     }
 }
