@@ -6,6 +6,7 @@
 package Hilos;
 
 import Logica.Pedidos;
+import Logica.enum_Estado;
 import Persistencia.Conexion;
 import java.awt.Color;
 import static java.lang.Thread.sleep;
@@ -46,29 +47,36 @@ public class ConsultaPedidos extends Thread {
             
             } catch (Exception e) {
                 System.out.println(e.getMessage());
+                this.stop();
                 em.getTransaction().rollback();
             }
             if (ret.size()>0){
-                //System.out.println("hay pedidos");
-//                for (int j=0; j<ret.size(); j++){
-//                    Pedidos p = (Pedidos) ret.get(j);
-//                    
-//                    System.out.println("id: "+p.getId());
-//                }
-
                 for(int i=0; i<ret.size();i++){
                     Pedidos p = (Pedidos) ret.get(i);
                     for(int j=0; j<arregloBotones.length;j++){
                         String nombreBoton = "btnMesa" + p.getMesa().getNumeroMesa();
                         if (nombreBoton.compareTo(arregloBotones[j].getName()) == 0){
                             JButton botonx = (JButton) arregloBotones[j];
-                            //botonx.setBackground(Color.green);
-                            System.out.println("Datos "+j);
-                            System.out.println("en el arreglo "+arregloBotones[j].getName());
-                            System.out.println("nombrebtn "+nombreBoton);
-                            ConsultaPedidos hilo_auxiliar = new ConsultaPedidos();
-                            hilo_auxiliar.temporizador(botonx);
-                            //temporizador(botonx);
+                            if (p.getEstado().equals(enum_Estado.Pendiente)){
+                                ConsultaPedidos hilo_auxiliar = new ConsultaPedidos();
+                                hilo_auxiliar.temporizador(botonx);
+                            }
+                            else if (p.getEstado().equals(enum_Estado.Activo)){
+                                ImageIcon icon = new ImageIcon("img/Mesa Atendida.png");
+                                botonx.setIcon(icon);
+                            }
+                            else if (p.getEstado().equals(enum_Estado.Cancelado)){
+                                ImageIcon icon = new ImageIcon("img/Mesa Libre.png");
+                                botonx.setIcon(icon);
+                            }
+                            else if (p.getEstado().equals(enum_Estado.Finalizado)){
+                                ImageIcon icon = new ImageIcon("img/Mesa Libre.png");
+                                botonx.setIcon(icon);
+                            }
+                            else {
+                                ImageIcon icon = new ImageIcon("img/Mesa Libre.png");
+                                botonx.setIcon(icon);
+                            }
                         }
                     }
                 }
