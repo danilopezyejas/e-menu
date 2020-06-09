@@ -25,6 +25,7 @@ public interface ictrl_Pedido {
     public abstract void bajaMesa(int idMesa);
     public abstract List<Mesa> listarMesas();
     public abstract Mesa buscarMesaPorId(int id);
+    public abstract Mesa buscarMesaPorNum(int numMesa);
     public abstract void altaMesa(Mesa mesa);
     public abstract Pedidos getUltimoInsertado();
     public abstract List<Pedidos> consultaPedidosMesa(int idMesa);

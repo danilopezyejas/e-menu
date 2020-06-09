@@ -203,4 +203,19 @@ public class ctrl_Pedido implements ictrl_Pedido {
         }
         return pedido;
     }
+
+    @Override
+    public Mesa buscarMesaPorNum(int numMesa) {
+        long mesa = numMesa;
+        EntityManager em = Conexion.getInstance().getEntity();
+        Mesa m = null;
+        em.getTransaction().begin();
+        try {
+            m = (Mesa) em.createNativeQuery("SELECT * FROM Mesa WHERE numeroMesa=" + mesa, Mesa.class).getSingleResult();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        return m;
+    }
 }
