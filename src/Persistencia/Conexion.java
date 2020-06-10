@@ -116,13 +116,23 @@ public Conexion() {
         List<Mesa> ret = em.createQuery(QUERY, Mesa.class).getResultList();
         return ret;
     }
-    public List<Pedidos> consultaPedidosMesa(int idMesa){
-        String QUERY = "SELECT p.* FROM pedidos as p, mesa as m WHERE p.mesa_id=m.id AND m.numeroMesa=?";
+    public List<Pedidos> consultaPedidosMesa(int numMesa){
+        String QUERY = "SELECT p.* FROM pedidos as p, mesa as m WHERE p.mesa_id=m.id AND p.estado !=3 AND m.numeroMesa=?";
         EntityManager em = Conexion.getInstance().getEntity();
         Query query = em.createNativeQuery(QUERY, Pedidos.class);
-        query.setParameter(1, idMesa);
+        query.setParameter(1, numMesa);
         List<Pedidos> ret = new ArrayList<>();
         ret = query.getResultList();
+        return ret;
+    }
+    
+    public Pedidos buscarPedidoId(Long id){
+        String QUERY = "SELECT * FROM pedidos as p WHERE p.id=?";
+        EntityManager em = Conexion.getInstance().getEntity();
+        Query query = em.createNativeQuery(QUERY, Pedidos.class);
+        query.setParameter(1, id);
+        Pedidos ret;
+        ret = (Pedidos)query.getSingleResult();
         return ret;
     }
 }

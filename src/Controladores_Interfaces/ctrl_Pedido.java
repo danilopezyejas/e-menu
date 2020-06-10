@@ -88,8 +88,10 @@ public class ctrl_Pedido implements ictrl_Pedido {
     }
 
     @Override
-    public float solicitarPago(int idMesa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void solicitarPago(Long id) {
+        Pedidos pedido = Conexion.getInstance().buscarPedidoId(id);
+        pedido.setEstado(enum_Estado.Finalizado);
+        Conexion.getInstance().modificar(pedido);
     }
 
     @Override
@@ -137,8 +139,8 @@ public class ctrl_Pedido implements ictrl_Pedido {
     }
 
     @Override
-    public List<Pedidos> consultaPedidosMesa(int idMesa) {
-        return Conexion.getInstance().consultaPedidosMesa(idMesa);
+    public List<Pedidos> consultaPedidosMesa(int numMesa) {
+        return Conexion.getInstance().consultaPedidosMesa(numMesa);
     }
 
     @Override
@@ -218,4 +220,15 @@ public class ctrl_Pedido implements ictrl_Pedido {
         }
         return m;
     }
+
+    @Override
+    public void solicitarPagarTodo(int numMesa) {
+        List<Pedidos> pedidos = new ArrayList<>();
+        pedidos = consultaPedidosMesa(numMesa);
+        for(Pedidos p : pedidos){
+            solicitarPago(p.getId());
+        }
+    }
+
+
 }
