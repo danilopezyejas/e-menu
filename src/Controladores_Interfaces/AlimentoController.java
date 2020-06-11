@@ -9,11 +9,12 @@ import Logica.Bebida;
 
 import Logica.Alimento;
 import Logica.Categoria;
+import Logica.Error;
 import Logica.Observaciones;
 import Logica.Plato;
 import Logica.enum_Bebida;
 import Persistencia.Conexion;
-import com.mysql.jdbc.Blob;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -179,6 +180,51 @@ public class AlimentoController implements IAlimentoController{
     public void ingresarDatos(String nombre, String comentario) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void altaCategoria(String nombre, Blob imagen, String id, String cant) throws Logica.Error{
+        if(nombre.equals("")){
+            throw new Logica.Error("No ingreso el nombre.");
+        }
+        if(imagen == null){
+            throw new Logica.Error("No ingreso una imagen.");
+        }
+        Categoria categoria = new Categoria(nombre,imagen);
+        if(!id.equals("") && !cant.equals("")){
+            categoria.setSecundaria(agregarAdicional( id,  cant));
+            categoria.setCantAdicionales(Integer.parseInt(cant));
+        }
+        Conexion.getInstance().alta(categoria);
+    }
+
+    @Override
+    public Categoria agregarAdicional(String id, String cant) throws Error {
+        int idCat = 0;
+        int cantCat = 0;
+        Categoria secundaria;
+        if(!isParsable(id)){
+            throw new Logica.Error("El id ingresado no es valido.");
+        }else{
+            idCat = Integer.parseInt(id);
+        }
+        if(!isParsable(cant)){
+            throw new Logica.Error("El cantidad ingresada no es valida.");
+        }else{
+            cantCat =Integer.parseInt(cant);
+        }
+        secundaria  = Conexion.getInstance().buscarCategoriaId(idCat);
+        if(secundaria == null){
+            throw new Logica.Error("El id ingresado no corresponde a una categoria valida.");
+        }
+        if(cantCat < 1){
+            throw new Logica.Error("La cantidad debe ser mayor a cero.");
+        }
+        if(secundaria.getSecundaria() != null){
+            throw new Logica.Error("Ya tiene una categoria asosiada.");
+        }
+        return secundaria;
+    }
+    
     private static class PersonalControllerHolder {
         private static final AlimentoController INSTANCE = new AlimentoController();
     }
@@ -257,4 +303,14 @@ public class AlimentoController implements IAlimentoController{
         List<Categoria> ret = Conexion.getInstance().consultarCategoria();
         return ret;
     }
+    
+ //Funcion para comprobar si un string se puede convertir a int
+    public static boolean isParsable(String input) {
+    try {
+        Integer.parseInt(input);
+        return true;
+    } catch (final NumberFormatException e) {
+        return false;
+    }
+}
 }

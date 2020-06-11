@@ -8,6 +8,7 @@ package Persistencia;
 import Logica.Alimento;
 import Logica.Bebida;
 import Logica.Categoria;
+import Logica.Error;
 import Logica.Mesa;
 import Logica.Pedidos;
 import Logica.Personal;
@@ -133,6 +134,19 @@ public Conexion() {
         query.setParameter(1, id);
         Pedidos ret;
         ret = (Pedidos)query.getSingleResult();
+        return ret;
+    }
+    
+    public Categoria buscarCategoriaId(int id) throws Error{
+        String QUERY = "SELECT * FROM categoria as c WHERE c.id=?";
+        EntityManager em = Conexion.getInstance().getEntity();
+        Query query = em.createNativeQuery(QUERY, Categoria.class);
+        query.setParameter(1, id);
+        Categoria ret;
+        if(query.getResultList().size() != 1){
+            throw new Logica.Error("Ha ocurrido un error con la categoria primaria.");
+        }
+        ret = (Categoria)query.getSingleResult();
         return ret;
     }
 }

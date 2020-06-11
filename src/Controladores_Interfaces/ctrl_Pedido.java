@@ -192,19 +192,6 @@ public class ctrl_Pedido implements ictrl_Pedido {
         return lista;
     }
     
-    @Override
-    public Pedidos getUltimoInsertado(){
-        EntityManager em = Conexion.getInstance().getEntity();
-        Pedidos pedido = null;
-        em.getTransaction().begin();
-        try {
-            pedido = (Pedidos)em.createNativeQuery("SELECT * FROM `pedidos` WHERE id=(SELECT MAX(id) FROM pedidos)", Pedidos.class).getSingleResult();
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-        }
-        return pedido;
-    }
 
     @Override
     public Mesa buscarMesaPorNum(int numMesa) {

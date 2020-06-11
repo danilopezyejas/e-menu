@@ -32,6 +32,7 @@ public class Categoria implements Serializable {
     private Long id;
     private String nombre;
     private Blob imagen;
+    private int cantAdicionales;
     
     @OneToOne
     private Categoria secundaria;
@@ -120,5 +121,20 @@ public class Categoria implements Serializable {
         this.nombre = nombre;
         this.imagen = imagen;
     }
-    
+
+    public void setSecundaria(Categoria secundaria) {
+        this.secundaria = secundaria;
+    }
+
+    public Categoria getSecundaria() {
+        return secundaria;
+    }
+
+    public void setCantAdicionales(int cantAdicionales) {
+        this.cantAdicionales = cantAdicionales;
+    }
+
+    public int getCantAdicionales() {
+        return cantAdicionales;
+    }
 }
