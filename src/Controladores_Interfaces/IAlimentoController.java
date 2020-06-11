@@ -18,7 +18,7 @@ import java.util.List;
  * @author luisg
  */
 public interface IAlimentoController {
-
+    public List<Alimento> listarTodo();
     public void altaBebida(String nom,float pre,String ingred,int cant,enum_Bebida tipo,int tiempoPreparacion, Categoria categoria); //falta tipo
     public abstract void altaPlato(String nom,float pre,String ingred,int cal,int tiempoPreparacion, Categoria categoria);
     public abstract void altaAlimento(Alimento a);

@@ -46,6 +46,8 @@ public class AlimentoController implements IAlimentoController{
         return platos;
     }
 
+    
+    
     public int getIdCategoria() {
         return idCategoria;
     }
@@ -291,6 +293,16 @@ public class AlimentoController implements IAlimentoController{
     @Override
     public List<Plato> listarPlatos(){
         List<Plato> ret = Conexion.getInstance().consultaPlato();
+        return ret;
+    }
+     @Override
+    public List<Alimento> listarTodo() {
+        List<Alimento> ret= new ArrayList<Alimento>();
+        List<Plato> plat = Conexion.getInstance().consultaPlato();
+        List<Bebida> beb = Conexion.getInstance().consultaBebida();
+        
+        ret.addAll(plat);
+        ret.addAll(beb);
         return ret;
     }
     @Override
