@@ -5,7 +5,9 @@
  */
 package Logica;
 
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -19,7 +21,8 @@ import javax.persistence.Table;
 public class Plato extends Alimento {
 
     private int calorias;
-
+    @OneToMany(mappedBy = "plato")
+    private List<Resenia> resenias;
     
     public Plato() {
     }
