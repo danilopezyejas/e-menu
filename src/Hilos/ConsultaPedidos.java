@@ -118,28 +118,4 @@ public class ConsultaPedidos extends Thread {
     public void conocerBotones(JButton[] arreglo) {
         this.arregloBotones = arreglo;
     }
-
-    public void temporizador(JButton b) {
-        Timer timer;
-        TimerTask tarea;
-        int parpadeo = 1000;
-
-        tarea = new TimerTask() {
-            @Override
-            public void run() {
-                if (cambiar) {
-                    ImageIcon icon = new ImageIcon("img/Mesa con pedido 1.png");
-                    b.setIcon(icon);
-                    cambiar = false;
-                } else {
-                    ImageIcon icon = new ImageIcon("img/Mesa con pedido 2.png");
-                    b.setIcon(icon);
-                    cambiar = true;
-                }
-            }
-        };
-        timer = new Timer();
-
-        timer.scheduleAtFixedRate(tarea, 0, parpadeo);
-    }//termina la funcion temporizador
 }//termina la clase
