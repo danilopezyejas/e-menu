@@ -88,8 +88,10 @@ public class ctrl_Pedido implements ictrl_Pedido {
     }
 
     @Override
-    public float solicitarPago(int idMesa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void solicitarPago(Long id) {
+        Pedidos pedido = Conexion.getInstance().buscarPedidoId(id);
+        pedido.setEstado(enum_Estado.Finalizado);
+        Conexion.getInstance().modificar(pedido);
     }
 
     @Override
@@ -137,8 +139,8 @@ public class ctrl_Pedido implements ictrl_Pedido {
     }
 
     @Override
-    public Pedidos consultaPedidoMesa(int idMesa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Pedidos> consultaPedidosMesa(int numMesa) {
+        return Conexion.getInstance().consultaPedidosMesa(numMesa);
     }
 
     @Override
@@ -190,17 +192,30 @@ public class ctrl_Pedido implements ictrl_Pedido {
         return lista;
     }
     
+
     @Override
-    public Pedidos getUltimoInsertado(){
+    public Mesa buscarMesaPorNum(int numMesa) {
+        long mesa = numMesa;
         EntityManager em = Conexion.getInstance().getEntity();
-        Pedidos pedido = null;
+        Mesa m = null;
         em.getTransaction().begin();
         try {
-            pedido = (Pedidos)em.createNativeQuery("SELECT * FROM `pedidos` WHERE id=(SELECT MAX(id) FROM pedidos)", Pedidos.class).getSingleResult();
+            m = (Mesa) em.createNativeQuery("SELECT * FROM Mesa WHERE numeroMesa=" + mesa, Mesa.class).getSingleResult();
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
         }
-        return pedido;
+        return m;
     }
+
+    @Override
+    public void solicitarPagarTodo(int numMesa) {
+        List<Pedidos> pedidos = new ArrayList<>();
+        pedidos = consultaPedidosMesa(numMesa);
+        for(Pedidos p : pedidos){
+            solicitarPago(p.getId());
+        }
+    }
+
+
 }

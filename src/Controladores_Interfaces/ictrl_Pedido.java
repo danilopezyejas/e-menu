@@ -17,7 +17,8 @@ import java.util.List;
 public interface ictrl_Pedido {
     public abstract void confirmarPedido(String contra);
     public abstract boolean escanearCodigo(int idMesa);
-    public abstract float solicitarPago(int idMesa);
+    public abstract void solicitarPago(Long idPedido);
+    public abstract void solicitarPagarTodo(int numMesa);
     public abstract HashMap<String, String> listarCategorias();
     public abstract void confirmarPedido(int tipo_pago);
     public abstract boolean pagar();
@@ -25,8 +26,8 @@ public interface ictrl_Pedido {
     public abstract void bajaMesa(int idMesa);
     public abstract List<Mesa> listarMesas();
     public abstract Mesa buscarMesaPorId(int id);
+    public abstract Mesa buscarMesaPorNum(int numMesa);
     public abstract void altaMesa(Mesa mesa);
-    public abstract Pedidos getUltimoInsertado();
-    public abstract Pedidos consultaPedidoMesa(int idMesa);
+    public abstract List<Pedidos> consultaPedidosMesa(int idMesa);
     public abstract void agregarObservacion(String observacion);
 }
