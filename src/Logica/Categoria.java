@@ -9,6 +9,7 @@ import Persistencia.Conexion;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
@@ -33,11 +34,12 @@ public class Categoria implements Serializable {
     private String nombre;
     private Blob imagen;
     private int cantAdicionales;
+    private boolean mostrar;
     
     @OneToOne
     private Categoria secundaria;
     
-    @OneToMany(mappedBy = "categoria")
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
     List<Alimento> alimentos; //= obtenerAlimentos();
 
     public Long getId() {
@@ -120,6 +122,7 @@ public class Categoria implements Serializable {
     public Categoria(String nombre, Blob imagen) {
         this.nombre = nombre;
         this.imagen = imagen;
+        this.mostrar =  true;
     }
 
     public void setSecundaria(Categoria secundaria) {
@@ -137,4 +140,13 @@ public class Categoria implements Serializable {
     public int getCantAdicionales() {
         return cantAdicionales;
     }
+
+    public boolean isMostrar() {
+        return mostrar;
+    }
+
+    public void setMostrar(boolean mostrar) {
+        this.mostrar = mostrar;
+    }
+    
 }
