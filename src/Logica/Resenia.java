@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -36,6 +37,8 @@ public class Resenia implements Serializable {
     private String autor;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fecha_hora;
+    @ManyToOne
+    private Plato plato;
 
     public Resenia() {
     }

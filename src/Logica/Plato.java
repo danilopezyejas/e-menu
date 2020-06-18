@@ -36,5 +36,15 @@ public class Plato extends Alimento {
     public void setCalorias(int calorias) {
         this.calorias = calorias;
     }
+
+    public List<Resenia> getResenias() {
+        return resenias;
+    }
+
+    public void setResenias(List<Resenia> resenias) {
+        this.resenias = resenias;
+    }
+    
+    
   
 }
