@@ -27,68 +27,84 @@ import javax.swing.JButton;
  * @author vanessa
  */
 public class ConsultaPedidos extends Thread {
-        boolean cambiar = false;
-        JButton[] arregloBotones;
-        
-        @Override
-    public void run (){
-        boolean consulta = true; 
+
+    boolean cambiar = false;
+    JButton[] arregloBotones;
+    EntityManager em = Conexion.getInstance().getEntity();
+    List<Pedidos> ret = null;
+    //ConsultaPedidos hilo_auxiliar = null;
+
+    @Override
+    public void run() {
+        boolean consulta = true;
         //le puse un ciclo infinito para que desde que se abre la ventana de atención
         //quede consultando los pedidos, esto se termina cuando se cierra el hilo
         //que sería antes de que se cierre la ventana atención
-        while (consulta){
+        while (consulta) {
+            for (int j = 0; j < arregloBotones.length; j++) {
+                JButton botonx = (JButton) arregloBotones[j];
+                ImageIcon icon = new ImageIcon("img/mesa_Libre.png");
+                botonx.setIcon(icon);
+            }
             String QUERY = "SELECT p.* "
                     + "FROM pedidos  p, mesa where p.mesa_id=mesa.id";
-            EntityManager em = Conexion.getInstance().getEntity();
-            List<Pedidos> ret = new ArrayList<Pedidos>();
             em.getTransaction().begin();
             try {
                 ret = em.createNativeQuery(QUERY, Pedidos.class).getResultList();
                 em.getTransaction().commit();
-            
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-                this.stop();
                 em.getTransaction().rollback();
+                break;
             }
-            if (ret.size()>0){
-                for(int i=0; i<ret.size();i++){
-                    Pedidos p = (Pedidos) ret.get(i);
-                    for(int j=0; j<arregloBotones.length;j++){
+
+            if (ret.size() > 0) {
+                for (int j = 0; j < arregloBotones.length; j++) {
+                    for (int i = 0; i < ret.size(); i++) {
+                        Pedidos p = (Pedidos) ret.get(i);
+                        //em.refresh(p);
                         String nombreBoton = "btnMesa" + p.getMesa().getNumeroMesa();
-                        if (nombreBoton.compareTo(arregloBotones[j].getName()) == 0){
+                        if (nombreBoton.compareTo(arregloBotones[j].getName()) == 0) {
                             JButton botonx = (JButton) arregloBotones[j];
-                            ConsultaPedidos hilo_auxiliar = new ConsultaPedidos();
-                            if (p.getEstado().equals(enum_Estado.Pendiente)){
-                                hilo_auxiliar.temporizador(botonx);
-                            }
-                            else if (p.getEstado().equals(enum_Estado.Activo)){
-                                hilo_auxiliar.stop();
-                                ImageIcon icon = new ImageIcon("img/Mesa Atendida.png");
+                            if (p.getEstado().equals(enum_Estado.Pendiente)) {
+                                ImageIcon icon = new ImageIcon("img/mesa_ConPedido.gif");
                                 botonx.setIcon(icon);
-                            }
-                            else if (p.getEstado().equals(enum_Estado.Cancelado)){
-                                hilo_auxiliar.stop();
-                                ImageIcon icon = new ImageIcon("img/Mesa Libre.png");
+                            } else if (p.getEstado().equals(enum_Estado.Activo)) {
+                                ImageIcon icon = new ImageIcon("img/mesa_Atendida.png");
                                 botonx.setIcon(icon);
-                            }
-                            else if (p.getEstado().equals(enum_Estado.Finalizado)){
-                                hilo_auxiliar.stop();
-                                ImageIcon icon = new ImageIcon("img/Mesa Libre.png");
+                                //hilo_auxiliar.stop();
+                                //hilo_auxiliar.interrupt();
+                                //terminarHilo(hilo_auxiliar);
+                                //break;
+                            } else if (p.getEstado().equals(enum_Estado.Cancelado)) {
+                                //hilo_auxiliar.stop();
+                                ImageIcon icon = new ImageIcon("img/mesa_Libre.png");
                                 botonx.setIcon(icon);
-                            }
-                            else {
-                                hilo_auxiliar.stop();
-                                ImageIcon icon = new ImageIcon("img/Mesa Libre.png");
+                                //hilo_auxiliar.interrupt();
+                                //terminarHilo(hilo_auxiliar);
+//                                break;
+                            } else if (p.getEstado().equals(enum_Estado.Finalizado)) {
+                                //hilo_auxiliar.stop();
+                                ImageIcon icon = new ImageIcon("img/mesa_Libre.png");
                                 botonx.setIcon(icon);
+                                //hilo_auxiliar.interrupt();
+                                //terminarHilo(hilo_auxiliar);
+//                                break;
+                            } else {
+                                //hilo_auxiliar.stop();
+                                ImageIcon icon = new ImageIcon("img/mesa_Libre.png");
+                                botonx.setIcon(icon);
+                                //hilo_auxiliar.interrupt();
+                                //terminarHilo(hilo_auxiliar);
+//                                break;
                             }
                         }
                     }
                 }
-            }else{
-                System.out.println("No hay pedidos pendientes");
+            } else {
+                System.out.println("No hay pedidos");
             }
-            
+
             try {
                 ConsultaPedidos.sleep(30000);
             } catch (InterruptedException ex) {
@@ -98,32 +114,8 @@ public class ConsultaPedidos extends Thread {
             }
         }
     }
-    
-    public void conocerBotones(JButton[] arreglo){
+
+    public void conocerBotones(JButton[] arreglo) {
         this.arregloBotones = arreglo;
     }
-    
-    public void temporizador(JButton b){
-        Timer timer;
-        TimerTask tarea;
-        int parpadeo = 1000;
-        
-        tarea = new TimerTask(){
-            @Override
-            public void run() {
-                 if(cambiar){
-                    ImageIcon icon = new ImageIcon("img/Mesa con pedido 1.png");
-                    b.setIcon(icon);
-                    cambiar =false;
-                }else{
-                    ImageIcon icon = new ImageIcon("img/Mesa con pedido 2.png");
-                    b.setIcon(icon);
-                    cambiar =true;
-                }
-            }
-        };
-        timer = new Timer();
-        
-        timer.scheduleAtFixedRate(tarea, 0, parpadeo);
-    }//termina la funcion temporizador
 }//termina la clase
