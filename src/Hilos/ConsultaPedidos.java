@@ -46,8 +46,6 @@ public class ConsultaPedidos extends Thread {
         while (consulta) {
             for (int j = 0; j < arregloBotones.length; j++) {
                 JButton botonx = (JButton) arregloBotones[j];
-                ImageIcon icon = new ImageIcon("img/mesa_Libre.png");
-                botonx.setIcon(icon);
                 botonx.setText(botonx.getName().replace("btnMesa", ""));
                 Font fuenteBotonx = new Font(botonx.getFont().getName(),botonx.getFont().getStyle(), 50);
                 botonx.setFont(fuenteBotonx);
@@ -55,6 +53,8 @@ public class ConsultaPedidos extends Thread {
                 botonx.setHorizontalTextPosition(SwingConstants.CENTER);
                 botonx.setVerticalAlignment(SwingConstants.CENTER);
                 botonx.setVerticalTextPosition(SwingConstants.CENTER);
+                ImageIcon icon = new ImageIcon("img/mesa_Libre.png");
+                botonx.setIcon(icon);
             }
             String QUERY = "SELECT p.* "
                     + "FROM pedidos  p, mesa where p.mesa_id=mesa.id";
@@ -72,7 +72,7 @@ public class ConsultaPedidos extends Thread {
                 for (int j = 0; j < arregloBotones.length; j++) {
                     for (int i = 0; i < ret.size(); i++) {
                         Pedidos p = (Pedidos) ret.get(i);
-                        //em.refresh(p);
+                        em.refresh(p);
                         String nombreBoton = "btnMesa" + p.getMesa().getNumeroMesa();
                         if (nombreBoton.compareTo(arregloBotones[j].getName()) == 0) {
                             JButton botonx = (JButton) arregloBotones[j];
