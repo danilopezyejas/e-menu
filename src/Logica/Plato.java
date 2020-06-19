@@ -44,7 +44,9 @@ public class Plato extends Alimento {
     public void setResenias(List<Resenia> resenias) {
         this.resenias = resenias;
     }
-    
+    public void setResenia(Resenia resenia) {
+        this.resenias.add(resenia);
+    }
     
   
 }

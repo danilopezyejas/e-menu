@@ -9,8 +9,10 @@ import Logica.Alimento;
 import Logica.Bebida;
 import Logica.Categoria;
 import Logica.Plato;
+import Logica.Resenia;
 import Logica.enum_Bebida;
 import java.sql.Blob;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,6 +29,7 @@ public interface IAlimentoController {
     public abstract List<Alimento> listarAlimentos();
     public abstract void modificarAlimento(Alimento a);
     public abstract void eliminarAlimento(Alimento id);
+    public abstract void eliminarResenia(Resenia a) ;
     public abstract Alimento buscarAlimentoPorId(int id);
     public abstract List<Plato> buscarPlatoPorId(int id);
     public abstract List<Alimento> elegirCategoria(Categoria categoria);
@@ -37,6 +40,8 @@ public interface IAlimentoController {
     public abstract void ingresarPuntaje (int puntaje);
     public abstract void ingresarDatos(String nombre, String comentario);
     public abstract List<Plato> listarPlatos();
+    public abstract List<Resenia> listarResenias(int plato);
     public abstract List<Bebida> listarBebidas();
     public abstract List<Categoria> listarCategoria();
+    public abstract void altaResenia(String autor,String descripcion,Date fecha_hora,Plato plato);
 }

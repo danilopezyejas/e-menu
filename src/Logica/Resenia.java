@@ -82,6 +82,14 @@ public class Resenia implements Serializable {
     public void setFecha_hora(Date fecha_hora) {
         this.fecha_hora = fecha_hora;
     }
+
+    public Plato getPlato() {
+        return plato;
+    }
+
+    public void setPlato(Plato plato) {
+        this.plato = plato;
+    }
     
     
     

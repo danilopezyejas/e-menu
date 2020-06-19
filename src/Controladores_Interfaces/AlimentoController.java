@@ -12,10 +12,12 @@ import Logica.Categoria;
 import Logica.Error;
 import Logica.Observaciones;
 import Logica.Plato;
+import Logica.Resenia;
 import Logica.enum_Bebida;
 import Persistencia.Conexion;
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -133,7 +135,10 @@ public class AlimentoController implements IAlimentoController{
             Conexion.getInstance().baja(a);
         }
     }
-
+    @Override
+    public void eliminarResenia(Resenia a) {
+         Conexion.getInstance().baja(a);
+    }
 
     @Override
     public List<Alimento> elegirCategoria(Categoria categoria) {
@@ -249,6 +254,19 @@ public class AlimentoController implements IAlimentoController{
         Conexion.getInstance().alta(plato);
     }
     @Override
+    public void altaResenia(String autor,String descripcion,Date fecha_hora,Plato plato){
+        Resenia resenia = new Resenia(); 
+
+        resenia.setDescipcion(descripcion);
+        resenia.setAutor(autor);
+        resenia.setFecha_hora(fecha_hora);
+        resenia.setPlato(plato);
+
+        
+        plato.setResenia(resenia);
+        Conexion.getInstance().alta(resenia);
+    }
+    @Override
     public void altaBebida(String nom,float pre,String ingred,int cant,enum_Bebida tipo,int tiempoPreparacion, Categoria categoria){
         Bebida bebida=new Bebida(); 
 
@@ -325,4 +343,10 @@ public class AlimentoController implements IAlimentoController{
         return false;
     }
 }
+    @Override
+    public List<Resenia> listarResenias(int plato){
+        List<Resenia> ret = Conexion.getInstance().consultaResenia(plato);
+        return ret;
+    }
+  
 }
