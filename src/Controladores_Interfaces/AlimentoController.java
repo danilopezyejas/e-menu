@@ -134,7 +134,10 @@ public class AlimentoController implements IAlimentoController{
             Conexion.getInstance().baja(a);
         }
     }
-
+    @Override
+    public void eliminarResenia(Resenia a) {
+         Conexion.getInstance().baja(a);
+    }
 
     @Override
     public List<Alimento> elegirCategoria(Categoria categoria) {
@@ -331,4 +334,5 @@ public class AlimentoController implements IAlimentoController{
         List<Resenia> ret = Conexion.getInstance().consultaResenia(plato);
         return ret;
     }
+  
 }

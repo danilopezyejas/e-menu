@@ -28,6 +28,7 @@ public interface IAlimentoController {
     public abstract List<Alimento> listarAlimentos();
     public abstract void modificarAlimento(Alimento a);
     public abstract void eliminarAlimento(Alimento id);
+    public abstract void eliminarResenia(Resenia a) ;
     public abstract Alimento buscarAlimentoPorId(int id);
     public abstract List<Plato> buscarPlatoPorId(int id);
     public abstract List<Alimento> elegirCategoria(Categoria categoria);
