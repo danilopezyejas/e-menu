@@ -12,6 +12,7 @@ import Logica.Plato;
 import Logica.Resenia;
 import Logica.enum_Bebida;
 import java.sql.Blob;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,4 +43,5 @@ public interface IAlimentoController {
     public abstract List<Resenia> listarResenias(int plato);
     public abstract List<Bebida> listarBebidas();
     public abstract List<Categoria> listarCategoria();
+    public abstract void altaResenia(String autor,String descripcion,Date fecha_hora,Plato plato);
 }
