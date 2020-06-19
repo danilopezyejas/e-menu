@@ -9,6 +9,7 @@ import Logica.Alimento;
 import Logica.Bebida;
 import Logica.Categoria;
 import Logica.Plato;
+import Logica.Resenia;
 import Logica.enum_Bebida;
 import java.sql.Blob;
 import java.util.List;
@@ -37,6 +38,7 @@ public interface IAlimentoController {
     public abstract void ingresarPuntaje (int puntaje);
     public abstract void ingresarDatos(String nombre, String comentario);
     public abstract List<Plato> listarPlatos();
+    public abstract List<Resenia> listarResenias(int plato);
     public abstract List<Bebida> listarBebidas();
     public abstract List<Categoria> listarCategoria();
 }

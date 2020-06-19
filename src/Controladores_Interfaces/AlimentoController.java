@@ -12,6 +12,7 @@ import Logica.Categoria;
 import Logica.Error;
 import Logica.Observaciones;
 import Logica.Plato;
+import Logica.Resenia;
 import Logica.enum_Bebida;
 import Persistencia.Conexion;
 import java.sql.Blob;
@@ -325,4 +326,9 @@ public class AlimentoController implements IAlimentoController{
         return false;
     }
 }
+    @Override
+    public List<Resenia> listarResenias(int plato){
+        List<Resenia> ret = Conexion.getInstance().consultaResenia(plato);
+        return ret;
+    }
 }

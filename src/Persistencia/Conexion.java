@@ -13,6 +13,7 @@ import Logica.Mesa;
 import Logica.Pedidos;
 import Logica.Personal;
 import Logica.Plato;
+import Logica.Resenia;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -136,7 +137,26 @@ public Conexion() {
         ret = (Pedidos)query.getSingleResult();
         return ret;
     }
-    
+     public List<Resenia> consultaResenia(int plato) {
+        /*String QUERY = "SELECT * FROM resenia";
+        EntityManager em = Conexion.getInstance().getEntity();
+        Query query = em.createNativeQuery(QUERY, Resenia.class);
+        //query.setParameter(1);
+        List<Resenia> ret;
+        
+        ret = (List<Resenia>)query.getResultList();
+        return ret;*/
+        
+        String QUERY = "SELECT * FROM resenia as c WHERE c.plato_idAlimento=?";
+        EntityManager em = Conexion.getInstance().getEntity();
+        Query query = em.createNativeQuery(QUERY, Resenia.class);
+        query.setParameter(1, plato);
+        List<Resenia> ret;
+ 
+        ret = (List<Resenia>)query.getResultList();
+        return ret;
+  
+    }
     public Categoria buscarCategoriaId(int id) throws Error{
         String QUERY = "SELECT * FROM categoria as c WHERE c.id=?";
         EntityManager em = Conexion.getInstance().getEntity();
