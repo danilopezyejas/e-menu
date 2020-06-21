@@ -39,7 +39,6 @@ public class Resenia implements Serializable {
     private Date fecha_hora;
     @ManyToOne
     private Plato plato;
-    private int idPlato;
 
     public Resenia() {
     }
@@ -98,12 +97,5 @@ public class Resenia implements Serializable {
         return serialVersionUID;
     }
 
-    public int getIdPlato() {
-        return idPlato;
-    }
-
-    public void setIdPlato(int idPlato) {
-        this.idPlato = idPlato;
-    }
     
 }
