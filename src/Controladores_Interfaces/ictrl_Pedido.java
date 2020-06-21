@@ -30,4 +30,5 @@ public interface ictrl_Pedido {
     public abstract void altaMesa(Mesa mesa);
     public abstract List<Pedidos> consultaPedidosMesa(int idMesa);
     public abstract void agregarObservacion(String observacion);
+    public abstract Pedidos obtenerUltimoPedidoPorMesa(Long id);
 }
