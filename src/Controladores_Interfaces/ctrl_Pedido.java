@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -217,5 +218,19 @@ public class ctrl_Pedido implements ictrl_Pedido {
         }
     }
 
-
+    public Pedidos obtenerUltimoPedidoPorMesa(Long id){
+        String QUERY = "SELECT * FROM e_menu.pedidos p inner join mesa m on p.mesa_id=m.id "
+                + "where numeroMesa=? and estado = 0 order by fecha_hora desc limit 1;";
+        EntityManager em = Conexion.getInstance().getEntity();
+        Query query = em.createNativeQuery(QUERY, Pedidos.class);
+        query.setParameter(1, id);
+        Pedidos ret;
+        
+        try {
+            ret = (Pedidos)query.getSingleResult();
+        } catch (Exception e) {
+            ret = null;
+        }
+         return ret;
+    }
 }

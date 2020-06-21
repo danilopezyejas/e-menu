@@ -31,7 +31,7 @@ public class PersonalController implements IPersonalController{
         Personal p = null;
         em.getTransaction().begin();
         try {
-            p = (Personal) em.createNativeQuery("SELECT * FROM Personal WHERE cedula=" + ci, Personal.class).getSingleResult();
+            p = (Personal) em.createNativeQuery("SELECT * FROM personal WHERE cedula=" + ci, Personal.class).getSingleResult();
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
