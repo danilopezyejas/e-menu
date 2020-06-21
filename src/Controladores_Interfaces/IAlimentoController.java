@@ -40,8 +40,9 @@ public interface IAlimentoController {
     public abstract void ingresarPuntaje (int puntaje);
     public abstract void ingresarDatos(String nombre, String comentario);
     public abstract List<Plato> listarPlatos();
+    public abstract List<Resenia> consultaTodasResenia();
     public abstract List<Resenia> listarResenias(int plato);
     public abstract List<Bebida> listarBebidas();
     public abstract List<Categoria> listarCategoria();
-    public abstract void altaResenia(String autor,String descripcion,Date fecha_hora,Plato plato);
+    public abstract String altaResenia(String autor,String descripcion,Date fecha_hora,int plato);
 }

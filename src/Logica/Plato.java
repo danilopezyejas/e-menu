@@ -25,6 +25,7 @@ public class Plato extends Alimento {
     private List<Resenia> resenias;
     
     public Plato() {
+        resenias= null;
     }
 
     public int getCalorias() {
