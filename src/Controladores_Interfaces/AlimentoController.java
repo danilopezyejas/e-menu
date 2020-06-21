@@ -254,17 +254,34 @@ public class AlimentoController implements IAlimentoController{
         Conexion.getInstance().alta(plato);
     }
     @Override
-    public void altaResenia(String autor,String descripcion,Date fecha_hora,Plato plato){
+    public String altaResenia(String autor,String descripcion,Date fecha_hora,int plato){
+        String ret="vengo del controller, hola--";
         Resenia resenia = new Resenia(); 
 
-        resenia.setDescipcion(descripcion);
-        resenia.setAutor(autor);
-        resenia.setFecha_hora(fecha_hora);
-        resenia.setPlato(plato);
+        resenia.setDescipcion(autor);
+        resenia.setAutor(descripcion);
 
-        
-        plato.setResenia(resenia);
         Conexion.getInstance().alta(resenia);
+        
+        
+        EntityManager em = Conexion.getInstance().getEntity();
+        em.getTransaction().begin();
+        try {
+            em.createNativeQuery(
+            "UPDATE resenia SET plato_idAlimento =" +plato+""
+             + " WHERE resenia.autor ='"+descripcion+"'"
+             + " AND resenia.descipcion ='"+autor+"'"
+            ).executeUpdate();
+            
+            em.getTransaction().commit();
+            ret="--anda--";
+        } catch (Exception e) {
+            ret="--no anda--";
+            em.getTransaction().rollback();
+        }
+
+
+        return ret;
     }
     @Override
     public void altaBebida(String nom,float pre,String ingred,int cant,enum_Bebida tipo,int tiempoPreparacion, Categoria categoria){
@@ -311,6 +328,11 @@ public class AlimentoController implements IAlimentoController{
     @Override
     public List<Plato> listarPlatos(){
         List<Plato> ret = Conexion.getInstance().consultaPlato();
+        return ret;
+    }
+    @Override
+    public List<Resenia> consultaTodasResenia(){
+        List<Resenia> ret = Conexion.getInstance().consultaTodasResenia();
         return ret;
     }
      @Override

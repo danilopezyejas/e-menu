@@ -100,6 +100,22 @@ public Conexion() {
         List<Plato> ret = em.createQuery(QUERY, Plato.class).getResultList();
         return ret;
     }
+    public List<Resenia> consultaTodasResenia() {
+        String QUERY = "Select a From Resenia a";
+        EntityManager em = Conexion.getInstance().getEntity();
+        List<Resenia> ret = em.createQuery(QUERY, Resenia.class).getResultList();
+        return ret;
+    }        
+    public Plato consultaPlatoEspesifico(int id) {
+        String QUERY = "SELECT * FROM Plato as c WHERE c.idAlimento=?";
+        EntityManager em = Conexion.getInstance().getEntity();
+        Query query = em.createNativeQuery(QUERY, Plato.class);
+        query.setParameter(1, id);
+        Plato ret;
+        ret = (Plato)query.getSingleResult();
+        return ret;
+        
+    }
      public List<Bebida> consultaBebida() {
         String QUERY = "Select a From Bebida a";
         EntityManager em = Conexion.getInstance().getEntity();
