@@ -9,6 +9,7 @@ import Logica.Pedidos;
 import Logica.enum_Estado;
 import Persistencia.Conexion;
 import java.awt.Color;
+import java.awt.Font;
 import static java.lang.Thread.sleep;
 import java.util.AbstractList;
 import java.util.ArrayList;
@@ -19,8 +20,10 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -43,6 +46,13 @@ public class ConsultaPedidos extends Thread {
         while (consulta) {
             for (int j = 0; j < arregloBotones.length; j++) {
                 JButton botonx = (JButton) arregloBotones[j];
+                botonx.setText(botonx.getName().replace("btnMesa", ""));
+                Font fuenteBotonx = new Font(botonx.getFont().getName(),botonx.getFont().getStyle(), 50);
+                botonx.setFont(fuenteBotonx);
+                botonx.setHorizontalAlignment(SwingConstants.CENTER);
+                botonx.setHorizontalTextPosition(SwingConstants.CENTER);
+                botonx.setVerticalAlignment(SwingConstants.CENTER);
+                botonx.setVerticalTextPosition(SwingConstants.CENTER);
                 ImageIcon icon = new ImageIcon("img/mesa_Libre.png");
                 botonx.setIcon(icon);
             }
@@ -62,7 +72,7 @@ public class ConsultaPedidos extends Thread {
                 for (int j = 0; j < arregloBotones.length; j++) {
                     for (int i = 0; i < ret.size(); i++) {
                         Pedidos p = (Pedidos) ret.get(i);
-                        //em.refresh(p);
+                        em.refresh(p);
                         String nombreBoton = "btnMesa" + p.getMesa().getNumeroMesa();
                         if (nombreBoton.compareTo(arregloBotones[j].getName()) == 0) {
                             JButton botonx = (JButton) arregloBotones[j];
