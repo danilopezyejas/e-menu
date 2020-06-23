@@ -370,5 +370,17 @@ public class AlimentoController implements IAlimentoController{
         List<Resenia> ret = Conexion.getInstance().consultaResenia(plato);
         return ret;
     }
+    @Override
+    public void refresh(Plato plato){
+        EntityManager em = Conexion.getInstance().getEntity();
+        em.getTransaction().begin();
+        try {
+            em.refresh(plato);
+            em.getTransaction().commit();
+        }catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        }
+    }
   
 }
