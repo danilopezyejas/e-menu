@@ -10,7 +10,7 @@ package Logica;
  * @author vanessa
  */
 public enum enum_Estado {
-    Pendiente, Activo, Cancelado,Finalizado
+    Pendiente, Activo, Pagar,Finalizado, Cancelado
 }
 //Cuando el cliente realiza un pedido y el mozo no lo a aceptado esta en PENDIENTE
 //Cuando el mozo acepto el pedido y el cliente esta esperando que le lleven la comida esta en ACTIVO
