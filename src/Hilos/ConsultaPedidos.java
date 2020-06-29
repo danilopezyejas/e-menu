@@ -10,6 +10,7 @@ import Logica.enum_Estado;
 import Persistencia.Conexion;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import static java.lang.Thread.sleep;
 import java.util.AbstractList;
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class ConsultaPedidos extends Thread {
                 botonx.setHorizontalTextPosition(SwingConstants.CENTER);
                 botonx.setVerticalAlignment(SwingConstants.CENTER);
                 botonx.setVerticalTextPosition(SwingConstants.CENTER);
-                ImageIcon icon = new ImageIcon("img/mesa_Libre.png");
+                ImageIcon icon = new ImageIcon (new ImageIcon("img/mesa_Libre.png").getImage().getScaledInstance(botonx.getHeight()-2, botonx.getHeight()-2, Image.SCALE_DEFAULT));
                 botonx.setIcon(icon);
             }
             String QUERY = "SELECT p.* "
@@ -77,10 +78,13 @@ public class ConsultaPedidos extends Thread {
                         if (nombreBoton.compareTo(arregloBotones[j].getName()) == 0) {
                             JButton botonx = (JButton) arregloBotones[j];
                             if (p.getEstado().equals(enum_Estado.Pendiente)) {
-                                ImageIcon icon = new ImageIcon("img/mesa_ConPedido.gif");
+                                ImageIcon icon = new ImageIcon (new ImageIcon("img/mesa_ConPedido.gif").getImage().getScaledInstance(botonx.getHeight()-2, botonx.getHeight()-2, Image.SCALE_DEFAULT));
+//                                 Image aux = new ImageIcon(fotoPerfil).getImage();
+//            ImageIcon perfil = new ImageIcon(aux.getScaledInstance(150, 189, Image.SCALE_DEFAULT));
                                 botonx.setIcon(icon);
                             } else if (p.getEstado().equals(enum_Estado.Activo)) {
-                                ImageIcon icon = new ImageIcon("img/mesa_Atendida.png");
+                                //ImageIcon icon = new ImageIcon("img/mesa_Atendida.png");
+                                ImageIcon icon = new ImageIcon (new ImageIcon("img/mesa_Atendida.png").getImage().getScaledInstance(botonx.getHeight()-2, botonx.getHeight()-2, Image.SCALE_DEFAULT));
                                 botonx.setIcon(icon);
                                 //hilo_auxiliar.stop();
                                 //hilo_auxiliar.interrupt();
@@ -88,21 +92,24 @@ public class ConsultaPedidos extends Thread {
                                 //break;
                             } else if (p.getEstado().equals(enum_Estado.Cancelado)) {
                                 //hilo_auxiliar.stop();
-                                ImageIcon icon = new ImageIcon("img/mesa_Libre.png");
+                                //ImageIcon icon = new ImageIcon("img/mesa_Libre.png");
+                                ImageIcon icon = new ImageIcon (new ImageIcon("img/mesa_Libre.png").getImage().getScaledInstance(botonx.getHeight()-2, botonx.getHeight()-2, Image.SCALE_DEFAULT));
                                 botonx.setIcon(icon);
                                 //hilo_auxiliar.interrupt();
                                 //terminarHilo(hilo_auxiliar);
 //                                break;
                             } else if (p.getEstado().equals(enum_Estado.Finalizado)) {
                                 //hilo_auxiliar.stop();
-                                ImageIcon icon = new ImageIcon("img/mesa_Libre.png");
+                                //ImageIcon icon = new ImageIcon("img/mesa_Libre.png");
+                                ImageIcon icon = new ImageIcon (new ImageIcon("img/mesa_Libre.png").getImage().getScaledInstance(botonx.getHeight()-2, botonx.getHeight()-2, Image.SCALE_DEFAULT));
                                 botonx.setIcon(icon);
                                 //hilo_auxiliar.interrupt();
                                 //terminarHilo(hilo_auxiliar);
 //                                break;
                             } else {
                                 //hilo_auxiliar.stop();
-                                ImageIcon icon = new ImageIcon("img/mesa_Libre.png");
+                                //ImageIcon icon = new ImageIcon("img/mesa_Libre.png");
+                                ImageIcon icon = new ImageIcon (new ImageIcon("img/mesa_Libre.png").getImage().getScaledInstance(botonx.getHeight()-2, botonx.getHeight()-2, Image.SCALE_DEFAULT));
                                 botonx.setIcon(icon);
                                 //hilo_auxiliar.interrupt();
                                 //terminarHilo(hilo_auxiliar);
