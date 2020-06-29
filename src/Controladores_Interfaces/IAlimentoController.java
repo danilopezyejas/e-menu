@@ -44,5 +44,6 @@ public interface IAlimentoController {
     public abstract List<Resenia> listarResenias(int plato);
     public abstract List<Bebida> listarBebidas();
     public abstract List<Categoria> listarCategoria();
+    public abstract void refresh(Plato plato);
     public abstract String altaResenia(String autor,String descripcion,Date fecha_hora,int plato);
 }

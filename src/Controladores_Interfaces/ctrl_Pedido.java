@@ -91,7 +91,7 @@ public class ctrl_Pedido implements ictrl_Pedido {
     @Override
     public void solicitarPago(Long id) {
         Pedidos pedido = Conexion.getInstance().buscarPedidoId(id);
-        pedido.setEstado(enum_Estado.Finalizado);
+        pedido.setEstado(enum_Estado.Pagar);
         Conexion.getInstance().modificar(pedido);
     }
 
