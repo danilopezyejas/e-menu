@@ -21,4 +21,5 @@ public interface IPersonalController {
     public abstract void bajaPersonal(String personal);
     public abstract void ingresarDatosPersonal(String nombre, String apellido, String ci);
     public abstract void ComprobarDatos(String nombre,String apellido,String cedula) throws Error;
+    public abstract Personal buscarPersonalPorId(int idPersonal);
 }
