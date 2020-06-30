@@ -218,12 +218,28 @@ public class ctrl_Pedido implements ictrl_Pedido {
         }
     }
 
-    public Pedidos obtenerUltimoPedidoPorMesa(Long id){
+    public Pedidos obtenerUltimoPedidoPendientePorMesa(int nromesa){
         String QUERY = "SELECT * FROM e_menu.pedidos p inner join mesa m on p.mesa_id=m.id "
                 + "where numeroMesa=? and estado = 0 order by fecha_hora desc limit 1;";
         EntityManager em = Conexion.getInstance().getEntity();
         Query query = em.createNativeQuery(QUERY, Pedidos.class);
-        query.setParameter(1, id);
+        query.setParameter(1, nromesa);
+        Pedidos ret;
+        
+        try {
+            ret = (Pedidos)query.getSingleResult();
+        } catch (Exception e) {
+            ret = null;
+        }
+         return ret;
+    }
+    
+    public Pedidos obtenerUltimoPedidoSinPagarPorMesa(int nromesa){
+        String QUERY = "SELECT * FROM e_menu.pedidos p inner join mesa m on p.mesa_id=m.id "
+                + "where numeroMesa=? and estado = 2 order by fecha_hora desc limit 1;";
+        EntityManager em = Conexion.getInstance().getEntity();
+        Query query = em.createNativeQuery(QUERY, Pedidos.class);
+        query.setParameter(1, nromesa);
         Pedidos ret;
         
         try {
