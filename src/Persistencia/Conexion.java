@@ -10,6 +10,7 @@ import Logica.Bebida;
 import Logica.Categoria;
 import Logica.Error;
 import Logica.Mesa;
+import Logica.Pago;
 import Logica.Pedidos;
 import Logica.Personal;
 import Logica.Plato;
@@ -175,6 +176,19 @@ public Conexion() {
             throw new Logica.Error("Ha ocurrido un error con la categoria primaria.");
         }
         ret = (Categoria)query.getSingleResult();
+        return ret;
+    }
+    
+    public Pago buscarPago(Long idPedido){
+        String QUERY = "SELECT * FROM pago as p WHERE p.pedido_id=?";
+        EntityManager em = Conexion.getInstance().getEntity();
+        Query query = em.createNativeQuery(QUERY, Pago.class);
+        query.setParameter(1, idPedido);
+        Pago ret;
+        if(query.getResultList().size() != 1){
+            ret = null;
+        }
+        ret = (Pago)query.getSingleResult();
         return ret;
     }
 }
