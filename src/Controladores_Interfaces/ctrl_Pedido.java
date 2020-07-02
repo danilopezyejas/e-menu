@@ -9,8 +9,10 @@ import Logica.Alimento;
 import Logica.Categoria;
 import Logica.Mesa;
 import Logica.Observaciones;
+import Logica.Pago;
 import Logica.Pedidos;
 import Logica.enum_Estado;
+import Logica.enum_Pago;
 import Persistencia.Conexion;
 import java.util.ArrayList;
 import java.util.Date;
@@ -89,8 +91,13 @@ public class ctrl_Pedido implements ictrl_Pedido {
     }
 
     @Override
-    public void solicitarPago(Long id) {
+    public void solicitarPago(Long id, String tipoPago) {
+        enum_Pago metodoPago;
+        metodoPago = (tipoPago.equals("tarjeta"))?enum_Pago.tarjeta:enum_Pago.efectivo;
         Pedidos pedido = Conexion.getInstance().buscarPedidoId(id);
+        Pago pago = Conexion.getInstance().buscarPago(id);
+        pago.setMetodoPago(metodoPago);
+        Conexion.getInstance().modificar(pago);
         pedido.setEstado(enum_Estado.Pagar);
         Conexion.getInstance().modificar(pedido);
     }
@@ -210,11 +217,11 @@ public class ctrl_Pedido implements ictrl_Pedido {
     }
 
     @Override
-    public void solicitarPagarTodo(int numMesa) {
+    public void solicitarPagarTodo(int numMesa, String tipoPago) {
         List<Pedidos> pedidos = new ArrayList<>();
         pedidos = consultaPedidosMesa(numMesa);
         for(Pedidos p : pedidos){
-            solicitarPago(p.getId());
+            solicitarPago(p.getId(), tipoPago);
         }
     }
 

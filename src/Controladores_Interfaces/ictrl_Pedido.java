@@ -17,8 +17,8 @@ import java.util.List;
 public interface ictrl_Pedido {
     public abstract void confirmarPedido(String contra);
     public abstract boolean escanearCodigo(int idMesa);
-    public abstract void solicitarPago(Long idPedido);
-    public abstract void solicitarPagarTodo(int numMesa);
+    public abstract void solicitarPago(Long idPedido, String tipoPago);
+    public abstract void solicitarPagarTodo(int numMesa, String tipoPago);
     public abstract HashMap<String, String> listarCategorias();
     public abstract void confirmarPedido(int tipo_pago);
     public abstract boolean pagar();
