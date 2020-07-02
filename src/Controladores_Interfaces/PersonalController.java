@@ -119,4 +119,17 @@ public class PersonalController implements IPersonalController{
             }
         }
     }
+    
+    public Personal buscarPersonalPorId(int id) {
+        EntityManager em = Conexion.getInstance().getEntity();
+        Personal p = null;
+        em.getTransaction().begin();
+        try {
+            p = (Personal) em.createNativeQuery("SELECT * FROM personal WHERE id=" + id, Personal.class).getSingleResult();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        return p;
+    }
 }
