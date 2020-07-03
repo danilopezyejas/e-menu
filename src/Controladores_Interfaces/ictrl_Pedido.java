@@ -6,9 +6,11 @@
 package Controladores_Interfaces;
 
 import Logica.Mesa;
+import Logica.Observaciones;
 import Logica.Pedidos;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Observable;
 
 /**
  *
@@ -32,4 +34,5 @@ public interface ictrl_Pedido {
     public abstract void agregarObservacion(String observacion);
     public abstract Pedidos obtenerUltimoPedidoPendientePorMesa(int id);
     public abstract Pedidos obtenerUltimoPedidoSinPagarPorMesa(int id);
+    public abstract List<Observaciones> obtenerObservacionesPorPedido( int id);
 }
