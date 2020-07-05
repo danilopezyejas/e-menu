@@ -46,8 +46,8 @@ public class ConsultaPedidos extends Thread {
                 botonx.setHorizontalTextPosition(SwingConstants.CENTER);
                 botonx.setVerticalAlignment(SwingConstants.CENTER);
                 botonx.setVerticalTextPosition(SwingConstants.CENTER);
-                ImageIcon icon = new ImageIcon (new ImageIcon("img/mesa_Libre.png").getImage().getScaledInstance(botonx.getHeight()-20, botonx.getHeight()-20, Image.SCALE_DEFAULT));
-                botonx.setIcon(icon);
+//                ImageIcon icon = new ImageIcon (new ImageIcon("img/mesa_Libre.png").getImage().getScaledInstance(botonx.getHeight()-20, botonx.getHeight()-20, Image.SCALE_DEFAULT));
+//                botonx.setIcon(icon);
             }
             String QUERY = "SELECT p.* "
                     + "FROM pedidos  p, mesa where p.mesa_id=mesa.id";
