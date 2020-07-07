@@ -50,7 +50,7 @@ public class ConsultaPedidos extends Thread {
         }
         while (consulta) {
             String QUERY = "SELECT p.* "
-                    + "FROM pedidos  p, mesa where p.mesa_id=mesa.id";
+                    + "FROM pedidos  p, mesa where p.mesa_id=mesa.id LIMIT 100";
             em.getTransaction().begin();
             try {
                 ret = em.createNativeQuery(QUERY, Pedidos.class).getResultList();

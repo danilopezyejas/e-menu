@@ -267,4 +267,19 @@ public class ctrl_Pedido implements ictrl_Pedido {
         ret = query.getResultList();
         return ret;
     }
+    
+    public List<Pedidos> obtenerListaPedidosPendientesPorMesa(int nromesa){
+        EntityManager em = Conexion.getInstance().getEntity();
+        List<Pedidos> lista = null;
+        String query = "SELECT * FROM e_menu.pedidos p inner join mesa m on p.mesa_id=m.id "
+                + "where numeroMesa="+nromesa+" and estado = 0 order by fecha_hora desc";
+        em.getTransaction().begin();
+        try {
+            lista = em.createNativeQuery(query, Pedidos.class).getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        return lista;
+    }
 }
