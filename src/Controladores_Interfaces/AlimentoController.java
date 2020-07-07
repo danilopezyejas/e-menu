@@ -17,6 +17,7 @@ import Logica.enum_Bebida;
 import Persistencia.Conexion;
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -260,7 +261,8 @@ public class AlimentoController implements IAlimentoController{
 
         resenia.setDescipcion(autor);
         resenia.setAutor(descripcion);
-
+        resenia.setFecha_hora(Calendar.getInstance().getTime());
+        
         Conexion.getInstance().alta(resenia);
         
         
