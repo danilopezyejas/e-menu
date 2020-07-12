@@ -35,4 +35,5 @@ public interface ictrl_Pedido {
     public abstract Pedidos obtenerUltimoPedidoPendientePorMesa(int id);
     public abstract Pedidos obtenerUltimoPedidoSinPagarPorMesa(int id);
     public abstract List<Observaciones> obtenerObservacionesPorPedido( int id);
+    public abstract List<Pedidos> obtenerListaPedidosPendientesPorMesa(int id);
 }
