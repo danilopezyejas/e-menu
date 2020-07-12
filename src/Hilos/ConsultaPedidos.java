@@ -36,19 +36,19 @@ public class ConsultaPedidos extends Thread {
         //le puse un ciclo infinito para que desde que se abre la ventana de atención
         //quede consultando los pedidos, esto se termina cuando se cierra el hilo
         //que sería antes de que se cierre la ventana atención
+        for (int j = 0; j < arregloBotones.length; j++) {
+            JButton botonx = (JButton) arregloBotones[j];
+            botonx.setText(botonx.getName().replace("btnMesa", ""));
+            Font fuenteBotonx = new Font(botonx.getFont().getName(),botonx.getFont().getStyle(), (botonx.getHeight()/3));
+            botonx.setFont(fuenteBotonx);
+            botonx.setHorizontalAlignment(SwingConstants.CENTER);
+            botonx.setHorizontalTextPosition(SwingConstants.CENTER);
+            botonx.setVerticalAlignment(SwingConstants.CENTER);
+            botonx.setVerticalTextPosition(SwingConstants.CENTER);
+            //ImageIcon icon = new ImageIcon (new ImageIcon("img/mesa_Libre.png").getImage().getScaledInstance(botonx.getHeight()-20, botonx.getHeight()-20, Image.SCALE_DEFAULT));
+            //botonx.setIcon(icon);
+        }
         while (consulta) {
-            for (int j = 0; j < arregloBotones.length; j++) {
-                JButton botonx = (JButton) arregloBotones[j];
-                botonx.setText(botonx.getName().replace("btnMesa", ""));
-                Font fuenteBotonx = new Font(botonx.getFont().getName(),botonx.getFont().getStyle(), (botonx.getHeight()/3));
-                botonx.setFont(fuenteBotonx);
-                botonx.setHorizontalAlignment(SwingConstants.CENTER);
-                botonx.setHorizontalTextPosition(SwingConstants.CENTER);
-                botonx.setVerticalAlignment(SwingConstants.CENTER);
-                botonx.setVerticalTextPosition(SwingConstants.CENTER);
-//                ImageIcon icon = new ImageIcon (new ImageIcon("img/mesa_Libre.png").getImage().getScaledInstance(botonx.getHeight()-20, botonx.getHeight()-20, Image.SCALE_DEFAULT));
-//                botonx.setIcon(icon);
-            }
             String QUERY = "SELECT p.* "
                     + "FROM pedidos  p, mesa where p.mesa_id=mesa.id";
             em.getTransaction().begin();

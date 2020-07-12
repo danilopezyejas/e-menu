@@ -256,4 +256,15 @@ public class ctrl_Pedido implements ictrl_Pedido {
         }
          return ret;
     }
+
+    @Override
+    public List<Observaciones> obtenerObservacionesPorPedido(int id) {
+        String QUERY = "SELECT * FROM observaciones WHERE pedido_id=" + id;
+        EntityManager em = Conexion.getInstance().getEntity();
+        Query query = em.createNativeQuery(QUERY, Observaciones.class);
+        //query.setParameter(0, id);
+        List<Observaciones> ret = new ArrayList<>();
+        ret = query.getResultList();
+        return ret;
+    }
 }
