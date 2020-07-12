@@ -262,7 +262,7 @@ public class AlimentoController implements IAlimentoController{
         resenia.setDescipcion(autor);
         resenia.setAutor(descripcion);
         resenia.setFecha_hora(Calendar.getInstance().getTime());
-        
+        //System.out.println(Calendar.getInstance().getTime());
         Conexion.getInstance().alta(resenia);
         
         
