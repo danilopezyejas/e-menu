@@ -89,9 +89,10 @@ public Conexion() {
         return ret;
     }
     public List<Alimento> consultaAlimentos() {
-    String QUERY = "Select * From alimento ";
+    String QUERY = "SELECT a FROM Alimento a";
     EntityManager em = Conexion.getInstance().getEntity();
-    List<Alimento> ret = em.createQuery(QUERY, Alimento.class).getResultList();
+    Query query = em.createQuery(QUERY, Alimento.class);
+    List<Alimento> ret = (List<Alimento>)query.getResultList();
     return ret;
     }
     
