@@ -44,6 +44,7 @@ public class Alimento implements Serializable {
     private String ingredientes;   
     private int tiempoPreparacion;   
     private boolean activo;
+    private int calorias;
     
     public Long getId() {
         return idAlimento;
@@ -145,4 +146,13 @@ public class Alimento implements Serializable {
         Alimento ret = (Alimento) em.createQuery(QUERY, Alimento.class).setParameter("id", id).getResultList();
         return ret;
     }
+
+    public int getCalorias() {
+        return calorias;
+    }
+
+    public void setCalorias(int calorias) {
+        this.calorias = calorias;
+    }
+    
 }

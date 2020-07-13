@@ -35,6 +35,7 @@ public class Plato extends Alimento {
    
 
     public void setCalorias(int calorias) {
+        super.setCalorias(calorias);
         this.calorias = calorias;
     }
 
