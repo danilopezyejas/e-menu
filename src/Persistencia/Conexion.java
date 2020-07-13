@@ -137,7 +137,7 @@ public Conexion() {
         return ret;
     }
     public List<Pedidos> consultaPedidosMesa(int numMesa){
-        String QUERY = "SELECT p.* FROM pedidos as p, mesa as m WHERE p.mesa_id=m.id AND (p.estado = 1 OR p.estado = 0) AND m.numeroMesa=?";
+        String QUERY = "SELECT p.* FROM pedidos as p, mesa as m WHERE p.mesa_id=m.id AND p.estado = 1 AND m.numeroMesa=?";
         EntityManager em = Conexion.getInstance().getEntity();
         Query query = em.createNativeQuery(QUERY, Pedidos.class);
         query.setParameter(1, numMesa);
