@@ -46,4 +46,5 @@ public interface IAlimentoController {
     public abstract List<Categoria> listarCategoria();
     public abstract void refresh(Plato plato);
     public abstract String altaResenia(String autor,String descripcion,Date fecha_hora,int plato);
+    public abstract void eliminarCategoria(Categoria categoria);
 }

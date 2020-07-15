@@ -35,6 +35,7 @@ public class Categoria implements Serializable {
     private Blob imagen;
     private int cantAdicionales;
     private boolean mostrar;
+    private boolean borrada;
     
     @OneToOne
     private Categoria secundaria;
@@ -123,6 +124,7 @@ public class Categoria implements Serializable {
         this.nombre = nombre;
         this.imagen = imagen;
         this.mostrar =  true;
+        this.borrada = false;
     }
 
     public void setSecundaria(Categoria secundaria) {
@@ -147,6 +149,14 @@ public class Categoria implements Serializable {
 
     public void setMostrar(boolean mostrar) {
         this.mostrar = mostrar;
+    }
+
+    public void setBorrada(boolean borrada) {
+        this.borrada = borrada;
+    }
+
+    public boolean isBorrada() {
+        return borrada;
     }
     
 }

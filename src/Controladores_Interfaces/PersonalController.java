@@ -46,7 +46,9 @@ public class PersonalController implements IPersonalController{
 
     @Override
     public void bajaPersonal(String ci) {
-        Conexion.getInstance().baja(buscarPersonal(ci));
+        Personal personal = buscarPersonal(ci);
+        personal.setBorrada(true);
+        Conexion.getInstance().modificar(personal);
     }
 
     @Override

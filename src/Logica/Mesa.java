@@ -36,6 +36,7 @@ public class Mesa implements Serializable {
     private Blob foto;
     @OneToMany(mappedBy = "mesa")
     private List<Pedidos> pedidoss;
+    private boolean borrada;
     
     public Long getId() {
         return id;
@@ -76,6 +77,7 @@ public class Mesa implements Serializable {
     public Mesa(int numeroMesa, Blob foto) {
         this.numeroMesa = numeroMesa;
         this.foto = foto;
+        this.borrada = false;
     }
 
     public static long getSerialVersionUID() {
@@ -96,6 +98,22 @@ public class Mesa implements Serializable {
 
     public void setFoto(Blob foto) {
         this.foto = foto;
+    }
+
+    public List<Pedidos> getPedidoss() {
+        return pedidoss;
+    }
+
+    public boolean isBorrada() {
+        return borrada;
+    }
+
+    public void setPedidoss(List<Pedidos> pedidoss) {
+        this.pedidoss = pedidoss;
+    }
+
+    public void setBorrada(boolean borrada) {
+        this.borrada = borrada;
     }
     
     

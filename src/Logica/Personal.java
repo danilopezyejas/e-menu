@@ -28,11 +28,12 @@ public class Personal {
     private String cedula;
     @OneToMany(mappedBy = "personal")
     private List<Pedidos> pedidoss;
+    private boolean borrada;
     
     public Personal(){}
     
     public Personal(String nombre,String apellido,String cedula){
-        
+        this.borrada = false;
         this.nombre=nombre;
         this.apellido=apellido;
         this.cedula=cedula;
@@ -69,5 +70,20 @@ public class Personal {
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
-    
+
+    public void setPedidoss(List<Pedidos> pedidoss) {
+        this.pedidoss = pedidoss;
+    }
+
+    public void setBorrada(boolean borrada) {
+        this.borrada = borrada;
+    }
+
+    public List<Pedidos> getPedidoss() {
+        return pedidoss;
+    }
+
+    public boolean isBorrada() {
+        return borrada;
+    }
 }

@@ -82,18 +82,23 @@ public Conexion() {
         }
     }
     public List<Personal> consultarPersonal() {
-        String QUERY = "Select a From Personal a";
+        String QUERY = "Select * From Personal where borrada != true";
         EntityManager em = Conexion.getInstance().getEntity();
-        List<Personal> ret = em.createQuery(QUERY, Personal.class).getResultList();
-        //System.out.println("num of personal:" + ret.size());
+        List<Personal> ret = em.createNativeQuery(QUERY, Personal.class).getResultList();
         return ret;
     }
     public List<Alimento> consultaAlimentos() {
-    String QUERY = "SELECT a FROM Alimento a";
-    EntityManager em = Conexion.getInstance().getEntity();
-    Query query = em.createQuery(QUERY, Alimento.class);
-    List<Alimento> ret = (List<Alimento>)query.getResultList();
-    return ret;
+        EntityManager em = Conexion.getInstance().getEntity();
+        List<Alimento> ret = null;
+        try{
+            String QUERY = "Select * , 1 as clazz_, From Alimento ";
+            em.getTransaction().begin();
+            ret = em.createNativeQuery(QUERY, Alimento.class).getResultList();
+            em.getTransaction().commit();
+        }catch(Exception e ){
+            em.getTransaction().rollback();
+        }
+        return ret;
     }
     
     public List<Plato> consultaPlato() {
@@ -125,15 +130,15 @@ public Conexion() {
          return ret;
     }
     public List<Categoria> consultarCategoria() {
-        String QUERY = "Select a From Categoria a";
+        String QUERY = "Select * From Categoria where borrada != true";
         EntityManager em = Conexion.getInstance().getEntity();
-        List<Categoria> ret = em.createQuery(QUERY, Categoria.class).getResultList();
+        List<Categoria> ret = em.createNativeQuery(QUERY, Categoria.class).getResultList();
         return ret;
     }
     public List<Mesa> consultaMesas(){
-        String QUERY = "Select a From Mesa a";
+        String QUERY = "Select * From Mesa where borrada != true";
         EntityManager em = Conexion.getInstance().getEntity();
-        List<Mesa> ret = em.createQuery(QUERY, Mesa.class).getResultList();
+        List<Mesa> ret = em.createNativeQuery(QUERY, Mesa.class).getResultList();
         return ret;
     }
     public List<Pedidos> consultaPedidosMesa(int numMesa){

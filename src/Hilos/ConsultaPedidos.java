@@ -49,8 +49,7 @@ public class ConsultaPedidos extends Thread {
             //botonx.setIcon(icon);
         }
         while (consulta) {
-            String QUERY = "SELECT p.* "
-                    + "FROM pedidos  p, mesa where p.mesa_id=mesa.id LIMIT 100";
+            String QUERY = "SELECT * FROM (SELECT p.* FROM pedidos p, mesa where p.mesa_id=mesa.id ORDER BY `p`.`fecha_hora` DESC LIMIT 100) sub ORDER BY id ASC ";
             em.getTransaction().begin();
             try {
                 ret = em.createNativeQuery(QUERY, Pedidos.class).getResultList();

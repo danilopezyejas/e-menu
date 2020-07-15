@@ -129,12 +129,8 @@ public class AlimentoController implements IAlimentoController{
 
     @Override
     public void eliminarAlimento(Alimento a) {
-        if(a.isActivo()){
-            a.setActivo(false);
-            Conexion.getInstance().modificar(a);
-        }else{
-            Conexion.getInstance().baja(a);
-        }
+        a.setBorrada(true);
+        Conexion.getInstance().modificar(a);
     }
     @Override
     public void eliminarResenia(Resenia a) {
@@ -232,6 +228,12 @@ public class AlimentoController implements IAlimentoController{
         }
         return secundaria;
     }
+
+    @Override
+    public void eliminarCategoria(Categoria categoria) {
+        categoria.setBorrada(true);
+        Conexion.getInstance().modificar(categoria);
+    }
     
     private static class PersonalControllerHolder {
         private static final AlimentoController INSTANCE = new AlimentoController();
@@ -248,7 +250,7 @@ public class AlimentoController implements IAlimentoController{
         plato.setCalorias(cal);
         plato.setPrecio(pre);
         plato.setTiempoPreparacion(tiempoPreparacion);
-        plato.setActivo(true);
+        plato.setBorrada(false);
         plato.setCategoria(categoria);
         
         platos.add(plato);
@@ -295,7 +297,7 @@ public class AlimentoController implements IAlimentoController{
         bebida.setPrecio(pre);
         bebida.setTiempoPreparacion(tiempoPreparacion);
         bebida.setTipo(tipo);
-        bebida.setActivo(true);
+        bebida.setBorrada(false);
         bebida.setCategoria(categoria);
         
         bebidas.add(bebida);

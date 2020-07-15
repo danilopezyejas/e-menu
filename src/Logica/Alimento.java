@@ -43,8 +43,9 @@ public class Alimento implements Serializable {
     private List<Observaciones> observacioness;
     private String ingredientes;   
     private int tiempoPreparacion;   
-    private boolean activo;
+    private boolean borrada;
     private int calorias;
+    private boolean activo;
     
     public Long getId() {
         return idAlimento;
@@ -86,6 +87,7 @@ public class Alimento implements Serializable {
         this.nombre = nombre;
         this.precio = precio;
         this.categoria = categoria;
+        this.borrada =  false;
     }
 
     public static long getSerialVersionUID() {
@@ -131,14 +133,6 @@ public class Alimento implements Serializable {
     public void setTiempoPreparacion(int tiempoPreparacion) {
         this.tiempoPreparacion = tiempoPreparacion;
     }
-
-    public boolean isActivo() {
-        return activo;
-    }
-
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
     
     public Alimento obtenerAlimentoPorId(int id) {
         String QUERY = "Select * From Alimento where idAlimento=?id ";
@@ -154,5 +148,47 @@ public class Alimento implements Serializable {
     public void setCalorias(int calorias) {
         this.calorias = calorias;
     }
+
+    public Long getIdAlimento() {
+        return idAlimento;
+    }
+
+    public List<Pedidos> getPedidoss() {
+        return pedidoss;
+    }
+
+    public List<Observaciones> getObservacioness() {
+        return observacioness;
+    }
+
+    public boolean isBorrada() {
+        return borrada;
+    }
+
+    public void setIdAlimento(Long idAlimento) {
+        this.idAlimento = idAlimento;
+    }
+
+    public void setPedidoss(List<Pedidos> pedidoss) {
+        this.pedidoss = pedidoss;
+    }
+
+    public void setObservacioness(List<Observaciones> observacioness) {
+        this.observacioness = observacioness;
+    }
+
+    public void setBorrada(boolean borrada) {
+        this.borrada = borrada;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+    
+    
     
 }

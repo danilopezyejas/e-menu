@@ -133,7 +133,9 @@ public class ctrl_Pedido implements ictrl_Pedido {
 
     @Override
     public void bajaMesa(int idMesa) {
-        Conexion.getInstance().baja(buscarMesaPorId(idMesa));
+        Mesa mesa = buscarMesaPorId(idMesa);
+        mesa.setBorrada(true);
+        Conexion.getInstance().modificar(mesa);
     }
 
     @Override
